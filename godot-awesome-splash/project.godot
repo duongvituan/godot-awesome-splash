@@ -244,14 +244,14 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-action/time_func.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "LoadScreen",
 "language": "GDScript",
 "path": "res://src/preview_demo/LoadScreen.gd"
 } ]
 _global_script_class_icons={
-"AspectNode": "",
-"BaseSplashScreen": "",
+"AspectNode": "res://addons/awesome_splash/assets/aspect_node_icon.png",
+"BaseSplashScreen": "res://addons/awesome_splash/assets/ss_icon.png",
 "GDAction": "",
 "GDActionColorize": "",
 "GDActionCustomAction": "",

@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "AspectNode",
+"language": "GDScript",
+"path": "res://addons/awesome_splash/core/AspectNode.gd"
+}, {
+"base": "Node2D",
+"class": "BaseSplashScreen",
+"language": "GDScript",
+"path": "res://addons/awesome_splash/core/BaseSplashScreen.gd"
+}, {
 "base": "Reference",
 "class": "GDAction",
 "language": "GDScript",
@@ -235,6 +245,8 @@ _global_script_classes=[ {
 "path": "res://addons/godot-action/time_func.gd"
 } ]
 _global_script_class_icons={
+"AspectNode": "",
+"BaseSplashScreen": "",
 "GDAction": "",
 "GDActionColorize": "",
 "GDActionCustomAction": "",
@@ -293,7 +305,7 @@ gd="*res://addons/godot-action/utils_gd_action.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/awesome-splash-godot/plugin.cfg", "res://addons/godot-action/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/awesome_splash/plugin.cfg", "res://addons/godot-action/plugin.cfg" )
 
 [physics]
 

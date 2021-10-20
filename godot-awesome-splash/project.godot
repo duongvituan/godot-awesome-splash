@@ -293,7 +293,7 @@ gd="*res://addons/godot-action/utils_gd_action.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-action/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/awesome-splash-godot/plugin.cfg", "res://addons/godot-action/plugin.cfg" )
 
 [physics]
 

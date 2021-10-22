@@ -1,7 +1,27 @@
-## Every time you create a new splash animation,
-## you need to change the SIZE you want to use in the OutlineFrame Node.
 ## This node keep aspect ratio when change the parrent size.
-## 
+## you need to change the SIZE you want to use in the OutlineFrame Node.
+##                                                 
+##                                        Your Window                                                        
+##                                       ##############                                       
+##     AspectNode              #####     #            #                         
+##     (ex scale: 3:2)           # #     ##############                                                             
+##     ##############          #   #     # AspectNode #                                               
+##     #            #        #           #            #                                                         
+##     # scale: 3:2 #      #             # scale: 3:2 #                                                       
+##     #            #                    #            #                                                                                  
+##     #            #                    ##############                                                
+##     ##############                    #            #                                                
+##                                       ##############                                       
+##       #                                                                       
+##          #                     Your Window                                                 
+##             #     #    ############################                                                       
+##                #  #    #      # AspectNode #      #                             
+##             # # # #    #      #            #      #                             
+##                        #      # scale: 3:2 #      #                          
+##                        #      #            #      #                          
+##                        ############################                                                    
+##                                                                            
+##                                                                            
 extends Node2D
 class_name AspectNode, "res://addons/awesome_splash/assets/aspect_node_icon.png"
 

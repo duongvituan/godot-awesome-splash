@@ -1,30 +1,65 @@
 class_name LoadScreen extends Node
 
-var styler0 = preload("res://src/styler/styler0/styler0.tscn")
-var styler1 = preload("res://src/styler/styler1/styler1.tscn")
-var styler2 = preload("res://src/styler/styler2/styler2.tscn")
-var styler3 = preload("res://src/styler/styler3/styler3.tscn")
+const PATH_DEMO_COLLECTION = "res://src/demo_collection/"
 
+var list_demo = []
 var index = 0
 
-func get_list():
-	return [styler0, styler1, styler2, styler3]
+
+func _ready():
+	_load_all_collection_demo()
 
 
 func get_first_screen():
+	if len(list_demo) == 0:
+		return
 	index = 0
-	return get_list()[0]
+	return list_demo[0]
+
 
 func get_current_screen():
-	return get_list()[index]
+	if len(list_demo) == 0:
+		return
+	return list_demo[index]
+
 
 func next():
-	var list = get_list()
-	index = (index + 1) % list.size()
-	return list[index]
+	if len(list_demo) == 0:
+		return
+	index = (index + 1) % list_demo.size()
+	return list_demo[index]
 
 
 func back():
-	var list = get_list()
-	index = (index + list.size() - 1) % list.size()
-	return list[index]
+	if len(list_demo) == 0:
+		return
+	index = (index + list_demo.size() - 1) % list_demo.size()
+	return list_demo[index]
+
+
+func _get_list_folder_demo(path) -> Array:
+	var dir = Directory.new()
+	var list_dir = []
+	
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		
+		while file_name != "":
+			if dir.current_is_dir() and file_name != ".." and file_name != ".":
+				list_dir.append(file_name)
+			file_name = dir.get_next()
+		return list_dir
+	
+	else:
+		print("An error occurred when trying to access the path.")
+		return []
+
+
+func _load_all_collection_demo():
+	var list_demo_folder = _get_list_folder_demo(PATH_DEMO_COLLECTION)
+	list_demo_folder.sort()
+	for folder in list_demo_folder:
+		var demo_path = "%s%s/splash_screen.tscn" % [PATH_DEMO_COLLECTION, folder]
+		print("loading splash screen: %s" % demo_path)
+		list_demo.append(load(demo_path))

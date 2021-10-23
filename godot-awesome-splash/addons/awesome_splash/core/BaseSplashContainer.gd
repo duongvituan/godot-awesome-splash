@@ -1,16 +1,14 @@
-tool
 extends Node2D
 
 var splash_screen: AweSplashScreen setget _set_splash_screen ,_get_splash_screen
 
 
 func _ready():
-	get_viewport().connect("size_changed", self, "update_frame_aspect_node")
-	var splash_screen = self.splash_screen
-	if splash_screen:
-		update_frame_aspect_node()
-		self.splash_screen.connect("finished", self, "on_splash_finished")
+	if Engine.editor_hint:
+		return
 	
+	get_viewport().connect("size_changed", self, "update_frame_aspect_node")
+	_config_splash_screen_it_exits()
 
 
 func _get_configuration_warning():
@@ -20,18 +18,23 @@ func _get_configuration_warning():
 	return warnings.join("\n")
 
 
-func remove_old_screen():
+func _remove_old_screen():
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
 
 
+func _config_splash_screen_it_exits():
+	var splash_screen = self.splash_screen
+	if splash_screen != null:
+		update_frame_aspect_node()
+		self.splash_screen.connect("finished", self, "_on_splash_animation_finished")
+
+
 func _set_splash_screen(screen: AweSplashScreen):
-	remove_old_screen()
-	splash_screen = screen
-	splash_screen.connect("finished", self, "on_splash_finished")
+	_remove_old_screen()
 	add_child(screen)
-	update_frame_aspect_node()
+	_config_splash_screen_it_exits()
 
 
 func _get_splash_screen() -> AweSplashScreen:
@@ -42,6 +45,9 @@ func _get_splash_screen() -> AweSplashScreen:
 
 
 func update_frame_aspect_node():
+	if Engine.editor_hint:
+		return 
+	
 	var current_splash_screen = self.splash_screen
 	if current_splash_screen == null:
 		return
@@ -57,6 +63,6 @@ func play():
 	current_splash_screen.play()
 
 
-func on_splash_finished():
-	print("on_splash_finished")
+func _on_splash_animation_finished():
+	print("_on_splash_animation_finished")
 

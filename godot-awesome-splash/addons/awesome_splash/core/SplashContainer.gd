@@ -7,9 +7,10 @@ extends "res://addons/awesome_splash/core/BaseSplashContainer.gd"
 
 
 func _ready():
-	play()
+	if not Engine.editor_hint:
+		play()
 
 
 # Todo: move to other screen here:
-func on_splash_finished():
-	print("on_splash_finished")
+func _on_splash_animation_finished():
+	print("_on_splash_animation_finished")

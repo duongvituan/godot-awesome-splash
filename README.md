@@ -1,18 +1,19 @@
 ## Overview
 Collection of splash screens for Godot Engine. Easy to use, fast Installing, multiple resolutions.
+
 I used [GDAction](https://github.com/duongvituan/godot-action-animation-framework) for animation.
 
 Run on Desktop:
 
-![desktop](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/desktop_size.gif)
+<img src="https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/desktop_size.gif" width="512" height="300">
 
 Run on mobile:
 
-![mobile](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/mobile_size.gif)
+<img src="https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/mobile_size.gif" width="300" height="512">
 
 You can use preview_demo to choose the right splash screen for your project:
 
-![preview_demo](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/preview_demo.gif)
+<img src="https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/preview_demo.gif" width="512" height="300">
 
 ## Install and use
 

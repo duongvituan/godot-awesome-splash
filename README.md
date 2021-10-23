@@ -4,15 +4,15 @@ I used [GDAction](https://github.com/duongvituan/godot-action-animation-framewor
 
 Run on Desktop:
 
-[desktop](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/desktop_size.gif)
+![desktop](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/desktop_size.gif)
 
 Run on mobile:
 
-[mobile](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/mobile_size.gif)
+![mobile](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/mobile_size.gif)
 
 You can use preview_demo to choose the right splash screen for your project:
 
-[preview_demo](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/preview_demo.gif)
+![preview_demo](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/preview_demo.gif)
 
 ## Install and use
 
@@ -38,7 +38,9 @@ In Godot engine: Select Project > Project Settings... > Application -> Boot Spla
 
 ## Contribution
 Contributions are welcome and are accepted via pull requests.
+
 You can use Tween, AnimationPlayer or GDAction ...etc.. to create SplashScreen.
+
 You can contribute code and submit pull or you can provide ideas and resources by creating an issue. :)
 
 

@@ -1,6 +1,8 @@
 ## Overview
 Collection of splash screens for Godot Engine. Easy to use, fast Installing, multiple resolutions.
 
+You can edit the code, change the logo as you like.
+
 I used [GDAction](https://github.com/duongvituan/godot-action-animation-framework) for animation.
 
 Run on Desktop:
@@ -11,11 +13,13 @@ Run on mobile:
 
 <img src="https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/mobile_size.gif" width="300" height="512">
 
-You can use preview_demo to choose the right splash screen for your project:
+You can use **preview_demo** to choose the right splash screen for your project:
 
 <img src="https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/preview_demo.gif" width="512" height="300">
 
 ## Install and use
+
+Click image to watch video tutorial:
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/5ULQduv5GZw/0.jpg)](http://www.youtube.com/watch?v=5ULQduv5GZw)
 
@@ -23,13 +27,17 @@ You can use preview_demo to choose the right splash screen for your project:
 ### Installation
 Copy the contents of the plugins to the same folder in your project and activate AwesomeSplash and GDAction.
 
+If you need more details, you can watch the video above.
+
 
 ### How to use AwesomeSplash
-1. Create folder src/collection_demo/ (if it doesn't exist then you can create src folder and demo_collection folder)
+1. Create folder src/demo_collection/ (if it **doesn't exist** then you can create **src** folder and **demo_collection** folder)
 2. Copy demo splash you like to your project in to demo_collection folder.
 (Note: If you copy to another folder, just fix the "Load failed due to missing dependencies" error by clicking "Fix Dependencies" and selecting your path.)
 3. Create SplashContainer.
 4. Drag and drop splash_screen.tscn to SplashContainer.
+
+If you need more details, you can watch the video above.
 
 
 ## QA:
@@ -38,6 +46,11 @@ In Godot engine: Select Project > Project Settings... > Application -> Run -> Ma
 
 ### How to hide the default splash screen of Godot engine.
 In Godot engine: Select Project > Project Settings... > Application -> Boot Splash -> Image: select (res://addons/awesome_splash/assets/None.png)
+
+### I got an error message "Load failed due to missing dependencies": 
+Please put the correct "demo folder" in the path **src/demo_collection/**
+
+(Note: If you copy to another folder, just fix the "Load failed due to missing dependencies" error by clicking "Fix Dependencies" and selecting your path.)
 
 
 ## Contribution

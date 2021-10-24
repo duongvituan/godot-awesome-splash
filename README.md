@@ -17,6 +17,9 @@ You can use preview_demo to choose the right splash screen for your project:
 
 ## Install and use
 
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/5ULQduv5GZw/0.jpg)](http://www.youtube.com/watch?v=5ULQduv5GZw)
+
+
 ### Installation
 Copy the contents of the plugins to the same folder in your project and activate AwesomeSplash and GDAction.
 

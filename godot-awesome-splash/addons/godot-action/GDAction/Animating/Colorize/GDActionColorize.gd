@@ -11,6 +11,7 @@ func _init(color: Color, is_self_modulate: bool, duration: float, gd_utils: Node
 func _create_action_node(key: String, node):
 	var action_node = GDActionNodeColorize.new(self, key, node)
 	action_node.time_func = time_func
+	action_node.ease_func_value = ease_func_value
 	return action_node
 
 

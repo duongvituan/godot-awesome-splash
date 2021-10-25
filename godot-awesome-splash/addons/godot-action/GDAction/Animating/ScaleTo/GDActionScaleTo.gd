@@ -10,6 +10,7 @@ func _init(vector_scale: Vector2, duration: float, gd_utils: Node).(duration, gd
 func _create_action_node(key: String, node):
 	var action_node = GDActionNodeScaleTo.new(self, key, node)
 	action_node.time_func = time_func
+	action_node.ease_func_value = ease_func_value
 	return action_node
 
 

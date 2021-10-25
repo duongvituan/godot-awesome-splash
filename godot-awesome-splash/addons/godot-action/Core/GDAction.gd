@@ -7,6 +7,7 @@ signal action_cancelled()
 var delay = 0.0
 var speed = 1.0
 var time_func = null
+var ease_func_value = null
 
 
 var _cache_action_node = Dictionary()
@@ -20,6 +21,7 @@ func _init(gd_utils: Node):
 func _create_action_node(key: String, node: Node):
 	var action_node = GDActionNode.new(self, key, node)
 	action_node.time_func = time_func
+	action_node.ease_func_value = ease_func_value
 	return action_node
 
 
@@ -137,6 +139,10 @@ func with_time_func(time_func: Curve) -> GDAction:
 	self.time_func = time_func
 	return self
 
+
+func with_easing(ease_func_value: float) -> GDAction:
+	self.ease_func_value = ease_func_value
+	return self
 
 # Stop action
 

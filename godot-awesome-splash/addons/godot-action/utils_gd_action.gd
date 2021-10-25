@@ -1,6 +1,6 @@
 extends Node
 
-onready var time_func: GDTimeFunc = $time_func
+onready var ease_func: GDEaseFunc = $ease_func
 onready var _cache = $cache
 
 # Animating a Node's Position in a Linear Path

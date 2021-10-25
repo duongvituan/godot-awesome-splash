@@ -40,13 +40,18 @@ func _process(delta):
 
 
 func _update_ease_in(value: float, delta: float):
-	if time_func == null:
+	if ease_func_value != null:
+		var eased_value = ease(value / duration, ease_func_value)
+		_update(eased_value * duration, eased_value, (eased_value - old_eased_value) * duration)
+		old_eased_value = eased_value
+		
+	elif time_func != null:
+		var eased_value = time_func.interpolate(value / duration)
+		_update(eased_value * duration, eased_value, (eased_value - old_eased_value) * duration)
+		old_eased_value = eased_value
+		
+	else:
 		_update(value, value / duration, delta)
-		return
-	
-	var eased_value = time_func.interpolate(value / duration)
-	_update(eased_value * duration, eased_value, (eased_value - old_eased_value) * duration)
-	old_eased_value = eased_value
 
 
 # Virtual function

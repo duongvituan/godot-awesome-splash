@@ -49,4 +49,4 @@ func reversed() -> GDAction:
 	var list_action_reversed = []
 	for i in range(list_action.size() - 1, -1, -1):
 		list_action_reversed.append(list_action[i].reversed())
-	return get_script().new(list_action_reversed)
+	return get_script().new(list_action_reversed, _gd_utils)

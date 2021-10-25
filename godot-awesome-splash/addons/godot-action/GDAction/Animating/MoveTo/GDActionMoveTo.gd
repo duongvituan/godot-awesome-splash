@@ -12,6 +12,7 @@ func _init(x, y, duration: float, gd_utils: Node).(duration, gd_utils):
 func _create_action_node(key: String, node):
 	var action_node = GDActionNodeMoveTo.new(self, key, node)
 	action_node.time_func = time_func
+	action_node.ease_func_value = ease_func_value
 	return action_node
 
 

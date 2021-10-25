@@ -10,6 +10,7 @@ func _init(by_vector_scale: Vector2, duration: float, gd_utils: Node).(duration,
 func _create_action_node(key: String, node):
 	var action_node = GDActionNodeScaleBy.new(self, key, node)
 	action_node.time_func = time_func
+	action_node.ease_func_value = ease_func_value
 	return action_node
 
 
@@ -19,4 +20,4 @@ func _run_action(action_node: GDActionNode, delay: float, speed: float):
 
 
 func reversed() -> GDAction:
-	return get_script().new(-by_vector_scale, duration)
+	return get_script().new(-by_vector_scale, duration, _gd_utils)

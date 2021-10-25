@@ -5,7 +5,10 @@ var on_target: Node
 
 
 func _create_action_node(key: String, node):
-	return GDActionNodeCustomAction.new(self, key, node)
+	var action_node = GDActionNodeCustomAction.new(self, key, node)
+	action_node.time_func = time_func
+	action_node.ease_func_value = ease_func_value
+	return action_node
 
 
 func _init(selector: String, on_target: Node, duration: float, gd_utils: Node).(duration, gd_utils):

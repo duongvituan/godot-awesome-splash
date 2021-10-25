@@ -45,4 +45,4 @@ func _prepare_finish_action_with_key(key: String):
 
 
 func reversed() -> GDAction:
-	return get_script().new(run_action.reversed())
+	return get_script().new(run_action.reversed(), _gd_utils)

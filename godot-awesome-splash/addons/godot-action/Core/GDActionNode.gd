@@ -13,6 +13,7 @@ var delay = 0.0
 var current_time = 0.0
 var speed = 1.0
 var time_func = null
+var ease_func_value = null
 
 var key = ""
 var action = null

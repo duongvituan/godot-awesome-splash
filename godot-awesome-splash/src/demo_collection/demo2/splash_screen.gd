@@ -66,15 +66,15 @@ func make_action_jump_ball(duration: float) -> GDAction:
 	
 	var action_jump_and_scale = gd.group([
 		gd.sequence([
-			gd.move_to_y(center_point.y - 900, duration / 2.0).with_time_func(gd.time_func.ease_out),
-			gd.move_to_y(center_point.y + 100, duration / 2.0).with_time_func(gd.time_func.ease_in),
+			gd.move_to_y(center_point.y - 900, duration / 2.0).with_easing(gd.ease_func.ease_in),
+			gd.move_to_y(center_point.y + 100, duration / 2.0).with_easing(gd.ease_func.ease_out),
 		]),
-		gd.scale_to(0.4, duration).with_time_func(gd.time_func.ease_out)
+		gd.scale_to(0.4, duration).with_easing(gd.ease_func.ease_in)
 	])
 	
 	var action_jump_bound = gd.sequence([
-		gd.move_to_y(center_point.y - 200, duration / 2.0 * 0.3).with_time_func(gd.time_func.ease_out),
-		gd.move_to_y(center_point.y + 100, duration / 2.0 * 0.2).with_time_func(gd.time_func.ease_in),
+		gd.move_to_y(center_point.y - 200, duration / 2.0 * 0.3).with_easing(gd.ease_func.ease_in),
+		gd.move_to_y(center_point.y + 100, duration / 2.0 * 0.2).with_easing(gd.ease_func.ease_out),
 	])
 	
 	return gd.sequence([
@@ -90,8 +90,8 @@ func make_action_jump_ball(duration: float) -> GDAction:
 func make_action_jump_character() -> GDAction:
 	var duration = 0.2
 	var action_jump_character = gd.sequence([
-		gd.move_by_y(-150, duration).with_time_func(gd.time_func.ease_in),
-		gd.move_by_y(150, duration).with_time_func(gd.time_func.ease_out)
+		gd.move_by_y(-150, duration).with_easing(gd.ease_func.ease_in),
+		gd.move_by_y(150, duration).with_easing(gd.ease_func.ease_out)
 	])
 	
 	var action_scale_character = gd.sequence([

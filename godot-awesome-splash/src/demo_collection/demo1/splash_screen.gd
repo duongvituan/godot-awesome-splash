@@ -42,9 +42,9 @@ func start_main_animation():
 	# Animation for logo
 	gd.sequence([
 		gd.wait(0.5),
-		gd.fade_alpha_to(1.0, FADE_LOGO_TIME / 2),
+		gd.fade_alpha_to(1.0, FADE_LOGO_TIME / 2).with_easing(0.5),
 		gd.wait(CHARACTERS_RUN_TIME),
-		gd.fade_alpha_to(0.0, FADE_LOGO_TIME / 2),
+		gd.fade_alpha_to(0.0, FADE_LOGO_TIME / 2).with_easing(2),
 		gd.wait(0.3),
 		gd.perform("finished_animation", self) # finished and move other screen
 	]).start(logo)
@@ -60,17 +60,15 @@ func start_main_animation():
 	# Animation For Info node
 	gd.sequence([
 		gd.wait(FADE_LOGO_TIME + CHARACTERS_RUN_TIME / 3),
-		gd.fade_alpha_to(1.0, FADE_INFO_TIME / 2),
+		gd.fade_alpha_to(1.0, FADE_INFO_TIME / 2).with_easing(0.5),
 		gd.wait(CHARACTERS_RUN_TIME / 3),
-		gd.fade_alpha_to(0.0, FADE_INFO_TIME / 2)
+		gd.fade_alpha_to(0.0, FADE_INFO_TIME / 2).with_easing(2)
 	]).start(info_node)
 
 
 func make_action_characters_run(delay: float) -> GDAction:
 	return gd.sequence([
 		gd.wait(delay),
-		gd.move_by_x(DISTANCE_MOVE -100, CHARACTERS_RUN_TIME / 6),
-		gd.move_by_x(200, CHARACTERS_RUN_TIME * 2 / 3),
-		gd.move_by_x(DISTANCE_MOVE, CHARACTERS_RUN_TIME / 6)
+		gd.move_by_x(2 * DISTANCE_MOVE, CHARACTERS_RUN_TIME).with_easing(-0.15)
 	])
 

@@ -32,6 +32,7 @@ func _on_action_object_completed(action_node):
 func _run_action_repeat():
 	if not is_instance_valid(node):
 		finished()
+		return
 	
 	var action_node = action_repeat._start_from_action(node, key, speed)
 	

@@ -42,6 +42,7 @@ func _run_repeat(count: int) -> void:
 	
 	if not is_instance_valid(node):
 		finished()
+		return
 	
 	var action_node = action_repeat._start_from_action(node, key, speed)
 	

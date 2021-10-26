@@ -1,6 +1,11 @@
-class_name LoadScreen extends Node
+class_name ScreenLoader extends Node
 
 const PATH_DEMO_COLLECTION = "res://src/demo_collection/"
+
+# testing_demo_name for test only one demo screen.
+# If you assign a value to testing_demo_name then ScreenLoader return only this demo.
+# Empty value mean load all demo.
+var testing_demo_name = ""
 
 var list_demo = []
 var index = 0
@@ -57,7 +62,12 @@ func _get_list_folder_demo(path) -> Array:
 
 
 func _load_all_collection_demo():
-	var list_demo_folder = _get_list_folder_demo(PATH_DEMO_COLLECTION)
+	var list_demo_folder = []
+	if testing_demo_name.empty():
+		list_demo_folder = _get_list_folder_demo(PATH_DEMO_COLLECTION)
+	else:
+		list_demo_folder = [testing_demo_name]
+	
 	list_demo_folder.sort()
 	for folder in list_demo_folder:
 		var demo_path = "%s%s/splash_screen.tscn" % [PATH_DEMO_COLLECTION, folder]

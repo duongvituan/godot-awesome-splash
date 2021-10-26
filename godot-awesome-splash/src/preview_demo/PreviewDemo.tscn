@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/awesome_splash/core/BaseSplashContainer.gd" type="Script" id=1]
-[ext_resource path="res://src/preview_demo/LoadScreen.gd" type="Script" id=2]
+[ext_resource path="res://src/preview_demo/ScreenLoader.gd" type="Script" id=2]
 [ext_resource path="res://src/preview_demo/PreviewDemo.gd" type="Script" id=3]
 [ext_resource path="res://addons/awesome_splash/assets/D.png" type="Texture" id=4]
 [ext_resource path="res://addons/awesome_splash/assets/L_Click.png" type="Texture" id=5]
@@ -16,7 +16,7 @@ script = ExtResource( 3 )
 [node name="SplashPlayer" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
-[node name="LoadScreen" type="Node" parent="."]
+[node name="ScreenLoader" type="Node" parent="."]
 script = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]

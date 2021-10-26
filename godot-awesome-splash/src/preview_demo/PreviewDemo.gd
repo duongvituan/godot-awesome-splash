@@ -1,12 +1,12 @@
 extends Node2D
 
-onready var load_screen := $LoadScreen
+onready var screen_loader := $ScreenLoader
 onready var splash_player := $SplashPlayer
 onready var name_label := $Panel/MarginContainer/VBoxContainer/Label
 
 
 func _ready():
-	var splash_screen = load_screen.get_first_screen().instance()
+	var splash_screen = screen_loader.get_first_screen().instance()
 	update_control_node(splash_screen)
 	play_screen(splash_screen)
 
@@ -21,19 +21,19 @@ func _input(event):
 
 
 func on_reset():
-	var splash_screen = load_screen.get_current_screen().instance()
+	var splash_screen = screen_loader.get_current_screen().instance()
 	update_control_node(splash_screen)
 	play_screen(splash_screen)
 
 
 func on_next():
-	var splash_screen = load_screen.next().instance()
+	var splash_screen = screen_loader.next().instance()
 	update_control_node(splash_screen)
 	play_screen(splash_screen)
 
 
 func on_previous():
-	var splash_screen = load_screen.back().instance()
+	var splash_screen = screen_loader.back().instance()
 	update_control_node(splash_screen)
 	play_screen(splash_screen)
 

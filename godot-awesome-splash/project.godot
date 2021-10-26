@@ -245,9 +245,9 @@ _global_script_classes=[ {
 "path": "res://addons/godot-action/ease_func.gd"
 }, {
 "base": "Node",
-"class": "LoadScreen",
+"class": "ScreenLoader",
 "language": "GDScript",
-"path": "res://src/preview_demo/LoadScreen.gd"
+"path": "res://src/preview_demo/ScreenLoader.gd"
 } ]
 _global_script_class_icons={
 "AspectNode": "res://addons/awesome_splash/assets/aspect_node_icon.png",
@@ -297,7 +297,7 @@ _global_script_class_icons={
 "GDActionVisibility": "",
 "GDActionWait": "",
 "GDEaseFunc": "",
-"LoadScreen": ""
+"ScreenLoader": ""
 }
 
 [application]

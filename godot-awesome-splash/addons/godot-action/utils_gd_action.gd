@@ -111,8 +111,8 @@ func wait(time: float, with_range: float = 0.0) -> GDAction:
 
 
 # Creating Custom Actions
-func perform(selector: String, on_target: Node) -> GDAction:
-	return GDActionPerform.new(selector, on_target, self)
+func perform(selector: String, on_target: Node, args: Array = []) -> GDAction:
+	return GDActionPerform.new(selector, args, on_target, self)
 
 
 func custom_action(selector: String, on_target: Node, duration: float) -> GDAction:

@@ -19,7 +19,7 @@ You can use **preview_demo** to choose the right splash screen for your project:
 
 ## Install and use
 
-Click image to watch video tutorial:
+Click image to watch tutorial video:
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/5ULQduv5GZw/0.jpg)](http://www.youtube.com/watch?v=5ULQduv5GZw)
 

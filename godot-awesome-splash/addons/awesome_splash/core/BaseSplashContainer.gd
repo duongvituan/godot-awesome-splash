@@ -1,5 +1,7 @@
 extends Node2D
 
+signal finished
+
 var splash_screen: AweSplashScreen setget _set_splash_screen ,_get_splash_screen
 
 
@@ -64,5 +66,6 @@ func play():
 
 
 func _on_splash_animation_finished():
+	emit_signal("finished")
 	print("_on_splash_animation_finished")
 

@@ -109,6 +109,6 @@ position = Vector2( 0, 250 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 38, 708, 943, 269 )
+region_rect = Rect2( 38, 708, 943, 259.794 )
 
 [editable path="AspectNode"]

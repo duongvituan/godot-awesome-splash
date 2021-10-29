@@ -6,6 +6,7 @@ onready var name_label := $Panel/MarginContainer/VBoxContainer/Label
 
 
 func _ready():
+	splash_player.connect("finished", self, "_on_finished_splash_screen")
 	var splash_screen = screen_loader.get_first_screen().instance()
 	update_control_node(splash_screen)
 	play_screen(splash_screen)
@@ -45,3 +46,7 @@ func update_control_node(splash_screen):
 func play_screen(splash_screen):
 	splash_player.splash_screen = splash_screen
 	splash_player.play()
+
+
+func _on_finished_splash_screen():
+	on_reset()

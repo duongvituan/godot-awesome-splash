@@ -1,8 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/awesome_splash/core/AspectNode.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/demo_collection/demo3/logo_godot.png" type="Texture" id=2]
 [ext_resource path="res://src/demo_collection/demo3/splash_screen.gd" type="Script" id=3]
+[ext_resource path="res://addons/awesome_splash/text_node/AweListTextNode.gd" type="Script" id=4]
+[ext_resource path="res://addons/awesome_splash/text_node/AweTextNode.gd" type="Script" id=5]
+[ext_resource path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://src/demo_collection/demo3/logo.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=3]
+size = 230
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 120
+font_data = ExtResource( 6 )
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -31,86 +43,55 @@ script = ExtResource( 3 )
 margin_right = 1400.0
 margin_bottom = 1400.0
 
-[node name="Godot" type="Node2D" parent="AspectNode"]
-position = Vector2( 737.861, 757.042 )
-scale = Vector2( 0.75, 0.75 )
+[node name="TitleNode" type="Node2D" parent="AspectNode"]
+script = ExtResource( 4 )
+font = SubResource( 3 )
+anchor = Vector2( 0.5, 0.5 )
+char_anchor = Vector2( 0.5, 0.5 )
 
-[node name="G" type="Sprite" parent="AspectNode/Godot"]
-show_behind_parent = true
-position = Vector2( -404.322, 99.9999 )
-texture = ExtResource( 2 )
-offset = Vector2( 0, -100 )
-region_enabled = true
-region_rect = Rect2( 78, 740, 154, 201 )
+[node name="InfoNode" type="Node2D" parent="AspectNode"]
+script = ExtResource( 5 )
+anchor = Vector2( 0.5, 0.5 )
+font = SubResource( 4 )
 
-[node name="O" type="Sprite" parent="AspectNode/Godot"]
-show_behind_parent = true
-position = Vector2( -205.019, 100 )
-texture = ExtResource( 2 )
-offset = Vector2( 0, -100 )
-region_enabled = true
-region_rect = Rect2( 252, 740, 179, 201 )
+[node name="LogoContainer" type="Node2D" parent="AspectNode"]
 
-[node name="D" type="Sprite" parent="AspectNode/Godot"]
-show_behind_parent = true
-position = Vector2( 0.0770569, 100 )
-texture = ExtResource( 2 )
-offset = Vector2( 0, -100 )
-region_enabled = true
-region_rect = Rect2( 454, 742, 151, 197 )
+[node name="Logo" type="TextureRect" parent="AspectNode/LogoContainer"]
+margin_left = -300.0
+margin_top = -560.0
+margin_right = 300.0
+margin_bottom = 40.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="O2" type="Sprite" parent="AspectNode/Godot"]
-show_behind_parent = true
-position = Vector2( 192.104, 100 )
-texture = ExtResource( 2 )
-offset = Vector2( 0, -100 )
-region_enabled = true
-region_rect = Rect2( 623, 740, 178, 201 )
-
-[node name="T" type="Sprite" parent="AspectNode/Godot"]
-show_behind_parent = true
-position = Vector2( 376.965, 100 )
-texture = ExtResource( 2 )
-offset = Vector2( 0, -100 )
-region_enabled = true
-region_rect = Rect2( 808, 742, 138, 198 )
-
-[node name="InfoNode" type="Sprite" parent="AspectNode"]
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 161, 970, 708, 137 )
-
-[node name="GodotIcon" type="Sprite" parent="AspectNode"]
-position = Vector2( 0, -260 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 236, 78, 552, 522 )
-
-[node name="LeftEye" type="ColorRect" parent="AspectNode/GodotIcon"]
+[node name="LeftEye" type="ColorRect" parent="AspectNode/LogoContainer"]
 material = SubResource( 2 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -453.47
-margin_top = -303.38
-margin_right = -353.47
-margin_bottom = -203.38
+margin_left = -177.47
+margin_top = -302.38
+margin_right = -77.47
+margin_bottom = -202.38
 rect_pivot_offset = Vector2( 300, 300 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightEye" type="ColorRect" parent="AspectNode/GodotIcon"]
+[node name="RightEye" type="ColorRect" parent="AspectNode/LogoContainer"]
 material = SubResource( 2 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -200.065
-margin_top = -303.38
-margin_right = -100.065
-margin_bottom = -203.38
+margin_left = 75.935
+margin_top = -302.38
+margin_right = 175.935
+margin_bottom = -202.38
 rect_pivot_offset = Vector2( 300, 300 )
 __meta__ = {
 "_edit_use_anchors_": false

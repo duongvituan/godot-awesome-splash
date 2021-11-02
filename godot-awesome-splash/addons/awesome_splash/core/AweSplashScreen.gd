@@ -1,6 +1,6 @@
 tool
 extends Node2D
-class_name AweSplashScreen, "res://addons/awesome_splash/assets/splash_screen_icon.png"
+class_name AweSplashScreen, "res://addons/awesome_splash/assets/icon/splash_screen_icon.png"
 
 signal finished
 
@@ -56,6 +56,19 @@ func update_aspect_node_frame(parent_size: Vector2):
 	if aspect_node == null:
 		return
 	aspect_node.parrent_size = parent_size
+
+
+func load_texture(path: String) -> ImageTexture:
+	var image = Image.new()
+	var err = image.load(path)
+	
+	var texture = ImageTexture.new()
+	if err != OK:
+		print("%s is load fail" % path)
+		return texture
+	
+	texture.create_from_image(image, 0)
+	return texture
 
 
 func get_name() -> String:

@@ -1,12 +1,24 @@
 extends AweSplashScreen
 
 onready var logo := $AspectNode/Logo
+onready var logo_texture := $AspectNode/Logo/Texture
 onready var info_node := $AspectNode/InfoNode
-onready var godot_title := $AspectNode/GodotTitle
+onready var title_node := $AspectNode/TitleNode
+onready var background := $CanvasLayer/ColorRect
 
+
+const LOGO_PATH := "res://src/demo_collection/demo1/icon_color.png"
+const TITLE := "GODOT"
+const DESCRIPTION := "Game engine"
+
+const TITLE_FONT_SIZE = 230
+const DESCRIPT_FONT_SIZE = 120
+
+const BG_COLOR = Color8(240, 240, 240, 255)
+const TITLE_COLOR = Color8(56, 57, 58, 255)
+const DESCRIPTION_COLOR = Color8(98, 99, 102, 255)
 
 const DISTANCE_MOVE = 3000
-
 const FADE_LOGO_TIME = 1.0
 const FADE_INFO_TIME = 1.0
 const CHARACTERS_RUN_TIME = 3.0
@@ -23,18 +35,25 @@ func play():
 
 
 func config():
+	background.color = BG_COLOR
 	var center_point = self.origin_size / 2.0
 	
+	logo_texture.texture = load_texture(LOGO_PATH)
 	logo.position = center_point + Vector2(0, -300)
-	logo.scale = Vector2(0.7, 0.7)
 	logo.modulate.a = 0
 	
-	godot_title.position = center_point
-	for char_node in godot_title.get_children():
+	title_node.font.size = TITLE_FONT_SIZE
+	title_node.modulate = TITLE_COLOR
+	title_node.text = TITLE
+	title_node.position = center_point + Vector2(0, 50)
+	for char_node in title_node.get_all_text_node():
 		char_node.position.x -= DISTANCE_MOVE
 		char_node.modulate.a = 1
 	
-	info_node.position = center_point + Vector2(0, 200)
+	info_node.font.size = DESCRIPT_FONT_SIZE
+	info_node.modulate = DESCRIPTION_COLOR
+	info_node.text = DESCRIPTION
+	info_node.position = center_point + Vector2(0, 250)
 	info_node.modulate.a = 0
 
 
@@ -52,7 +71,7 @@ func start_main_animation():
 	
 	# Animation for charactes GODOT
 	var delay = FADE_LOGO_TIME / 2
-	for char_node in godot_title.get_children():
+	for char_node in title_node.get_reverse_text_node():
 		make_action_characters_run(delay).start(char_node)
 		delay += DELAY_TIME_FOR_EACH_CHARACTER
 	

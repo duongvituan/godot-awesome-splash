@@ -15,9 +15,19 @@ _global_script_classes=[ {
 "path": "res://addons/awesome_splash/core/AspectNode.gd"
 }, {
 "base": "Node2D",
+"class": "AweListTextNode",
+"language": "GDScript",
+"path": "res://addons/awesome_splash/text_node/AweListTextNode.gd"
+}, {
+"base": "Node2D",
 "class": "AweSplashScreen",
 "language": "GDScript",
 "path": "res://addons/awesome_splash/core/AweSplashScreen.gd"
+}, {
+"base": "Node2D",
+"class": "AweTextNode",
+"language": "GDScript",
+"path": "res://addons/awesome_splash/text_node/AweTextNode.gd"
 }, {
 "base": "Reference",
 "class": "GDAction",
@@ -250,8 +260,10 @@ _global_script_classes=[ {
 "path": "res://src/preview_demo/ScreenLoader.gd"
 } ]
 _global_script_class_icons={
-"AspectNode": "res://addons/awesome_splash/assets/aspect_node_icon.png",
-"AweSplashScreen": "res://addons/awesome_splash/assets/splash_screen_icon.png",
+"AspectNode": "res://addons/awesome_splash/assets/icon/aspect_node_icon.png",
+"AweListTextNode": "res://addons/awesome_splash/assets/icon/list_text_node_icon.png",
+"AweSplashScreen": "res://addons/awesome_splash/assets/icon/splash_screen_icon.png",
+"AweTextNode": "res://addons/awesome_splash/assets/icon/text_node_icon.png",
 "GDAction": "",
 "GDActionColorize": "",
 "GDActionCustomAction": "",

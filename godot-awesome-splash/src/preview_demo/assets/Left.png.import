@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/D.png-43446bd6f87e12c5454a3617c79b9091.stex"
+path="res://.import/Left.png-4830b00af63146ed2e8f8aaea86933a2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/awesome_splash/assets/D.png"
-dest_files=[ "res://.import/D.png-43446bd6f87e12c5454a3617c79b9091.stex" ]
+source_file="res://src/preview_demo/assets/Left.png"
+dest_files=[ "res://.import/Left.png-4830b00af63146ed2e8f8aaea86933a2.stex" ]
 
 [params]
 

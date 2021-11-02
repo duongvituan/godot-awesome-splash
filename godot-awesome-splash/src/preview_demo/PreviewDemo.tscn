@@ -3,12 +3,12 @@
 [ext_resource path="res://addons/awesome_splash/core/BaseSplashContainer.gd" type="Script" id=1]
 [ext_resource path="res://src/preview_demo/ScreenLoader.gd" type="Script" id=2]
 [ext_resource path="res://src/preview_demo/PreviewDemo.gd" type="Script" id=3]
-[ext_resource path="res://addons/awesome_splash/assets/D.png" type="Texture" id=4]
-[ext_resource path="res://addons/awesome_splash/assets/L_Click.png" type="Texture" id=5]
-[ext_resource path="res://addons/awesome_splash/assets/Right.png" type="Texture" id=6]
-[ext_resource path="res://addons/awesome_splash/assets/Space.png" type="Texture" id=7]
-[ext_resource path="res://addons/awesome_splash/assets/A.png" type="Texture" id=8]
-[ext_resource path="res://addons/awesome_splash/assets/Left.png" type="Texture" id=9]
+[ext_resource path="res://src/preview_demo/assets/D.png" type="Texture" id=4]
+[ext_resource path="res://src/preview_demo/assets/L_Click.png" type="Texture" id=5]
+[ext_resource path="res://src/preview_demo/assets/Right.png" type="Texture" id=6]
+[ext_resource path="res://src/preview_demo/assets/Space.png" type="Texture" id=7]
+[ext_resource path="res://src/preview_demo/assets/A.png" type="Texture" id=8]
+[ext_resource path="res://src/preview_demo/assets/Left.png" type="Texture" id=9]
 
 [node name="PreviewDemo" type="Node2D"]
 script = ExtResource( 3 )

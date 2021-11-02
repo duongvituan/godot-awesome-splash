@@ -23,7 +23,7 @@
 ##                                                                            
 ##                                                                            
 extends Node2D
-class_name AspectNode, "res://addons/awesome_splash/assets/aspect_node_icon.png"
+class_name AspectNode, "res://addons/awesome_splash/assets/icon/aspect_node_icon.png"
 
 var origin_size: Vector2  setget , _get_origin_size
 var parrent_size: Vector2 setget _set_parrent_size

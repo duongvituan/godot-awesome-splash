@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/splash_container_icon.png-afcf84c87571678980612c83a5aeb47f.stex"
+path="res://.import/D.png-e39306a033697ca3830fb2f818db06ad.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/awesome_splash/assets/splash_container_icon.png"
-dest_files=[ "res://.import/splash_container_icon.png-afcf84c87571678980612c83a5aeb47f.stex" ]
+source_file="res://src/preview_demo/assets/D.png"
+dest_files=[ "res://.import/D.png-e39306a033697ca3830fb2f818db06ad.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

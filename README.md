@@ -19,9 +19,7 @@ You can use **preview_demo** to choose the right splash screen for your project:
 
 ## Install and use
 
-Click image to watch tutorial video:
-
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/5ULQduv5GZw/0.jpg)](http://www.youtube.com/watch?v=5ULQduv5GZw)
+Watch video tutorial [here](http://www.youtube.com/watch?v=5ULQduv5GZw)
 
 
 ### Installation
@@ -52,6 +50,8 @@ Please put the correct "demo folder" in the path **src/demo_collection/**
 
 (Note: If you copy to another folder, just fix the "Load failed due to missing dependencies" error by clicking "Fix Dependencies" and selecting your path.)
 
+### I want to run on mobile (android, ios.. ), what do I need to do?
+You don't need to do anything, the splash screen will automatically adjust for you.
 
 ## Contribution
 Contributions are welcome and are accepted via pull requests.

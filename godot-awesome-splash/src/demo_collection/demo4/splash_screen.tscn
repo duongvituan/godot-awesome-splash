@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/awesome_splash/core/AspectNode.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/demo_collection/demo4/splash_screen.gd" type="Script" id=2]
-[ext_resource path="res://src/demo_collection/demo4/logo_godot.png" type="Texture" id=3]
+[ext_resource path="res://addons/awesome_splash/text_node/AweListTextNode.gd" type="Script" id=4]
+[ext_resource path="res://addons/awesome_splash/text_node/AweTextNode.gd" type="Script" id=5]
+[ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://src/demo_collection/demo4/logo.png" type="Texture" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -38,20 +42,16 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 120
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 230
+font_data = ExtResource( 6 )
+
 [node name="AweSplashScreen" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AspectNode" parent="." instance=ExtResource( 1 )]
 
@@ -59,22 +59,11 @@ __meta__ = {
 margin_right = 1400.0
 margin_bottom = 1400.0
 
-[node name="InfoNode" type="Sprite" parent="AspectNode"]
-modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 161, 970, 708, 137 )
-
 [node name="CenterNode" type="Node2D" parent="AspectNode"]
 
-[node name="Logo" type="Node2D" parent="AspectNode/CenterNode"]
+[node name="LogoContainer" type="Node2D" parent="AspectNode/CenterNode"]
 
-[node name="Godot" type="Sprite" parent="AspectNode/CenterNode/Logo"]
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 236, 78, 552, 522 )
-
-[node name="SmallCircle" type="ColorRect" parent="AspectNode/CenterNode/Logo"]
+[node name="SmallCircle" type="ColorRect" parent="AspectNode/CenterNode/LogoContainer"]
 material = SubResource( 2 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -89,7 +78,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Circle" type="ColorRect" parent="AspectNode/CenterNode/Logo"]
+[node name="Circle" type="ColorRect" parent="AspectNode/CenterNode/LogoContainer"]
 material = SubResource( 4 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -104,11 +93,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GodotTitle" type="Sprite" parent="AspectNode"]
-position = Vector2( 0, 250 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 38, 708, 943, 259.794 )
+[node name="Logo" type="TextureRect" parent="AspectNode/CenterNode/LogoContainer"]
+margin_left = -300.0
+margin_top = -300.0
+margin_right = 300.0
+margin_bottom = 300.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoNode" type="Node2D" parent="AspectNode"]
+script = ExtResource( 5 )
+anchor = Vector2( 0.5, 0.5 )
+font = SubResource( 5 )
+
+[node name="TitleNode" type="Node2D" parent="AspectNode"]
+script = ExtResource( 4 )
+font = SubResource( 6 )
+anchor = Vector2( 0.5, 0.5 )
+char_anchor = Vector2( 0.5, 0.5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="AspectNode"]

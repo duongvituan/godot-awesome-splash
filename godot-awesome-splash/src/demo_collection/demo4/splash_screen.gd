@@ -1,20 +1,36 @@
 extends AweSplashScreen
 
-onready var center_node := $AspectNode/CenterNode
-onready var logo := $AspectNode/CenterNode/Logo
-onready var godot_sprite := $AspectNode/CenterNode/Logo/Godot
-onready var circle := $AspectNode/CenterNode/Logo/Circle
-onready var small_circle := $AspectNode/CenterNode/Logo/SmallCircle
+
+onready var title_node := $AspectNode/TitleNode
 onready var info_node := $AspectNode/InfoNode
-onready var godot_title_sprite := $AspectNode/GodotTitle
+onready var background := $CanvasLayer/ColorRect
+
+onready var center_node := $AspectNode/CenterNode
+onready var logo_container := $AspectNode/CenterNode/LogoContainer
+onready var logo := $AspectNode/CenterNode/LogoContainer/Logo
+onready var circle := $AspectNode/CenterNode/LogoContainer/Circle
+onready var small_circle := $AspectNode/CenterNode/LogoContainer/SmallCircle
+
+
+const LOGO_PATH := "res://src/demo_collection/demo4/logo.png"
+const TITLE := "GODOT"
+const DESCRIPTION := "Game engine"
+
+const BG_COLOR = Color8(0, 0, 0, 255)
+const LOGO_COLOR = Color8(255, 255, 255, 255)
+const TITLE_COLOR = Color8(255, 255, 255, 255)
+const DESCRIPTION_COLOR = Color8(200, 200, 200, 255)
+
+const TITLE_FONT_SIZE = 230
+const DESCRIPT_FONT_SIZE = 120
 
 const SHAKE_TEXT_TIME = 0.2
 const SPINNY_CIRCE_TIME = 1.5
 const FADE_IN_LOGO_TIME = 0.3
 const DROP_DOWN_LOGO_TIME = 0.3
+const PREPARE_MOVE_OTHER_SCREEN = 0.75
 
 const USE_SPINNY_CIRCE = true
-
 
 func get_name() -> String:
 	return "Demo 4"
@@ -26,17 +42,28 @@ func play():
 
 
 func config():
+	background.color = BG_COLOR
 	var center_point = self.origin_size / 2.0
 	
 	center_node.position = center_point + Vector2(0, -300)
 	if USE_SPINNY_CIRCE:
-		logo.position.x = 1500
-	logo.scale = Vector2(0.5, 0.5)
-	godot_sprite.modulate.a = 0
+		logo_container.position.x = 1500
+	logo_container.scale = Vector2(0.5, 0.5)
+	logo_container.modulate = LOGO_COLOR
+	logo.texture = load_texture(LOGO_PATH)
+	logo.modulate.a = 0
 	
-	godot_title_sprite.position = center_point + Vector2(0, 200)
-	godot_title_sprite.visible = false
+	# config title node
+	title_node.font.size = TITLE_FONT_SIZE
+	title_node.modulate = TITLE_COLOR
+	title_node.text = TITLE
+	title_node.position = center_point + Vector2(0, 200)
+	title_node.visible = false
 	
+	#config info node
+	info_node.font.size = DESCRIPT_FONT_SIZE
+	info_node.text = DESCRIPTION
+	info_node.modulate = DESCRIPTION_COLOR
 	info_node.position = center_point + Vector2(0, 400)
 	info_node.modulate.a = 0
 	
@@ -51,7 +78,7 @@ func start_main_animation():
 	var center_point = self.origin_size / 2.0
 	
 	var spinny_circle_action = gd.sequence([
-		gd.run(gd.move_to_x(0, SPINNY_CIRCE_TIME), logo, false),
+		gd.run(gd.move_to_x(0, SPINNY_CIRCE_TIME), logo_container, false),
 		gd.rotate_to(360 * 3, SPINNY_CIRCE_TIME)
 	])
 	
@@ -87,7 +114,7 @@ func wave_animation():
 func fade_logo_animation():
 	var duration = 0.3
 	gd.fade_alpha_to(0, duration).start(small_circle)
-	gd.fade_alpha_to(1, duration).start(godot_sprite)
+	gd.fade_alpha_to(1, duration).start(logo)
 
 
 func shake_text_animation():
@@ -95,14 +122,14 @@ func shake_text_animation():
 		gd.unhide(),
 		gd.move_by_y(100, SHAKE_TEXT_TIME / 2.0).with_easing(gd.ease_func.ease_in),
 		gd.move_by_y(-100, SHAKE_TEXT_TIME / 2.0).with_easing(gd.ease_func.ease_out)
-	]).start(godot_title_sprite)
+	]).start(title_node)
 	
 	gd.group([
 		gd.unhide(),
 		gd.sequence([
 			gd.move_by_y(50, SHAKE_TEXT_TIME / 2.0).with_easing(gd.ease_func.ease_in),
 			gd.move_by_y(-50, SHAKE_TEXT_TIME / 2.0).with_easing(gd.ease_func.ease_out),
-			gd.wait(0.5),
+			gd.wait(PREPARE_MOVE_OTHER_SCREEN),
 			gd.perform("finished_animation", self)
 		]),
 		gd.fade_alpha_to(1, SHAKE_TEXT_TIME)

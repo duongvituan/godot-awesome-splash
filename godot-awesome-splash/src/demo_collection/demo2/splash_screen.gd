@@ -52,7 +52,7 @@ func _config():
 	title_node.modulate = TITLE_COLOR
 	title_node.text = TITLE
 	var shift_x = (SPACE_LOGO_AND_TITLE + logo_size()) / 2.0
-	title_node.position = center_point + Vector2(shift_x, -125)
+	title_node.position = center_point + Vector2(shift_x, -50)
 	for child in title_node.get_all_text_node():
 		child.modulate.a = 0
 	
@@ -61,7 +61,7 @@ func _config():
 	info_node.modulate = DESCRIPTION_COLOR
 	info_node.modulate.a = 0
 	info_node.text = DESCRIPTION
-	info_node.position = center_point + Vector2(0, 80)
+	info_node.position = center_point + Vector2(0, 150)
 
 
 func start_main_animation():
@@ -70,14 +70,14 @@ func start_main_animation():
 	var action_jump_and_scale = gd.group([
 		gd.sequence([
 			gd.move_to_y(center_point.y - 900, BALL_JUMP_IN_TIME / 2.0).with_easing(gd.ease_func.ease_in),
-			gd.move_to_y(center_point.y, BALL_JUMP_IN_TIME / 2.0).with_easing(gd.ease_func.ease_out),
+			gd.move_to_y(center_point.y + 75, BALL_JUMP_IN_TIME / 2.0).with_easing(gd.ease_func.ease_out),
 		]),
 		gd.scale_to(0.4, BALL_JUMP_IN_TIME).with_easing(gd.ease_func.ease_in)
 	])
 	
 	var action_jump_bound = gd.sequence([
 		gd.move_to_y(center_point.y - 300, BALL_BOUNCE_TIME / 2.0).with_easing(gd.ease_func.ease_in),
-		gd.move_to_y(center_point.y, BALL_BOUNCE_TIME / 2.0).with_easing(gd.ease_func.ease_out),
+		gd.move_to_y(center_point.y + 75, BALL_BOUNCE_TIME / 2.0).with_easing(gd.ease_func.ease_out),
 	])
 	
 	var shift_x = (title_node.width + SPACE_LOGO_AND_TITLE) / 2.0

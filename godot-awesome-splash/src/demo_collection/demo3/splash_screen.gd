@@ -50,7 +50,7 @@ func config():
 	
 	var center_point = self.origin_size / 2.0
 	logo_container.modulate = LOGO_COLOR
-	logo_container.position = center_point
+	logo_container.position = center_point + Vector2(0, 50)
 	logo_container.scale = Vector2(0.5, 0.5)
 	
 	# Config TitleNode
@@ -58,7 +58,7 @@ func config():
 	title_node.modulate = TITLE_COLOR
 	title_node.text = TITLE
 	var shift_x = (SPACE_LOGO_AND_TITLE + logo_size()) / 2.0
-	title_node.position = center_point + Vector2(shift_x, -125)
+	title_node.position = center_point + Vector2(shift_x, -50)
 	for child in title_node.get_all_text_node():
 		child.modulate.a = 0
 	
@@ -66,7 +66,7 @@ func config():
 	info_node.font.size = DESCRIPT_FONT_SIZE
 	info_node.modulate = DESCRIPTION_COLOR
 	info_node.text = DESCRIPTION
-	info_node.position = center_point + Vector2(0, 75)
+	info_node.position = center_point + Vector2(0, 130)
 	info_node.modulate.a = 0
 
 

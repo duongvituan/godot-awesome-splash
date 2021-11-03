@@ -13,6 +13,16 @@ func _ready():
 	_config_splash_screen_it_exits()
 
 
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
+		if _splash_screen_can_be_skipped_when_clicked_screen():
+			emit_signal("finished")
+
+
+func _splash_screen_can_be_skipped_when_clicked_screen() -> bool:
+	return false
+
+
 func _get_configuration_warning():
 	var warnings = PoolStringArray()
 	if not self.splash_screen:
@@ -67,5 +77,4 @@ func play():
 
 func _on_splash_animation_finished():
 	emit_signal("finished")
-	print("_on_splash_animation_finished")
 

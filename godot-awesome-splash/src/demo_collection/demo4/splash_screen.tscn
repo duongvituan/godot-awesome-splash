@@ -94,10 +94,10 @@ __meta__ = {
 }
 
 [node name="Logo" type="TextureRect" parent="AspectNode/CenterNode/LogoContainer"]
-margin_left = -300.0
-margin_top = -300.0
-margin_right = 300.0
-margin_bottom = 300.0
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
 texture = ExtResource( 8 )
 expand = true
 __meta__ = {

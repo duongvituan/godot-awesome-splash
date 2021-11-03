@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/logo_godot.png-3a53908a408d2952fcff1f24cad888cc.stex"
+path="res://.import/logo.png-a2d777556f9c5206b8ac540978349b7f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/demo_collection/demo6/src/logo_godot.png"
-dest_files=[ "res://.import/logo_godot.png-3a53908a408d2952fcff1f24cad888cc.stex" ]
+source_file="res://src/demo_collection/demo6/src/logo.png"
+dest_files=[ "res://.import/logo.png-a2d777556f9c5206b8ac540978349b7f.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

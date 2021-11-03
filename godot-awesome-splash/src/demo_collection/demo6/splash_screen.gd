@@ -1,14 +1,24 @@
 extends AweSplashScreen
 
-onready var logo := $AspectNode/Logo
-onready var godot := $AspectNode/Logo/Godot
-onready var circle := $AspectNode/Logo/Circle
-onready var shape_node := $AspectNode/Logo/ShapNode
-
+onready var logo_container := $AspectNode/LogoContainer
+onready var logo := $AspectNode/LogoContainer/Logo
+onready var circle := $AspectNode/LogoContainer/Circle
+onready var shape_node := $AspectNode/LogoContainer/ShapNode
+onready var background := $CanvasLayer/ColorRect
 onready var info_node := $AspectNode/InfoNode
-onready var godot_char_node := $AspectNode/Title
+onready var title_node := $AspectNode/TitleNode
 
-var custom_func_time = preload("./src/custom.tres")
+const LOGO_PATH := "res://src/demo_collection/demo6/src/logo.png"
+const TITLE := "GODOT"
+const DESCRIPTION := "Game engine"
+
+const BG_COLOR = Color8(0, 0, 0, 255)
+const LOGO_COLOR = Color8(255, 255, 255, 255)
+const TITLE_COLOR = Color8(255, 255, 255, 255)
+const DESCRIPTION_COLOR = Color8(200, 200, 200, 255)
+
+const TITLE_FONT_SIZE = 230
+const DESCRIPT_FONT_SIZE = 120
 
 const LOGO_TO_BALL_TIME = 1.0
 const JUMP_IN_TIME = 1.0
@@ -16,6 +26,10 @@ const JUMP_BOUNCE_TIME = 1.0
 
 const EASE_IN = 0.25
 const EASE_OUT = 4
+
+
+var list_origin_position: Array = []
+var custom_func_time = preload("./src/custom.tres")
 
 func get_name() -> String:
 	return "Demo 6"
@@ -27,31 +41,51 @@ func play():
 
 
 func config():
+	background.color = BG_COLOR
 	var center_point = self.origin_size / 2.0
 	
-	logo.position = center_point + Vector2(0, -200)
-	logo.scale = Vector2(5, 5)
+	logo_container.modulate = LOGO_COLOR
+	logo_container.position = center_point + Vector2(0, -200)
+	logo_container.scale = Vector2(5, 5)
 	
-	circle.modulate.a = 1
-	godot.modulate.a = 0
+#	circle.modulate.a = 1
+	logo.texture = load_texture(LOGO_PATH)
+	logo.modulate.a = 0
 	shape_node.modulate.a = 0
 	
-	godot_char_node.position = center_point + Vector2(0, 200)
-
-	info_node.position = center_point + Vector2(0, 300)
+	
+	# Config Title Node
+	title_node.font.size = TITLE_FONT_SIZE
+	title_node.modulate = TITLE_COLOR
+	title_node.text = TITLE
+	title_node.position = center_point + Vector2(0, 200)
+	title_node.update_all_anchor(make_list_custom_anchor(TITLE))
+	var width = title_node.width
+	for text_node in title_node.get_all_text_node():
+		list_origin_position.append(text_node.position)
+		text_node.position.x = width / 2.0
+		text_node.scale = Vector2.ZERO
+		text_node.modulate.a = 0.0
+	
+	
+	# Config Info Node
+	info_node.font.size = DESCRIPT_FONT_SIZE
+	info_node.modulate = DESCRIPTION_COLOR
 	info_node.modulate.a = 0
+	info_node.text = DESCRIPTION
+	info_node.position = center_point + Vector2(0, 300)
 
 
 func start_main_animation():
 	gd.sequence([
-		gd.perform("logo_to_ball", logo, [LOGO_TO_BALL_TIME]),
+		gd.perform("logo_to_ball", logo_container, [LOGO_TO_BALL_TIME]),
 		gd.wait(LOGO_TO_BALL_TIME),
 		action_jump_ball_in(JUMP_IN_TIME),
 		gd.perform("show_title_godot", self, [JUMP_BOUNCE_TIME * 0.5]),
 		bounce_and_show_logo(JUMP_BOUNCE_TIME),
 		gd.perform("shake_character", self, [JUMP_BOUNCE_TIME * 0.3]),
 		gd.move_by_y(-100, JUMP_IN_TIME * 0.2).with_easing(EASE_IN)
-	]).start(logo)
+	]).start(logo_container)
 
 
 func action_jump_ball_in(duration: float) -> GDAction:
@@ -93,7 +127,7 @@ func bounce_and_show_logo(duration: float) -> GDAction:
 	return gd.group([
 		gd.sequence([
 			gd.move_to_y(center_point.y - 350, duration_up).with_easing(EASE_IN),
-			gd.perform("ball_to_logo", logo, [duration_up * 0.3]),
+			gd.perform("ball_to_logo", logo_container, [duration_up * 0.3]),
 			gd.move_to_y(center_point.y - 125, duration_down).with_easing(EASE_OUT)
 		]),
 		gd.sequence([
@@ -110,17 +144,22 @@ func bounce_and_show_logo(duration: float) -> GDAction:
 
 func show_title_godot(duration: float):
 	var delay = 0
-	for index in [0, 4, 1, 3, 2]:
-		var character_node = godot_char_node.get_child(index).get_child(0)
+	var count = float(TITLE.length())
+	if count == 0:
+		return
+	var list_index_priority = make_custom_range(count)
+	
+	for index in list_index_priority:
+		var text_node = title_node.get_all_text_node()[index]
 		gd.sequence([
 			gd.wait(delay),
 			gd.group([
-				gd.move_to(Vector2.ZERO, duration).with_easing(5),
+				gd.move_to(list_origin_position[index], duration).with_easing(5),
 				gd.scale_to(1.0, duration).with_time_func(custom_func_time),
 				gd.fade_alpha_to(1, duration).with_easing(2),
 			])
-		]).start(character_node)
-		delay += 0.1
+		]).start(text_node)
+		delay += duration / count
 
 
 func shake_character(duration):
@@ -128,7 +167,7 @@ func shake_character(duration):
 		gd.unhide(),
 		gd.move_by_y(100, duration / 2.0).with_easing(EASE_IN),
 		gd.move_by_y(-100, duration / 2.0).with_easing(EASE_OUT)
-	]).start(godot_char_node)
+	]).start(title_node)
 	
 	gd.group([
 		gd.unhide(),
@@ -141,3 +180,34 @@ func shake_character(duration):
 		gd.fade_alpha_to(1, duration)
 	]).start(info_node)
 
+
+func make_custom_range(number: int) -> Array:
+	var output = []
+	for i in number / 2:
+		output.append(i)
+		output.append(number - 1 - i)
+	
+	if number % 2 == 1:
+		output.append(number / 2)
+	return output
+
+
+func make_list_custom_anchor(text: String):
+	var output = []
+	var count = text.length()
+	var is_odd = count % 2 == 1
+	
+	for i in count:
+		if is_odd:
+			if i < count / 2:
+				output.append(Vector2(1.0, 1.0))
+			elif i == count / 2:
+				output.append(Vector2(0.5, 1.0))
+			else:
+				output.append(Vector2(0.0, 1.0))
+		else:
+			if i < count / 2 :
+				output.append(Vector2(1.0, 1.0))
+			else:
+				output.append(Vector2(0.0, 1.0))
+	return output

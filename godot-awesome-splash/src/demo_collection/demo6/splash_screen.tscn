@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/awesome_splash/core/AspectNode.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/demo_collection/demo6/src/logo_godot.png" type="Texture" id=2]
 [ext_resource path="res://src/demo_collection/demo6/splash_screen.gd" type="Script" id=3]
 [ext_resource path="res://src/demo_collection/demo6/src/ShapNode.gd" type="Script" id=4]
 [ext_resource path="res://src/demo_collection/demo6/src/Logo.gd" type="Script" id=5]
+[ext_resource path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://addons/awesome_splash/text_node/AweListTextNode.gd" type="Script" id=7]
+[ext_resource path="res://addons/awesome_splash/text_node/AweTextNode.gd" type="Script" id=8]
+[ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://src/demo_collection/demo6/src/logo.png" type="Texture" id=10]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -24,6 +28,14 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 120
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 230
+font_data = ExtResource( 9 )
+
 [node name="AweSplashScreen" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -35,17 +47,21 @@ margin_top = 222.052
 margin_right = 1629.13
 margin_bottom = 1622.05
 
-[node name="Logo" type="Node2D" parent="AspectNode"]
+[node name="LogoContainer" type="Node2D" parent="AspectNode"]
 script = ExtResource( 5 )
 
-[node name="Godot" type="Sprite" parent="AspectNode/Logo"]
-position = Vector2( 0, 44.7959 )
-scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 236, 78, 552, 522 )
+[node name="Logo" type="TextureRect" parent="AspectNode/LogoContainer"]
+margin_left = -50.0
+margin_right = 50.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 50, 50 )
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Circle" type="ColorRect" parent="AspectNode/Logo"]
+[node name="Circle" type="ColorRect" parent="AspectNode/LogoContainer"]
 visible = false
 material = SubResource( 2 )
 anchor_left = 0.5
@@ -61,10 +77,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShapNode" type="Node2D" parent="AspectNode/Logo"]
+[node name="ShapNode" type="Node2D" parent="AspectNode/LogoContainer"]
 script = ExtResource( 4 )
 
-[node name="Line2D" type="Line2D" parent="AspectNode/Logo/ShapNode"]
+[node name="Line2D" type="Line2D" parent="AspectNode/LogoContainer/ShapNode"]
 position = Vector2( -1.54288, 52.1203 )
 points = PoolVector2Array( 0, 0, 0, 0.01 )
 width = 100.0
@@ -74,79 +90,16 @@ begin_cap_mode = 2
 end_cap_mode = 2
 round_precision = 20
 
-[node name="Title" type="Node2D" parent="AspectNode"]
-position = Vector2( 737.861, 757.042 )
-scale = Vector2( 0.75, 0.75 )
+[node name="InfoNode" type="Node2D" parent="AspectNode"]
+script = ExtResource( 8 )
+anchor = Vector2( 0.5, 0.5 )
+font = SubResource( 3 )
 
-[node name="Node2D" type="Node2D" parent="AspectNode/Title"]
-position = Vector2( -293.789, 0 )
-
-[node name="G" type="Sprite" parent="AspectNode/Title/Node2D"]
-modulate = Color( 1, 1, 1, 0 )
-show_behind_parent = true
-position = Vector2( 299.569, 0 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 2 )
-offset = Vector2( -75.8597, -99.7595 )
-region_enabled = true
-region_rect = Rect2( 78, 740, 154, 201 )
-
-[node name="Node2D2" type="Node2D" parent="AspectNode/Title"]
-position = Vector2( -95.126, 0 )
-
-[node name="O" type="Sprite" parent="AspectNode/Title/Node2D2"]
-modulate = Color( 1, 1, 1, 0 )
-show_behind_parent = true
-position = Vector2( 94.246, 0 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 2 )
-offset = Vector2( -87.5927, -99.1009 )
-region_enabled = true
-region_rect = Rect2( 252, 740, 179, 201 )
-
-[node name="Node2D3" type="Node2D" parent="AspectNode/Title"]
-position = Vector2( 8.50525, 0 )
-
-[node name="D" type="Sprite" parent="AspectNode/Title/Node2D3"]
-modulate = Color( 1, 1, 1, 0 )
-show_behind_parent = true
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 2 )
-offset = Vector2( 0, -100 )
-region_enabled = true
-region_rect = Rect2( 454, 742, 151, 197 )
-
-[node name="Node2D4" type="Node2D" parent="AspectNode/Title"]
-position = Vector2( 110, 0 )
-
-[node name="O" type="Sprite" parent="AspectNode/Title/Node2D4"]
-modulate = Color( 1, 1, 1, 0 )
-show_behind_parent = true
-position = Vector2( -80.783, 0 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 2 )
-offset = Vector2( 87.925, -98.4703 )
-region_enabled = true
-region_rect = Rect2( 623, 740, 178, 201 )
-
-[node name="Node2D5" type="Node2D" parent="AspectNode/Title"]
-position = Vector2( 297, 0 )
-
-[node name="T" type="Sprite" parent="AspectNode/Title/Node2D5"]
-modulate = Color( 1, 1, 1, 0 )
-show_behind_parent = true
-position = Vector2( -271.52, 0 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 2 )
-offset = Vector2( 68.1121, -95.5745 )
-region_enabled = true
-region_rect = Rect2( 808, 742, 138, 198 )
-
-[node name="InfoNode" type="Sprite" parent="AspectNode"]
-modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 161, 970, 708, 137 )
+[node name="TitleNode" type="Node2D" parent="AspectNode"]
+script = ExtResource( 7 )
+font = SubResource( 4 )
+anchor = Vector2( 0.5, 1 )
+char_anchor = Vector2( 0.5, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1

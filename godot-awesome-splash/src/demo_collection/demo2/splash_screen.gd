@@ -47,7 +47,7 @@ func _config():
 	logo.texture = load_texture(LOGO_PATH)
 	logo.modulate.a = 0
 	
-	# confit title
+	# config title
 	title_node.font.size = TITLE_FONT_SIZE
 	title_node.modulate = TITLE_COLOR
 	title_node.text = TITLE

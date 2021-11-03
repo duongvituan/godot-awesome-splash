@@ -51,7 +51,11 @@ func get_reverse_text_node() -> Array:
 	return arr
 
 
-## Debug
+func update_all_anchor(list_anchor: Array):
+	for x in list_text_node.size():
+		list_text_node[x].update_anchor(list_anchor[x])
+
+# Debug
 #func _draw():
 #	draw_rect(Rect2(-10, -10, 20, 20), Color.yellow)
 

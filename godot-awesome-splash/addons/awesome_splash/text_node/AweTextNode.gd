@@ -33,6 +33,7 @@ func _set_text(value: String):
 	text = value
 	label.text = value
 	_update_layout()
+#	update()
 
 
 func _get_text() -> String:
@@ -65,3 +66,20 @@ func _update_layout():
 	var y = -(label_rect.y - true_size.y) / 2.0 - true_size.y * anchor.y
 	label.rect_position = Vector2(x, y)
 
+
+# CHUA TEST LAI
+func update_anchor(new_anchor: Vector2):
+	if new_anchor == anchor:
+		return
+		
+	var true_size = get_true_size()
+	
+	var diff_anchor = new_anchor - anchor
+	var shift_x = true_size.x * diff_anchor.x
+	var shift_y = true_size.y * diff_anchor.y
+	
+	label.rect_position.x -= shift_x
+	label.rect_position.y -= shift_y
+	
+	position.x += shift_x
+	position.y += shift_y

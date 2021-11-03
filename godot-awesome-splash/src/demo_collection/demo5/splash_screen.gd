@@ -1,11 +1,26 @@
 extends AweSplashScreen
 
+onready var title_node := $AspectNode/LogoContainer/TitleNode
+onready var info_node := $AspectNode/LogoContainer/InfoNode
+onready var logo := $AspectNode/LogoContainer/Logo
+
 onready var background := $CanvasLayer/ColorRect
-onready var godot := $AspectNode/Godot
+onready var logo_container := $AspectNode/LogoContainer
 onready var sponges := $AspectNode/Sponges
 
 onready var wave1 := $AspectNode/Wave1
 onready var wave2 := $AspectNode/Wave2
+
+const LOGO_PATH := "res://src/demo_collection/demo5/assets/logo.png"
+const TITLE := "GODOT"
+const DESCRIPTION := "Game engine"
+
+const LOGO_COLOR = Color8(255, 255, 255, 255)
+const TITLE_COLOR = Color8(255, 255, 255, 255)
+const DESCRIPTION_COLOR = Color8(255, 255, 255, 255)
+
+const TITLE_FONT_SIZE = 230
+const DESCRIPT_FONT_SIZE = 120
 
 const COLOR_WAVE1 = Color8(0, 132, 222, 255)
 const COLOR_WAVE2 = Color8(255, 255, 255, 255)
@@ -29,15 +44,26 @@ func play():
 
 func config():
 	var center_point = self.origin_size / 2.0
-	godot.position = center_point + Vector2(0, 300)
-	godot.scale = Vector2(1, 1)
-	godot.modulate = BACKGROUND_COLOR
+	logo_container.position = center_point + Vector2(0, 300)
+	logo_container.scale = Vector2(1, 1)
+	logo_container.modulate = BACKGROUND_COLOR
+	
+	logo.texture = load_texture(LOGO_PATH)
+	logo.modulate = LOGO_COLOR
 	
 	background.color = BACKGROUND_COLOR
 	wave1.modulate = COLOR_WAVE1
 	wave2.modulate = COLOR_WAVE2
 	
 	sponges.position = Vector2(center_point.x, self.origin_size.y + 1500.0)
+	
+	title_node.font.size = TITLE_FONT_SIZE
+	title_node.modulate = TITLE_COLOR
+	title_node.text = TITLE
+	
+	info_node.font.size = DESCRIPT_FONT_SIZE
+	info_node.text = DESCRIPTION
+	info_node.modulate = DESCRIPTION_COLOR
 
 
 
@@ -67,7 +93,7 @@ func start_main_animation():
 			gd.scale_to(0.5, WAVE2_MOVE_UP_TIME * 0.85),
 			action_move_up,
 		])
-	]).start(godot)
+	]).start(logo_container)
 	
 	gd.sequence([
 		gd.wait(WAVE1_MOVE_UP_TIME + WAVE2_MOVE_UP_TIME * 0.8),

@@ -1,30 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/awesome_splash/core/AspectNode.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/demo_collection/demo4/splash_screen.gd" type="Script" id=2]
+[ext_resource path="res://src/demo_collection/demo4/src/trail_effect.gd" type="Script" id=3]
 [ext_resource path="res://addons/awesome_splash/text_node/AweListTextNode.gd" type="Script" id=4]
 [ext_resource path="res://addons/awesome_splash/text_node/AweTextNode.gd" type="Script" id=5]
 [ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://src/demo_collection/demo4/logo.png" type="Texture" id=8]
+[ext_resource path="res://src/demo_collection/demo4/src/logo.png" type="Texture" id=8]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-void fragment() {
-    vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
-	vec2 center = vec2(0.5, 0.5);
-	float r = (UV.x - center.x) * (UV.x - center.x) + (UV.y - center.y) * (UV.y - center.y);
-	if (r > 0.25) {
-		color.a = 0.0;
-	}
-    COLOR = color;
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 
 void fragment() {
@@ -39,21 +24,41 @@ void fragment() {
     COLOR = color;
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+void fragment() {
+    vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
+	vec2 center = vec2(0.5, 0.5);
+	float r = (UV.x - center.x) * (UV.x - center.x) + (UV.y - center.y) * (UV.y - center.y);
+	if (r > 0.25) {
+		color.a = 0.0;
+	}
+    COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 120
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 230
 font_data = ExtResource( 6 )
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [node name="AweSplashScreen" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="AspectNode" parent="." instance=ExtResource( 1 )]
+z_index = 1
 
 [node name="OutlineFrame" parent="AspectNode" index="0"]
 margin_right = 1400.0
@@ -63,23 +68,8 @@ margin_bottom = 1400.0
 
 [node name="LogoContainer" type="Node2D" parent="AspectNode/CenterNode"]
 
-[node name="SmallCircle" type="ColorRect" parent="AspectNode/CenterNode/LogoContainer"]
-material = SubResource( 2 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -100.0
-margin_right = 100.0
-margin_bottom = 100.0
-rect_pivot_offset = Vector2( 100, 100 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Circle" type="ColorRect" parent="AspectNode/CenterNode/LogoContainer"]
-material = SubResource( 4 )
+material = SubResource( 3 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -104,16 +94,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SmallCircle" type="ColorRect" parent="AspectNode/CenterNode/LogoContainer"]
+material = SubResource( 5 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 100, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="InfoNode" type="Node2D" parent="AspectNode"]
 script = ExtResource( 5 )
 anchor = Vector2( 0.5, 0.5 )
-font = SubResource( 5 )
+font = SubResource( 6 )
 
 [node name="TitleNode" type="Node2D" parent="AspectNode"]
 script = ExtResource( 4 )
-font = SubResource( 6 )
+font = SubResource( 7 )
 anchor = Vector2( 0.5, 0.5 )
 char_anchor = Vector2( 0.5, 0.5 )
+
+[node name="Trail2D" type="Line2D" parent="."]
+show_behind_parent = true
+z_index = -1
+width = 50.0
+width_curve = SubResource( 1 )
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource( 3 )
+length = 30
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1

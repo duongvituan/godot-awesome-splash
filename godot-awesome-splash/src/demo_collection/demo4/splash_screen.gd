@@ -1,5 +1,6 @@
 extends AweSplashScreen
 
+onready var trail_node := $Trail2D
 
 onready var title_node := $AspectNode/TitleNode
 onready var info_node := $AspectNode/InfoNode
@@ -12,7 +13,7 @@ onready var circle := $AspectNode/CenterNode/LogoContainer/Circle
 onready var small_circle := $AspectNode/CenterNode/LogoContainer/SmallCircle
 
 
-const LOGO_PATH := "res://src/demo_collection/demo4/logo.png"
+const LOGO_PATH := "res://src/demo_collection/demo4/src/logo.png"
 const TITLE := "GODOT"
 const DESCRIPTION := "Game engine"
 
@@ -31,6 +32,8 @@ const DROP_DOWN_LOGO_TIME = 0.3
 const PREPARE_MOVE_OTHER_SCREEN = 0.75
 
 const USE_SPINNY_CIRCE = true
+const USE_TRAIL_EFFTECT = true
+
 
 func get_name() -> String:
 	return "Demo 4"
@@ -72,14 +75,21 @@ func config():
 	circle.rect_scale = Vector2(1, 1)
 	circle.visible = false
 	circle.modulate.a = 1
+	
+	if USE_TRAIL_EFFTECT:
+		trail_node.draw_on_node = logo_container
+		trail_node.modulate = LOGO_COLOR
+
 
 
 func start_main_animation():
 	var center_point = self.origin_size / 2.0
 	
 	var spinny_circle_action = gd.sequence([
+		gd.perform("begin_draw_trail", trail_node),
 		gd.run(gd.move_to_x(0, SPINNY_CIRCE_TIME), logo_container, false),
-		gd.rotate_to(360 * 3, SPINNY_CIRCE_TIME)
+		gd.rotate_to(360 * 3, SPINNY_CIRCE_TIME),
+		gd.perform("end_draw_trail", trail_node)
 	])
 	
 	var appear_logo_action = gd.sequence([

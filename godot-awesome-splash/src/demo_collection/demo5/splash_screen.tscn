@@ -62,17 +62,17 @@ margin_bottom = 1400.0
 [node name="Wave1" type="Node2D" parent="AspectNode"]
 
 [node name="Sprite" type="Sprite" parent="AspectNode/Wave1"]
-position = Vector2( 391.864, 2647.11 )
+position = Vector2( 391.864, 2759.47 )
 scale = Vector2( 4.17718, 2.32124 )
 texture = ExtResource( 4 )
 
 [node name="Sprite2" type="Sprite" parent="AspectNode/Wave1"]
-position = Vector2( 2906.74, 2683.81 )
+position = Vector2( 2906.74, 2796.17 )
 scale = Vector2( 4.50917, 2.32124 )
 texture = ExtResource( 4 )
 
 [node name="Sprite3" type="Sprite" parent="AspectNode/Wave1"]
-position = Vector2( -2248.66, 2569.05 )
+position = Vector2( -2248.66, 2681.41 )
 scale = Vector2( 3.33084, 2.32124 )
 texture = ExtResource( 4 )
 
@@ -80,9 +80,9 @@ texture = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -3908.0
-margin_top = 2994.0
+margin_top = 3106.0
 margin_right = 5150.0
-margin_bottom = 10978.0
+margin_bottom = 13949.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -116,27 +116,27 @@ __meta__ = {
 [node name="Wave2" type="Node2D" parent="AspectNode"]
 
 [node name="Sprite" type="Sprite" parent="AspectNode/Wave2"]
-position = Vector2( 391.864, 2647.11 )
+position = Vector2( 369.392, 2759.47 )
 scale = Vector2( 4.17718, 2.32124 )
 texture = ExtResource( 4 )
 
 [node name="Sprite2" type="Sprite" parent="AspectNode/Wave2"]
-position = Vector2( 2906.74, 2683.81 )
+position = Vector2( 2884.27, 2796.17 )
 scale = Vector2( 4.50917, 2.32124 )
 texture = ExtResource( 4 )
 
 [node name="Sprite3" type="Sprite" parent="AspectNode/Wave2"]
-position = Vector2( -2248.66, 2569.05 )
+position = Vector2( -2271.13, 2934.86 )
 scale = Vector2( 3.33084, 2.32124 )
 texture = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="AspectNode/Wave2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -3908.0
-margin_top = 2994.0
-margin_right = 5150.0
-margin_bottom = 10978.0
+margin_left = -3930.0
+margin_top = 3106.0
+margin_right = 5128.0
+margin_bottom = 14022.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

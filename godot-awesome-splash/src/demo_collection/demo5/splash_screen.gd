@@ -28,6 +28,7 @@ const BACKGROUND_COLOR = Color8(255, 255, 255, 255)
 
 const WAVE1_MOVE_UP_TIME = 2.0
 const WAVE2_MOVE_UP_TIME = 2.0
+const PREPARE_MOVE_OTHER_SCREEN = 0.2 # time prepare move to other screen after animation finished
 
 const SPONGE_MOVE_X_RANGE = Vector2(-450, 450)
 const SPONGE_MOVE_HORIZONTAL_TIME_RANGE = Vector2(5.0, 10.0)
@@ -69,7 +70,7 @@ func config():
 
 func start_main_animation():
 	# move up wave 1
-	gd.move_by(Vector2(1500, -5000), WAVE1_MOVE_UP_TIME).start(wave1)
+	gd.move_by(Vector2(1500, -6000), WAVE1_MOVE_UP_TIME).start(wave1)
 	
 	
 	# move up all sponges
@@ -80,7 +81,7 @@ func start_main_animation():
 	# wait and move up wave 2
 	gd.sequence([
 		gd.wait(WAVE1_MOVE_UP_TIME + 0.3),
-		gd.move_by(Vector2(1500, -5000), 2.0),
+		gd.move_by(Vector2(1500, -6000), 2.0),
 	]).start(wave2)
 	
 	
@@ -96,7 +97,7 @@ func start_main_animation():
 	]).start(logo_container)
 	
 	gd.sequence([
-		gd.wait(WAVE1_MOVE_UP_TIME + WAVE2_MOVE_UP_TIME * 0.8),
+		gd.wait(WAVE1_MOVE_UP_TIME + WAVE2_MOVE_UP_TIME * 0.8 + PREPARE_MOVE_OTHER_SCREEN),
 		gd.perform("finished_animation", self)
 	]).start(self)
 

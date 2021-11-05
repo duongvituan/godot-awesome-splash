@@ -316,7 +316,6 @@ _global_script_class_icons={
 
 config/name="godot-awesome-splash"
 run/main_scene="res://src/preview_demo/PreviewDemo.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 

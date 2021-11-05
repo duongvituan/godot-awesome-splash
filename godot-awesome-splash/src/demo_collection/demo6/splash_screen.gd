@@ -88,6 +88,9 @@ func start_main_animation():
 	]).start(logo_container)
 
 
+# OMG, I don't understand what i'm coding this demo :((.
+# But looking at the animation results, i found a bit of fun :]].
+# So i will not remove this demo.
 func action_jump_ball_in(duration: float) -> GDAction:
 	var duration_up = duration * 0.55
 	var duration_down = duration * 0.45

@@ -1,14 +1,13 @@
-extends AweSplashScreen
+extends AweSplashScreenViewport
 
-onready var logo_container := $AspectNode/LogoContainer
-onready var logo := $AspectNode/LogoContainer/Logo
+onready var logo_container := $ViewportContainer/Viewport/AspectNode/LogoContainer
+onready var logo := $ViewportContainer/Viewport/AspectNode/LogoContainer/Logo
 
-onready var info_node := $AspectNode/InfoNode
-onready var title_node := $AspectNode/TitleNode
+onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
+onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
 onready var bg_color := $CanvasLayer/ColorRect
 
-
-const LOGO_PATH := "res://src/demo_collection/temp/logo.png"
+const LOGO_PATH := "res://src/temporary_code/splash_screen_viewport/logo.png"
 const TITLE := "GODOT"
 const DESCRIPTION := "Game engine"
 
@@ -21,19 +20,11 @@ const DESCRIPTION_COLOR = Color8(255, 255, 255, 255)
 const TITLE_FONT_SIZE = 230
 const DESCRIPT_FONT_SIZE = 120
 
-
-const FADE_EYE_TIME = 1.0
-const MOVE_TO_LEFT_TIME = 0.2
-const FADE_TIME_PER_GODOT_TEXT = 0.2
-
-
 func get_name() -> String:
 	return "Temp"
 
-
-func play():
-	config()
-	main_animation()
+func _ready():
+	._ready()
 
 
 func config():
@@ -60,11 +51,10 @@ func config():
 	info_node.position = center_point + Vector2(0, 225)
 
 
+func play():
+	config()
+	main_animation()
 
 func main_animation():
 	pass
 
-
-
-func logo_size():
-	return 300.0

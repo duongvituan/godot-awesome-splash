@@ -4,9 +4,9 @@
 [ext_resource path="res://addons/awesome_splash/text_node/AweTextNode.gd" type="Script" id=2]
 [ext_resource path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://src/temp/splash_screen.gd" type="Script" id=5]
+[ext_resource path="res://src/temporary_code/splash_screen/splash_screen.gd" type="Script" id=5]
 [ext_resource path="res://addons/awesome_splash/core/AspectNode.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/temp/logo.png" type="Texture" id=7]
+[ext_resource path="res://src/temporary_code/splash_screen/logo.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 230

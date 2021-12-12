@@ -72,6 +72,16 @@ You should use a logo that is only white. I can script to manually adjust all lo
 ### I want to run on mobile (android, ios.. ), what do I need to do?
 You don't need to do anything, the splash screen will automatically adjust for you.
 
+
+### I want to the user that can skip this splash when they tap on the screen
+
+This feature already exists, in the splash container, you change the function _splash_screen_can_be_skipped_when_clicked_screen to return true (default is false).
+```
+func _splash_screen_can_be_skipped_when_clicked_screen() -> bool:
+    return true
+```
+
+
 ## Contribution
 Contributions are welcome and are accepted via pull requests.
 

@@ -13,7 +13,7 @@
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 8 )
 shader_param/burn_color = Color( 1, 0.3, 0.05, 1 )
-shader_param/process_value = 0.0
+shader_param/process_value = 1.0
 shader_param/fade = 1.0
 shader_param/noise_tex = ExtResource( 9 )
 

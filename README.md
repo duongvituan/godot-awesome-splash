@@ -56,7 +56,7 @@ Please put the correct "demo folder" in the path **src/demo_collection/**
 (Note: If you copy to another folder, just fix the "Load failed due to missing dependencies" error by clicking "Fix Dependencies" and selecting your path.)
 
 ### I don't want to put the code at "src/demo_collection/":
-Yes, after you run it successfully for the first time you can change the directory where they are located, godot will automatically fix the import error for you. So after successfully running, you can change the folder of the code.
+Yes, after successful first run you can change it, godot will automatically fix the import for you. So after successful run you can change the directory of the code.
 
 ### I want to change the logo, title, and description in the template.
 Yes, you can change background color, animation time, logo, title... via constant variables in the splash_screen.gb file.
@@ -69,17 +69,17 @@ const DESCRIPTION := "Game engine"
 
 You should use a logo that is only white. I can script to manually adjust all logos to 1 color but it doesn't seem like a good idea as it can ruin your design. I'm still looking for ideas for this, maybe it will be added in the future.
 
-### I want to run on mobile (android, ios.. ), what do I need to do?
-You don't need to do anything, the splash screen will automatically adjust for you.
 
-
-### I want to the user that can skip this splash when they tap on the screen
+### I want to the user that can skip this splash when they tap on the screen.
 
 This feature already exists, in the splash container, you change the function _splash_screen_can_be_skipped_when_clicked_screen to return true (default is false).
 ```
 func _splash_screen_can_be_skipped_when_clicked_screen() -> bool:
     return true
 ```
+
+### I want to run on mobile (android, ios.. ), what do I need to do?
+You don't need to do anything, the splash screen will automatically adjust for you.
 
 
 ## Contribution

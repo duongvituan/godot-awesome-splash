@@ -7,15 +7,16 @@ I used [GDAction](https://github.com/duongvituan/godot-action-animation-framewor
 
 Run on Desktop:
 
-<img src="https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/desktop_size.gif" width="512" height="300">
+![Desktop](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/desktop_size.gif)
 
 Run on mobile:
 
-<img src="https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/mobile_size.gif" width="300" height="512">
+![Mobi](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/mobile_size.gif)
 
 You can use **preview_demo** to choose the right splash screen for your project:
 
-<img src="https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/preview_demo.gif" width="512" height="300">
+![Preview](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/preview_demo.gif)
+
 
 ## Install and use
 

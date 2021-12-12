@@ -177,7 +177,7 @@ func shake_character(duration):
 		gd.sequence([
 			gd.move_by_y(50, duration / 2.0).with_easing(EASE_IN),
 			gd.move_by_y(-50, duration / 2.0).with_easing(EASE_OUT),
-			gd.wait(0.5),
+			gd.wait(1.0),
 			gd.perform("finished_animation", self)
 		]),
 		gd.fade_alpha_to(1, duration)

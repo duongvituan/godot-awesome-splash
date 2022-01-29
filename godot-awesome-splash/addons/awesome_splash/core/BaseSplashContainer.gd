@@ -10,7 +10,6 @@ func _ready():
 		return
 	
 	get_viewport().connect("size_changed", self, "update_frame_aspect_node")
-	_config_splash_screen_it_exits()
 
 
 func _input(event):

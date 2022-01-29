@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/awesome_splash/text_node/AweTextNode.gd"
 }, {
+"base": "Node2D",
+"class": "BaseListSplashContainer",
+"language": "GDScript",
+"path": "res://addons/awesome_splash/core/BaseListSplashContainer.gd"
+}, {
 "base": "Reference",
 "class": "GDAction",
 "language": "GDScript",
@@ -270,6 +275,7 @@ _global_script_class_icons={
 "AweSplashScreen": "res://addons/awesome_splash/assets/icon/splash_screen_icon.png",
 "AweSplashScreenViewport": "",
 "AweTextNode": "res://addons/awesome_splash/assets/icon/text_node_icon.png",
+"BaseListSplashContainer": "",
 "GDAction": "",
 "GDActionColorize": "",
 "GDActionCustomAction": "",

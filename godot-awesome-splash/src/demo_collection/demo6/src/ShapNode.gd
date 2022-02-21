@@ -18,7 +18,7 @@ func grow_height_to(height: float, duration: float, ease_value: float = 1.0):
 	gd.custom_action("_update_grow_height", self, duration).with_easing(ease_value).start(self)
 
 
-func _update_grow_height(value: float, eased_value: float, delta: float):
+func _update_grow_height(_value: float, eased_value: float, _delta: float):
 	var point1 = line2d.get_point_position(0)
 	var point2 = line2d.get_point_position(1)
 	point1.x = 0
@@ -42,7 +42,7 @@ func grow_width_to(width: float, duration: float, ease_value: float = 1.0):
 	gd.custom_action("_update_grow_width", self, duration).with_easing(ease_value).start(self)
 
 
-func _update_grow_width(value: float, eased_value: float, delta: float):
+func _update_grow_width(_value: float, eased_value: float, _delta: float):
 	var point1 = line2d.get_point_position(0)
 	var point2 = line2d.get_point_position(1)
 	point1.y = 0

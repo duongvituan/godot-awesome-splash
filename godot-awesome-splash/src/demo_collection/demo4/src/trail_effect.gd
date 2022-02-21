@@ -22,7 +22,7 @@ func end_draw_trail():
 
 
 
-func _process(delta):
+func _process(_delta):
 	if draw_on_node == null:
 		set_process(false)
 		return

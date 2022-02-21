@@ -97,8 +97,8 @@ func animation_disappear():
 	gd.custom_action("update_disappear", self, 3.0).with_easing(3.0).start(self)
 
 
-func update_disappear(value: float, eased_value: float, delta: float):
+func update_disappear(_value: float, eased_value: float, _delta: float):
 	_set_shader_f_value("process_value", eased_value)
 
-func update_appear(value: float, eased_value: float, delta: float):
+func update_appear(_value: float, eased_value: float, _delta: float):
 	_set_shader_f_value("process_value", 1.0 - eased_value)

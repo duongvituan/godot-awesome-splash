@@ -44,10 +44,9 @@ func update_control_node(splash_screen):
 
 
 func play_screen(splash_screen):
-	splash_player.splash_screen = splash_screen
-	splash_player.play()
+	splash_player.remove_old_splash_screen()
+	splash_player.play_screen(splash_screen)
 
 
 func _on_finished_splash_screen():
-	print("_on_finished_splash_screen")
 	on_reset()

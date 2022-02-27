@@ -96,7 +96,7 @@ func _get_property_list():
 	if trainsition_type == TrainsitionType.FADE:
 		property_list.append({
 			"name": "transition_time",
-			"type":  TYPE_REAL,
+			"type": TYPE_REAL,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})

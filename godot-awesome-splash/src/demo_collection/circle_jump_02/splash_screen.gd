@@ -35,8 +35,10 @@ func get_name() -> String:
 	return "Circle Jump 02"
 
 
-func play():
+func _ready():
 	config()
+
+func play():
 	start_main_animation()
 
 

@@ -33,9 +33,10 @@ const FADE_TIME_PER_GODOT_TEXT = 0.2
 func get_name() -> String:
 	return "Blink Eye"
 
+func _ready():
+	config()
 
 func play():
-	config()
 	main_animation()
 
 

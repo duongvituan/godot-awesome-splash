@@ -15,8 +15,6 @@ script = ExtResource( 3 )
 
 [node name="SplashPlayer" type="Node2D" parent="."]
 script = ExtResource( 1 )
-transition_time = 1.0
-fade_color = Color( 1, 1, 1, 1 )
 
 [node name="ScreenLoader" type="Node" parent="."]
 script = ExtResource( 2 )

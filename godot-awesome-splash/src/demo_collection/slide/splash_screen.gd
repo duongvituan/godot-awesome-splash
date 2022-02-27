@@ -28,9 +28,10 @@ const DELAY_TIME_FOR_EACH_CHARACTER = 0.2
 func get_name() -> String:
 	return "Slide"
 
+func _ready():
+	config()
 
 func play():
-	config()
 	start_main_animation()
 
 

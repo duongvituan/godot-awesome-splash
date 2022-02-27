@@ -39,8 +39,11 @@ func get_name() -> String:
 	return "Twist"
 
 
-func play():
+func _ready():
 	config()
+
+
+func play():
 	start_main_animation()
 
 

@@ -31,6 +31,7 @@ func get_name() -> String:
 
 func _ready():
 	._ready()
+	config()
 
 
 func config():
@@ -70,7 +71,6 @@ func config_shader():
 	
 
 func play():
-	config()
 	main_animation()
 
 func main_animation():

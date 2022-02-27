@@ -37,9 +37,10 @@ const SPONGE_MOVE_UP_TIME_RANGE = Vector2(5.0, 10.0)
 func get_name() -> String:
 	return "Aqua"
 
+func _ready():
+	config()
 
 func play():
-	config()
 	start_main_animation()
 
 
@@ -66,8 +67,7 @@ func config():
 	info_node.text = DESCRIPTION
 	info_node.modulate = DESCRIPTION_COLOR
 	
-#	set_fade_screen(1.0)
-#	set_fade_screen_color(Color.black)
+
 
 
 func start_main_animation():

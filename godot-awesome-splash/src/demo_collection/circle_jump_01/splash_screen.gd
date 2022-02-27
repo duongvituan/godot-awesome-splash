@@ -29,13 +29,14 @@ const JUMP_EACH_CHAR_TIME = 0.4
 func get_name() -> String:
 	return "Circle Jump 01"
 
+func _ready():
+	config()
 
 func play():
-	_config()
 	start_main_animation()
 
 
-func _config():
+func config():
 	background.color = BG_COLOR
 	var center_point = self.origin_size / 2.0
 	

@@ -1,7 +1,7 @@
 tool
 extends Node2D
 
-enum TrainsitionType {NONE, FADE}
+enum TrainsitionType {NONE, FADE, DIAMOND}
 enum TransitionStatus {NONE, APPEAR, DISSAPPEAR}
 
 signal finished
@@ -9,6 +9,9 @@ signal finished_all
 
 export(TrainsitionType) var trainsition_type = TrainsitionType.FADE \
 	setget _set_transition_type
+
+var diamond_size: float = 32.0
+
 var transition_time: float = 1.0
 var fade_color: Color = Color.white
 
@@ -106,7 +109,29 @@ func _get_property_list():
 			"type": TYPE_COLOR ,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
-		})  
+		})
+	
+	if trainsition_type == TrainsitionType.DIAMOND:
+		property_list.append({
+			"name": "diamond_size",
+			"type": TYPE_REAL,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_NONE,
+			})
+	
+		property_list.append({
+			"name": "transition_time",
+			"type": TYPE_REAL,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_NONE,
+			})
+		
+		property_list.append({
+			"name": "fade_color",
+			"type": TYPE_COLOR ,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_NONE,
+		})
 	return property_list
 
 
@@ -138,6 +163,10 @@ func _input(event):
 # - If the next screen doesn't exist: Emit signal "finished_all".
 
 func play_screen(screen):
+	# Remove old splash screen if it exist
+	if splash_screen:
+		splash_screen.queue_free()
+	
 	splash_screen = screen
 	splash_screen.connect(
 		"finished",
@@ -159,8 +188,10 @@ func _splash_screen_can_be_skipped_when_clicked_screen() -> bool:
 
 func _setup():
 	shader_meterial = ShaderMaterial.new()
-	shader_meterial.shader = preload("res://addons/awesome_splash/assets/shader/fade.shader")
-	self.shader_meterial.set_shader_param("color", fade_color)
+	shader_meterial.shader = preload("res://addons/awesome_splash/assets/shader/transition.shader")
+	shader_meterial.set_shader_param("color", fade_color)
+	shader_meterial.set_shader_param("diamond_size", diamond_size)
+	shader_meterial.set_shader_param("transition_type", trainsition_type)
 	
 	viewport = Viewport.new()
 	viewport_container = ViewportContainer.new()
@@ -195,7 +226,7 @@ func _start_animation_screen_will_appear():
 	if trainsition_type == TrainsitionType.NONE:
 		_on_finished_animation_screen_appear()
 	
-	elif trainsition_type == TrainsitionType.FADE:
+	else:
 		status = TransitionStatus.APPEAR
 		animation_time = transition_time
 		current_time = 0.0
@@ -206,7 +237,7 @@ func _start_animation_screen_will_disappear():
 	if trainsition_type == TrainsitionType.NONE:
 		_on_finished_animation_screen_disappear()
 	
-	elif trainsition_type == TrainsitionType.FADE:
+	else:
 		status = TransitionStatus.DISSAPPEAR
 		animation_time = transition_time
 		current_time = 0.0

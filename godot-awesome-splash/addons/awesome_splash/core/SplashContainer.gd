@@ -4,7 +4,7 @@
 ## Drag and drop it to SplashContainer.
 tool
 extends "res://addons/awesome_splash/core/BaseSplashContainer.gd"
-
+class_name SplashContainer, "res://addons/awesome_splash/assets/icon/splash_container_icon.png"
 
 func _ready():
 	if not Engine.editor_hint:

@@ -65,7 +65,9 @@ func config():
 	info_node.font.size = DESCRIPT_FONT_SIZE
 	info_node.text = DESCRIPTION
 	info_node.modulate = DESCRIPTION_COLOR
-
+	
+#	set_fade_screen(1.0)
+#	set_fade_screen_color(Color.black)
 
 
 func start_main_animation():

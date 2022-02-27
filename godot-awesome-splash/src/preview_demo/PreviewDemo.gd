@@ -9,7 +9,7 @@ func _ready():
 	splash_player.connect("finished", self, "_on_finished_splash_screen")
 	var splash_screen = screen_loader.get_first_screen().instance()
 	update_control_node(splash_screen)
-	play_screen(splash_screen)
+	splash_player.play_screen(splash_screen)
 
 
 func _input(event):
@@ -24,29 +24,25 @@ func _input(event):
 func on_reset():
 	var splash_screen = screen_loader.get_current_screen().instance()
 	update_control_node(splash_screen)
-	play_screen(splash_screen)
+	splash_player.play_screen(splash_screen)
 
 
 func on_next():
 	var splash_screen = screen_loader.next().instance()
 	update_control_node(splash_screen)
-	play_screen(splash_screen)
+	splash_player.play_screen(splash_screen)
 
 
 func on_previous():
 	var splash_screen = screen_loader.back().instance()
 	update_control_node(splash_screen)
-	play_screen(splash_screen)
+	splash_player.play_screen(splash_screen)
 
 
 func update_control_node(splash_screen):
 	name_label.text = "Name: " + splash_screen.get_name()
 
 
-func play_screen(splash_screen):
-	splash_player.remove_old_splash_screen()
-	splash_player.play_screen(splash_screen)
-
-
 func _on_finished_splash_screen():
-	on_reset()
+#	on_reset()
+	on_next()

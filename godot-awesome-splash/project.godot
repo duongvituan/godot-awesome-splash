@@ -263,6 +263,11 @@ _global_script_classes=[ {
 "class": "ScreenLoader",
 "language": "GDScript",
 "path": "res://src/preview_demo/ScreenLoader.gd"
+}, {
+"base": "Node2D",
+"class": "SplashContainer",
+"language": "GDScript",
+"path": "res://addons/awesome_splash/core/SplashContainer.gd"
 } ]
 _global_script_class_icons={
 "AspectNode": "res://addons/awesome_splash/assets/icon/aspect_node_icon.png",
@@ -315,7 +320,8 @@ _global_script_class_icons={
 "GDActionVisibility": "",
 "GDActionWait": "",
 "GDEaseFunc": "",
-"ScreenLoader": ""
+"ScreenLoader": "",
+"SplashContainer": "res://addons/awesome_splash/assets/icon/splash_container_icon.png"
 }
 
 [application]

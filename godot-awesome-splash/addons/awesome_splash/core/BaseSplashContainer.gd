@@ -6,15 +6,18 @@ enum SkipScreenType {NONE, SKIP_ONE_SCREEN, SKIP_ALL_SCREEN}
 signal finished
 signal finished_all
 
-var splash_screen: AweSplashScreen
-var list_splash_screen = []
+var current_screen
+var list_screen = []
+
+var custom_node_player = AweCustomNodePlayer.new()
+var default_custom_node_time: float = 1.0
 
 
 ### BUILD IN ENGINE METHODS ====================================================
 
 func _get_configuration_warning():
 	var warnings = PoolStringArray()
-	if not self.splash_screen:
+	if not self.current_screen:
 		warnings.append("%s is missing a AweSplashScreen" % name)
 	return warnings.join("\n")
 
@@ -40,16 +43,44 @@ func _input(event):
 		
 		if skip_type == SkipScreenType.SKIP_ALL_SCREEN:
 			status = TransitionStatus.NONE
-			for screen in list_splash_screen:
+			for screen in list_screen:
 				screen.queue_free()
-			list_splash_screen = []
+			list_screen = []
 			_on_finished_animation_screen_disappear()
+
+
+func _get(property): # overridden
+	if property == "custom_node/default_time":
+		return default_custom_node_time
+
+
+func _set(property, value): # overridden
+	if property == "custom_node/default_time":
+		trainsition_type = value
+	
+	property_list_changed_notify() # update inspect
+	return true
+
+
+func _get_property_list():
+	if not Engine.editor_hint or not is_inside_tree():
+		return []
+	
+	var property_list = [
+		{
+			"name": "custom_node/default_time",
+			"type": TYPE_REAL,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_NONE,
+		}
+	]
+	return property_list
 
 
 ### PUBLIC METHODS =============================================================
 
 func start_play_list_screen():
-	var first_screen = list_splash_screen.pop_front()
+	var first_screen = list_screen.pop_front()
 	if first_screen:
 		play_screen(first_screen)
 	else:
@@ -68,20 +99,25 @@ func start_play_list_screen():
 # 5 - Run animation "disappear".
 # 6 - Wait for animation "disappear" finished.
 
-# 7 - If the next screen exist in list_splash_screen: call "play_screen" with
+# 7 - If the next screen exist in list_screen: call "play_screen" with
 # next screen and return to step 1.
 # - If the next screen doesn't exist: Emit signal "finished_all".
 
+
 func play_screen(screen):
 	_remove_old_screen()
+	screen.visible = true
+
+	current_screen = screen
+	viewport.add_child(current_screen)
 	
-	splash_screen = screen
-	splash_screen.connect(
-		"finished",
-		 self,
-		 "_on_finished_animation_splash_screen"
-	)
-	viewport.add_child(splash_screen)
+	if screen is AweSplashScreen:
+		current_screen.connect(
+			"finished",
+			self,
+			"_on_finished_animation_splash_screen"
+		)
+	
 	_update_screen_size_changed()
 	_start_animation_screen_will_appear()
 
@@ -96,21 +132,32 @@ func _splash_screen_can_be_skipped_when_clicked_screen() -> int:
 
 func _setup():
 	_setup_transition()
+	add_child(custom_node_player)
+	custom_node_player.connect("finished", self, "_on_finished_waiting_custom_screen")
 	
-	for child_node in get_children():
-		if child_node is AweSplashScreen:
-			list_splash_screen.append(child_node)
-	
-	for child_node in list_splash_screen:
-		remove_child(child_node)
+	for node in get_children():
+		if node is AweCustomNodePlayer:
+			continue
+		
+		if node == viewport_container:
+			continue
+		
+		list_screen.append(node)
+		remove_child(node)
 
 
 func _update_screen_size_changed():
-	if Engine.editor_hint or self.splash_screen == null:
+	if Engine.editor_hint or self.current_screen == null:
 		return 
 	._update_screen_size_changed()
-	var viewport_size = get_viewport_rect().size
-	self.splash_screen.update_aspect_node_frame(viewport_size)
+	
+	if self.current_screen is AweSplashScreen:
+		var viewport_size = get_viewport_rect().size
+		self.current_screen.update_aspect_node_frame(viewport_size)
+
+
+func _on_finished_waiting_custom_screen():
+	_start_animation_screen_will_disappear()
 
 
 func _on_finished_animation_splash_screen():
@@ -119,15 +166,18 @@ func _on_finished_animation_splash_screen():
 
 func _on_finished_animation_screen_appear():
 	._on_finished_animation_screen_appear()
-	splash_screen.play()
+	if self.current_screen is AweSplashScreen:
+		current_screen.play()
+	else:
+		custom_node_player.play(default_custom_node_time)
 
 
 func _on_finished_animation_screen_disappear():
 	._on_finished_animation_screen_disappear()
 	_remove_old_screen()
 	
-	# Get next splash screen and remove it in queue (list_splash_screen)
-	var next_screen = list_splash_screen.pop_front()
+	# Get next splash screen and remove it in queue (list_screen)
+	var next_screen = list_screen.pop_front()
 	if next_screen == null:
 		emit_signal("finished")
 		emit_signal("finished_all")
@@ -138,5 +188,5 @@ func _on_finished_animation_screen_disappear():
 
 
 func _remove_old_screen():
-	if splash_screen:
-		splash_screen.queue_free()
+	if current_screen:
+		current_screen.queue_free()

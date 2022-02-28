@@ -68,10 +68,9 @@ func _process(delta):
 #	property_list_changed_notify() # update inspect
 #	return true
 
-
+# overridden function
 # call once when node selected. Added to ordinary export
 func _get_property_list():
-	# overridden function
 	if not Engine.editor_hint or not is_inside_tree():
 		return []
 	

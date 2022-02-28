@@ -163,9 +163,7 @@ func _input(event):
 # - If the next screen doesn't exist: Emit signal "finished_all".
 
 func play_screen(screen):
-	# Remove old splash screen if it exist
-	if splash_screen:
-		splash_screen.queue_free()
+	_remove_old_screen()
 	
 	splash_screen = screen
 	splash_screen.connect(
@@ -176,6 +174,14 @@ func play_screen(screen):
 	viewport.add_child(splash_screen)
 	_update_screen_size()
 	_start_animation_screen_will_appear()
+
+
+func start_play_list_screen():
+	var first_screen = list_splash_screen.pop_front()
+	if first_screen:
+		play_screen(first_screen)
+	else:
+		emit_signal("finished_all")
 
 
 ### VIRTUAL FUNC ===============================================================
@@ -254,19 +260,22 @@ func _on_finished_animation_screen_appear():
 
 
 func _on_finished_animation_screen_disappear():
-	# Remove old splash screen if it exist
-	if splash_screen:
-		splash_screen.queue_free()
+	_remove_old_screen()
 	
 	# Get next splash screen and remove it in queue (list_splash_screen)
-	splash_screen = list_splash_screen.pop_front()
-	if splash_screen == null:
+	var next_screen = list_splash_screen.pop_front()
+	if next_screen == null:
 		emit_signal("finished")
 		emit_signal("finished_all")
 		return
 	
 	emit_signal("finished")
-	play_screen(splash_screen)
+	play_screen(next_screen)
+
+
+func _remove_old_screen():
+	if splash_screen:
+		splash_screen.queue_free()
 
 
 ### SETGET METHODS =============================================================

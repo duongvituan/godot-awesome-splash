@@ -9,11 +9,7 @@ class_name SplashContainer, "res://addons/awesome_splash/assets/icon/splash_cont
 func _ready():
 	if not Engine.editor_hint:
 		connect("finished_all", self, "_on_finished_all_splash_screen")
-		splash_screen = list_splash_screen.pop_front()
-		if splash_screen:
-			play_screen(splash_screen)
-		else:
-			emit_signal("finished_all")
+		start_play_list_screen()
 
 
 # Set true if you want click to skip screen

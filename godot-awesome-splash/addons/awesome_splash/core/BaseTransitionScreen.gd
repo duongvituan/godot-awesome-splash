@@ -46,28 +46,6 @@ func _process(delta):
 			set_process(false)
 			_on_finished_animation_screen_disappear()
 
-
-#func _get(property): # overridden
-#	if property == "trainsition_type":
-#		return trainsition_type
-#	if property == "transition_time":
-#		return transition_time
-#	if property == "fade_color":
-#		return fade_color
-#
-#func _set(property, value): # overridden
-#	if property == "trainsition_type":
-#		trainsition_type = value
-#
-#	if property == "transition_time":
-#		transition_time = value
-#
-#	if property == "fade_color":
-#		fade_color = value
-#
-#	property_list_changed_notify() # update inspect
-#	return true
-
 # overridden function
 # call once when node selected. Added to ordinary export
 func _get_property_list():

@@ -6,6 +6,8 @@
 
 [node name="SplashContainer" type="Node2D"]
 script = ExtResource( 3 )
+trainsition_type = 2
+diamond_size = 32.0
 transition_time = 1.0
 fade_color = Color( 1, 1, 1, 1 )
 

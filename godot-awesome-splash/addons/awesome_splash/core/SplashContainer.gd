@@ -21,4 +21,5 @@ func _splash_screen_can_be_skipped_when_clicked_screen() -> int:
 
 # Todo: move to other screen here:
 func _on_finished_all_splash_screen():
-	get_tree().change_scene("res://Main.tscn")
+	print("_on_finished_all_splash_screen")
+#	get_tree().change_scene("res://Main.tscn")

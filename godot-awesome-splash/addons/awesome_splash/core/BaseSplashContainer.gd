@@ -17,8 +17,8 @@ var default_custom_node_time: float = 1.0
 
 func _get_configuration_warning():
 	var warnings = PoolStringArray()
-	if not self.current_screen:
-		warnings.append("%s is missing a AweSplashScreen" % name)
+	if get_children().size() == 0:
+		warnings.append("%s is missing a AweSplashScreen or Custom Node" % name)
 	return warnings.join("\n")
 
 

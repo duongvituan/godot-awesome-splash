@@ -12,9 +12,11 @@ func _ready():
 		start_play_list_screen()
 
 
-# Set true if you want click to skip screen
-func _splash_screen_can_be_skipped_when_clicked_screen() -> bool:
-	return false
+# Todo: Change skippable screen here:
+func _splash_screen_can_be_skipped_when_clicked_screen() -> int:
+# return SkipScreenType.SKIP_ONE_SCREEN if you want 1 click then skip 1 screen.
+# return SkipScreenType.SKIP_ALL_SCREEN if you want 1 click will go to main screen.
+	return SkipScreenType.NONE
 
 
 # Todo: move to other screen here:

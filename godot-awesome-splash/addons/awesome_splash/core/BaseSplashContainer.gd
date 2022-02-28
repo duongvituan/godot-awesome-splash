@@ -1,6 +1,8 @@
 tool
 extends "res://addons/awesome_splash/core/BaseTransitionScreen.gd"
 
+enum SkipScreenType {NONE, SKIP_ONE_SCREEN, SKIP_ALL_SCREEN}
+
 signal finished
 signal finished_all
 
@@ -27,12 +29,32 @@ func _input(event):
 	if event is InputEventMouseButton \
 			and event.pressed \
 			and event.button_index == 1:
-		if _splash_screen_can_be_skipped_when_clicked_screen():
+		var skip_type = _splash_screen_can_be_skipped_when_clicked_screen()
+		
+		if skip_type == SkipScreenType.NONE:
+			return
+		
+		if skip_type == SkipScreenType.SKIP_ONE_SCREEN:
 			status = TransitionStatus.NONE
-			emit_signal("finished")
+			_on_finished_animation_screen_disappear()
+		
+		if skip_type == SkipScreenType.SKIP_ALL_SCREEN:
+			status = TransitionStatus.NONE
+			for screen in list_splash_screen:
+				screen.queue_free()
+			list_splash_screen = []
+			_on_finished_animation_screen_disappear()
 
 
 ### PUBLIC METHODS =============================================================
+
+func start_play_list_screen():
+	var first_screen = list_splash_screen.pop_front()
+	if first_screen:
+		play_screen(first_screen)
+	else:
+		emit_signal("finished_all")
+
 
 # When you call func "play_screen":
 # How it works:
@@ -64,18 +86,10 @@ func play_screen(screen):
 	_start_animation_screen_will_appear()
 
 
-func start_play_list_screen():
-	var first_screen = list_splash_screen.pop_front()
-	if first_screen:
-		play_screen(first_screen)
-	else:
-		emit_signal("finished_all")
-
-
 ### VIRTUAL FUNC ===============================================================
 
-func _splash_screen_can_be_skipped_when_clicked_screen() -> bool:
-	return false
+func _splash_screen_can_be_skipped_when_clicked_screen() -> int:
+	return SkipScreenType.NONE
 
 
 ### PRIVATE METHODS ============================================================

@@ -1,11 +1,16 @@
 tool
 extends "res://addons/awesome_splash/core/BaseTransitionScreen.gd"
 
-enum SkipScreenType {NONE, SKIP_ONE_SCREEN, SKIP_ALL_SCREEN}
+enum SkipScreenType {
+	NONE,
+	SKIP_ONE_SCREEN_WHEN_CLICKED,
+	SKIP_ALL_SCREEN_WHEN_CLICKED,
+}
 
 signal finished
 signal finished_all
 
+var skip_type: int = 0
 var current_screen
 var list_screen = []
 
@@ -32,16 +37,15 @@ func _input(event):
 	if event is InputEventMouseButton \
 			and event.pressed \
 			and event.button_index == 1:
-		var skip_type = _splash_screen_can_be_skipped_when_clicked_screen()
 		
 		if skip_type == SkipScreenType.NONE:
 			return
 		
-		if skip_type == SkipScreenType.SKIP_ONE_SCREEN:
+		if skip_type == SkipScreenType.SKIP_ONE_SCREEN_WHEN_CLICKED:
 			status = TransitionStatus.NONE
 			_on_finished_animation_screen_disappear()
 		
-		if skip_type == SkipScreenType.SKIP_ALL_SCREEN:
+		if skip_type == SkipScreenType.SKIP_ALL_SCREEN_WHEN_CLICKED:
 			status = TransitionStatus.NONE
 			for screen in list_screen:
 				screen.queue_free()
@@ -52,11 +56,15 @@ func _input(event):
 func _get(property): # overridden
 	if property == "custom_node/default_time":
 		return default_custom_node_time
+	if property == "skip/type":
+		return skip_type
 
 
 func _set(property, value): # overridden
 	if property == "custom_node/default_time":
-		trainsition_type = value
+		default_custom_node_time = value
+	if property == "skip/type":
+		skip_type = value
 	
 	property_list_changed_notify() # update inspect
 	return true
@@ -72,6 +80,13 @@ func _get_property_list():
 			"type": TYPE_REAL,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
+		},
+		{
+			"name": "skip/type",
+			"type": TYPE_INT,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_ENUM,
+			"hint_string": PoolStringArray(SkipScreenType.keys()).join(","),
 		}
 	]
 	return property_list
@@ -120,12 +135,6 @@ func play_screen(screen):
 	
 	_update_screen_size_changed()
 	_start_animation_screen_will_appear()
-
-
-### VIRTUAL FUNC ===============================================================
-
-func _splash_screen_can_be_skipped_when_clicked_screen() -> int:
-	return SkipScreenType.NONE
 
 
 ### PRIVATE METHODS ============================================================
@@ -188,5 +197,5 @@ func _on_finished_animation_screen_disappear():
 
 
 func _remove_old_screen():
-	if current_screen:
+	if is_instance_valid(current_screen):
 		current_screen.queue_free()

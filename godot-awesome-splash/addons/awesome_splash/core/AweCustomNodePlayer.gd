@@ -22,3 +22,8 @@ func play(time: float):
 	current_time = 0
 	max_time = time
 	set_process(true)
+
+
+func cancel():
+	set_process(false)
+

@@ -83,6 +83,7 @@ margin_left = -3908.0
 margin_top = 3106.0
 margin_right = 5150.0
 margin_bottom = 13949.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -137,6 +138,7 @@ margin_left = -3930.0
 margin_top = 3106.0
 margin_right = 5128.0
 margin_bottom = 14022.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

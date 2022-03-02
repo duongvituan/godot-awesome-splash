@@ -8,6 +8,10 @@
 
 [node name="SplashContainer" type="Node2D"]
 script = ExtResource( 3 )
+custom_node/default_time = 2.0
+skip/type = 1
+transition_time = 1.0
+fade_color = Color( 1, 1, 1, 1 )
 
 [node name="AweSplashScreen" parent="." instance=ExtResource( 1 )]
 visible = false

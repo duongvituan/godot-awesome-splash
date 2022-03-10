@@ -3,7 +3,7 @@
 [ext_resource path="res://src/demo_collection/aqua/splash_screen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/demo_collection/blink_eye/splash_screen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/awesome_splash/core/SplashContainer.gd" type="Script" id=3]
-[ext_resource path="res://src/demo_collection/dark/splash_screen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/demo_info_view/nintendo_bw/InfoNode.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/demo_collection/fire/splash_screen.tscn" type="PackedScene" id=5]
 
 [node name="SplashContainer" type="Node2D"]
@@ -53,8 +53,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AweSplashScreenViewport" parent="." instance=ExtResource( 4 )]
+[node name="AweSplashScreenViewport2" parent="." instance=ExtResource( 5 )]
 visible = false
 
-[node name="AweSplashScreenViewport2" parent="." instance=ExtResource( 5 )]
+[node name="InfoNode" parent="." instance=ExtResource( 4 )]
 visible = false

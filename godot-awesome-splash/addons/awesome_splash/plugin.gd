@@ -3,10 +3,8 @@ extends EditorPlugin
 
 
 func _enter_tree():
-	pass
-#	add_custom_type("SplashContainer", "Node2D", preload("./core/SplashContainer.gd"), preload("./assets/icon/splash_container_icon.png"))
+	add_autoload_singleton("sp", "res://addons/awesome_splash/utils_splash.gd")
 
 
 func _exit_tree():
-	pass
-#	remove_custom_type("SplashContainer")
+	remove_autoload_singleton ("sp")

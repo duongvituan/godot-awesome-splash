@@ -1,5 +1,5 @@
 extends Node
-class_name AweCustomNodePlayer
+class_name AweTimer
 
 signal finished
 
@@ -18,7 +18,7 @@ func _process(delta):
 		emit_signal("finished")
 
 
-func play(time: float):
+func wait(time: float):
 	current_time = 0
 	max_time = time
 	set_process(true)

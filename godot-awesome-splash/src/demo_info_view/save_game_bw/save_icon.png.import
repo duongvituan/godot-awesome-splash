@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nintendo_bw.png-a346ac16265295b986a3d6d692663d8a.stex"
+path="res://.import/save_icon.png-8eed4553f8ad46fa6fe3340826d60fba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/demo_info_view/nintendo_bw/nintendo_bw.png"
-dest_files=[ "res://.import/nintendo_bw.png-a346ac16265295b986a3d6d692663d8a.stex" ]
+source_file="res://src/demo_info_view/save_game_bw/save_icon.png"
+dest_files=[ "res://.import/save_icon.png-8eed4553f8ad46fa6fe3340826d60fba.stex" ]
 
 [params]
 

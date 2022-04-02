@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/demo_info_view/save_game_bw/save_icon.png" type="Texture" id=1]
+[ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/CenterContainer/VBoxContainer2/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/CenterContainer/VBoxContainer2/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="SaveGameBW" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer"]
+margin_right = 1024.0
+size_flags_vertical = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 1024.0
+margin_bottom = 4.0
+size_flags_vertical = 0
+
+[node name="Control2" type="Control" parent="CanvasLayer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+margin_left = 78.0
+margin_top = 104.0
+margin_right = 946.0
+margin_bottom = 495.0
+
+[node name="Control2" type="Control" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+margin_right = 868.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+margin_top = 54.0
+margin_right = 868.0
+margin_bottom = 254.0
+rect_min_size = Vector2( 200, 200 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Control" type="Control" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+margin_top = 258.0
+margin_right = 868.0
+margin_bottom = 308.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+margin_top = 312.0
+margin_right = 868.0
+margin_bottom = 391.0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 1 )
+text = "This game saves data automatically at centain points.
+Please do not turn off the softwave while this symbol displayed."
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "anim"
+anims/RESET = SubResource( 2 )
+anims/anim = SubResource( 3 )

@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/demo_info_view/controller_bw/controller_icon.png" type="Texture" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="best_with_controller_bw" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.929412, 0.929412, 0.929412, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer"]
+margin_right = 1024.0
+size_flags_vertical = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 1024.0
+margin_bottom = 4.0
+size_flags_vertical = 0
+
+[node name="Control2" type="Control" parent="CanvasLayer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+margin_left = 256.0
+margin_top = 81.0
+margin_right = 768.0
+margin_bottom = 519.0
+
+[node name="Control2" type="Control" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+margin_right = 512.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+margin_top = 54.0
+margin_right = 512.0
+margin_bottom = 362.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+
+[node name="Control" type="Control" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+margin_top = 366.0
+margin_right = 512.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer2"]
+margin_top = 400.0
+margin_right = 512.0
+margin_bottom = 438.0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "This game play best with a controller."
+align = 1
+valign = 1

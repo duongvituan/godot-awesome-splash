@@ -21,7 +21,7 @@ const TITLE_FONT_SIZE = 230
 const DESCRIPT_FONT_SIZE = 120
 
 func get_name() -> String:
-	return "Temp"
+	return "Zoom"
 
 func _ready():
 	._ready()

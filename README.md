@@ -1,3 +1,11 @@
+## New features in version 0.3
+-  Splash Container can now contain multiple splash screens.
+- Splash Container can work with your node (in v0.2 it can only work with my SplashScreen).
+- Added some animations when scrolling the screens.
+- You can customize the types of skip splash screens in the Splash Container inspector.
+
+Video: update late
+
 ## Overview
 Collection of splash screens for Godot Engine. Easy to use, fast Installing, multiple resolutions.
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/awesome_splash/assets/shader/transition.shader" type="Shader" id=1]
+[ext_resource path="res://src/demo_info_view/controller_bw/controller_icon.png" type="Texture" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/transition_type = 3
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/diamond_size = 0.0
+shader_param/blur_intensity = 16.0
+shader_param/process_value = 0.0
+
+[node name="ControllerIcon" type="Sprite"]
+material = SubResource( 1 )
+position = Vector2( 526, 304 )
+texture = ExtResource( 2 )

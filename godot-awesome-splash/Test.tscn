@@ -10,8 +10,10 @@
 
 [node name="SplashContainer" type="Node2D"]
 script = ExtResource( 3 )
+trainsition_type = 4
 custom_node/type = 1
 skip/type = 1
+blur_intensity = 4.0
 transition_time = 1.0
 fade_color = Color( 1, 1, 1, 1 )
 

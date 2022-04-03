@@ -3,6 +3,11 @@ extends Node2D
 enum TrainsitionType {NONE, FADE, DIAMOND, BLUR, BLUR_AND_FADE}
 enum TransitionStatus {NONE, APPEAR, DISSAPPEAR}
 
+# It's not good to put move_to_scene variable in this class
+# I want it in a section like skip or custom node
+# but I don't find PackedScene in Variant.Type enum.
+export(PackedScene) var move_to_scene
+
 export(TrainsitionType) var trainsition_type = TrainsitionType.FADE \
 	setget _set_transition_type
 

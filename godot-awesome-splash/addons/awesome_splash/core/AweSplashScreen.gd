@@ -4,6 +4,9 @@ class_name AweSplashScreen, "res://addons/awesome_splash/assets/icon/splash_scre
 
 signal finished
 
+export(bool) var is_skip_appear_transition = false
+export(bool) var is_skip_disappear_transition = false
+
 onready var aspect_node: AspectNode setget ,_get_aspect_node
 onready var outline_frame: Control setget, _get_outline_frame
 

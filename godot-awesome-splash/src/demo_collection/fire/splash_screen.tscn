@@ -70,6 +70,7 @@ margin_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource( 5 )
 expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }

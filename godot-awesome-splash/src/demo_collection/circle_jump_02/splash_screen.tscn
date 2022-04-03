@@ -57,9 +57,7 @@ margin_bottom = 100.0
 rect_pivot_offset = Vector2( 50, 50 )
 texture = ExtResource( 10 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 6
 
 [node name="Circle" type="ColorRect" parent="AspectNode/LogoContainer"]
 visible = false

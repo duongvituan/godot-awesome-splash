@@ -62,8 +62,6 @@ margin_bottom = 250.0
 rect_pivot_offset = Vector2( 250, 250 )
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 5
 
 [editable path="AspectNode"]

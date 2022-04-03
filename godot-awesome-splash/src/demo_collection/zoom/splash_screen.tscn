@@ -31,6 +31,7 @@ script = ExtResource( 1 )
 material = SubResource( 4 )
 margin_right = 1024.0
 margin_bottom = 600.0
+mouse_filter = 1
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 1024, 600 )
@@ -65,6 +66,7 @@ margin_right = 300.0
 margin_bottom = 40.0
 texture = ExtResource( 7 )
 expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }

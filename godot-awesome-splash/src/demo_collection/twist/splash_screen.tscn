@@ -90,9 +90,7 @@ margin_right = 400.0
 margin_bottom = 400.0
 texture = ExtResource( 8 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 6
 
 [node name="SmallCircle" type="ColorRect" parent="AspectNode/CenterNode/LogoContainer"]
 material = SubResource( 5 )

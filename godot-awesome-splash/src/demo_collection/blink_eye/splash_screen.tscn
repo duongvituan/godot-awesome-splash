@@ -63,9 +63,7 @@ margin_right = 300.0
 margin_bottom = 40.0
 texture = ExtResource( 8 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 6
 
 [node name="LeftEye" type="ColorRect" parent="AspectNode/LogoContainer"]
 material = SubResource( 4 )

@@ -110,9 +110,7 @@ margin_right = 200.0
 margin_bottom = -400.0
 texture = ExtResource( 7 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 6
 
 [node name="Wave2" type="Node2D" parent="AspectNode"]
 

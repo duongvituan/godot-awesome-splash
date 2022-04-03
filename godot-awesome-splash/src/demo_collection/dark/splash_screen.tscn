@@ -32,10 +32,7 @@ script = ExtResource( 6 )
 material = SubResource( 3 )
 margin_right = 40.0
 margin_bottom = 40.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 1
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 own_world = true
@@ -67,9 +64,9 @@ margin_left = -300.0
 margin_top = -560.0
 margin_right = 300.0
 margin_bottom = 40.0
-mouse_filter = 2
 texture = ExtResource( 5 )
 expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -80,10 +77,7 @@ layer = -1
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
+mouse_filter = 1
 color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [editable path="ViewportContainer/Viewport/AspectNode"]

@@ -7,16 +7,17 @@ onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
 onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
 onready var bg_color := $CanvasLayer/ColorRect
 
-const LOGO_PATH := "res://src/temporary_code/splash_screen_viewport/logo.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+export(String, FILE) var LOGO_PATH = "res://src/demo_collection/zoom/src/logo.png"
+export(String) var TITLE := "GODOT"
+export(String) var DESCRIPTION := "Game engine"
+
+export (float) var duration := 2.0
+
+var time_appear: float
+var time_zoom: float
 
 const MIN_ZOOM = 1.0
 const MAX_ZOOM = 1.1
-
-const TIME_APPEAR = 0.5
-const TIME_DISAPEAR = 1.0
-const TIME_ZOOM = 1.5
 
 const BG_COLOR = Color8(0, 0, 0, 255)
 const LOGO_COLOR = Color8(255, 255, 255, 255)
@@ -34,6 +35,9 @@ func _ready():
 
 
 func config():
+	time_appear = duration / 3.0
+	time_zoom = duration
+	
 	_set_shader_f_value("process_value", 0.0)
 	_set_shader_f_value("fade", 0.0)
 	_set_shader_f_value("min_zoom", MIN_ZOOM)
@@ -68,16 +72,14 @@ func play():
 
 func main_animation():
 	gd.sequence([
-		gd.custom_action("update_appear", self, TIME_APPEAR),
-		gd.custom_action("update_zoom", self, TIME_ZOOM),
-		gd.custom_action("update_disappear", self, TIME_DISAPEAR),
+		gd.group([
+			gd.custom_action("update_appear", self, time_appear),
+			gd.custom_action("update_zoom", self, time_zoom),
+		]),
 		gd.perform("finished_animation", self)
 	])\
 	.start(self)
 
-
-func update_disappear(_value: float, eased_value: float, _delta: float):
-	_set_shader_f_value("fade", 1.0 - eased_value)
 
 func update_appear(_value: float, eased_value: float, _delta: float):
 	_set_shader_f_value("fade", eased_value)

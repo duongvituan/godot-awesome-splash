@@ -54,9 +54,6 @@ margin_top = -596.795
 margin_right = 303.124
 margin_bottom = 3.20502
 rect_pivot_offset = Vector2( 300, 300 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Logo" type="TextureRect" parent="AspectNode/LogoContainer"]
 modulate = Color( 1, 1, 1, 0 )
@@ -65,9 +62,7 @@ margin_top = -700.0
 margin_right = 350.0
 texture = ExtResource( 8 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 6
 
 [node name="TitleNode" type="Node2D" parent="AspectNode"]
 script = ExtResource( 4 )

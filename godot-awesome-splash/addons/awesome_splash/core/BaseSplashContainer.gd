@@ -31,6 +31,8 @@ func _get_configuration_warning():
 	var warnings = PoolStringArray()
 	if get_children().size() == 0:
 		warnings.append("%s is missing a AweSplashScreen or Custom Node" % name)
+	if move_to_scene == null:
+		warnings.append("%s still hasn't set move_to_scene" % name)
 	return warnings.join("\n")
 
 
@@ -41,6 +43,7 @@ func _ready():
 
 
 func _input(event):
+	print(event)
 	if not _skip_awe_splash_by_event(event):
 		return
 	
@@ -181,7 +184,10 @@ func play_screen(screen):
 		)
 	
 	_update_screen_size_changed()
-	_start_animation_screen_will_appear()
+	if _is_current_screen_skip_appear_trainsition():
+		_on_finished_animation_screen_appear()
+	else:
+		_start_animation_screen_will_appear()
 
 
 ### PRIVATE METHODS ============================================================
@@ -223,7 +229,10 @@ func _on_finished_waiting_custom_screen():
 
 
 func _on_finished_animation_splash_screen():
-	_start_animation_screen_will_disappear()
+	if _is_current_screen_skip_disappear_trainsition():
+		_on_finished_animation_screen_disappear()
+	else:
+		_start_animation_screen_will_disappear()
 
 
 func _on_finished_animation_screen_appear():
@@ -253,3 +262,13 @@ func _remove_old_screen():
 func _skip_awe_splash_by_event(event) -> bool:
 	return false
 
+
+func _is_current_screen_skip_appear_trainsition() -> bool:
+	if "is_skip_appear_transition" in current_screen:
+		return current_screen.is_skip_appear_transition
+	return false
+
+func _is_current_screen_skip_disappear_trainsition() -> bool:
+	if "is_skip_disappear_transition" in current_screen:
+		return current_screen.is_skip_disappear_transition
+	return false

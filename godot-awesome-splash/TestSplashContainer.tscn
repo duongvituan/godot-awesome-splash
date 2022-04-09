@@ -1,31 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/awesome_splash/core/SplashContainer.gd" type="Script" id=1]
 [ext_resource path="res://TestMain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/demo_collection/zoom/splash_screen.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/demo_collection/aqua/splash_screen.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/demo_collection/dark/splash_screen.tscn" type="PackedScene" id=5]
 
 [node name="SplashContainer" type="Node2D"]
 script = ExtResource( 1 )
 move_to_scene = ExtResource( 2 )
+custom_node/type = 0
+custom_node/default_time = 1.0
+skip/type = 1
+transition_time = 1.0
+fade_color = Color( 1, 1, 1, 1 )
 
-[node name="AweSplashScreen" parent="." instance=ExtResource( 4 )]
-visible = false
-
-[node name="AweSplashScreenViewport" parent="." instance=ExtResource( 5 )]
-visible = false
-
-[node name="GodotSplashScreen" parent="." instance=ExtResource( 3 )]
-visible = false
+[node name="SplashGodot" parent="." instance=ExtResource( 3 )]
 is_skip_appear_transition = true
 is_skip_disappear_transition = true
-TITLE = "Godot"
-DESCRIPTION = "game engine"
 
-[node name="MySplashScreen" parent="." instance=ExtResource( 3 )]
-visible = false
+[node name="Splash_my_game" parent="." instance=ExtResource( 3 )]
 is_skip_appear_transition = true
-LOGO_PATH = "res://src/demo_info_view/save_game_bw/save_icon.png"
-TITLE = "Your Title"
-DESCRIPTION = "your description"
+TITLE = "My Game"
+DESCRIPTION = "This is description"

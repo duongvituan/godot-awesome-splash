@@ -25,14 +25,14 @@ font_data = ExtResource( 3 )
 size = 120
 font_data = ExtResource( 4 )
 
-[node name="AweSplashScreenViewport" type="Node2D"]
+[node name="SplashDark" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 material = SubResource( 3 )
 margin_right = 40.0
 margin_bottom = 40.0
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 own_world = true
@@ -77,7 +77,7 @@ layer = -1
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [editable path="ViewportContainer/Viewport/AspectNode"]

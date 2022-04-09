@@ -43,7 +43,6 @@ func _ready():
 
 
 func _input(event):
-	print(event)
 	if not _skip_awe_splash_by_event(event):
 		return
 	

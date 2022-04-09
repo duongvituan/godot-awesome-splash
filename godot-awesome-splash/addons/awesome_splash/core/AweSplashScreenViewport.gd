@@ -7,7 +7,6 @@ var shader_meterial setget ,_get_shader_meterial
 
 func _ready():
 	._ready()
-	viewport_container.mouse_filter = 1
 
 
 func _get_aspect_node() -> AspectNode:

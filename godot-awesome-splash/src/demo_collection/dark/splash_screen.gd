@@ -7,9 +7,11 @@ onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
 onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
 onready var bg_color := $CanvasLayer/ColorRect
 
-const LOGO_PATH := "res://src/demo_collection/dark/src/logo.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+export(String, FILE) var LOGO_PATH = "res://src/demo_collection/dark/src/logo.png"
+export(String) var TITLE := "GODOT"
+export(String) var DESCRIPTION := "Game engine"
+
+export (float) var duration := 4.0
 
 const BG_COLOR = Color8(0, 0, 0, 255)
 const LOGO_COLOR = Color8(255, 255, 255, 255)
@@ -74,13 +76,13 @@ func play():
 	main_animation()
 
 func main_animation():
-	gd.fade_alpha_to(1, 1).with_delay(0.5).start(logo_container)
-	gd.fade_alpha_to(1, 1).with_delay(1.0).start(title_node)
-	gd.fade_alpha_to(1, 1).with_delay(1.5).start(info_node)
+	gd.fade_alpha_to(1, 1).with_delay(duration * 0.1).start(logo_container)
+	gd.fade_alpha_to(1, 1).with_delay(duration * 0.25).start(title_node)
+	gd.fade_alpha_to(1, 1).with_delay(duration * 0.4).start(info_node)
 	
 	gd.sequence([
-		gd.wait(4.0),
-		gd.fade_alpha_to(0.0, 1.0),
+		gd.wait(duration),
+		gd.fade_alpha_to(0.0, duration * 0.2),
 		gd.perform("finished_animation", self) # finished and move other screen
 	])\
 	.start(self.aspect_node)

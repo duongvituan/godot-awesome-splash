@@ -7,9 +7,11 @@ onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
 onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
 onready var bg_color := $CanvasLayer/ColorRect
 
-const LOGO_PATH := "res://src/demo_collection/fire/src/logo.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+export(String, FILE) var LOGO_PATH = "res://src/demo_collection/fire/src/logo.png"
+export(String) var TITLE := "GODOT"
+export(String) var DESCRIPTION := "Game engine"
+
+export (float) var duration := 6.0
 
 const BG_COLOR = Color8(0, 0, 0, 255)
 const LOGO_COLOR = Color8(255, 255, 255, 255)
@@ -56,19 +58,6 @@ func config():
 	info_node.text = DESCRIPTION
 	info_node.position = center_point + Vector2(0, 225)
 	
-#	config_shader()
-	
-#	logo_container.modulate.a = 0
-#	title_node.modulate.a = 0
-#	info_node.modulate.a = 0
-
-
-func config_shader():
-	_set_shader_f_value("hologram_value", HOLOGRAM_VALUE)
-	_set_shader_f_value("hologram_noise_x", HOLOGRAM_NOISE)
-	_set_shader_f_value("hologram_speed", HOLOGRAM_SPEED)
-	_set_shader_color_value("tint_color", TINT_COLOR)
-	
 
 func play():
 	main_animation()
@@ -76,9 +65,9 @@ func play():
 func main_animation():
 	gd.sequence([
 		gd.perform("animation_appear", self),
-		gd.wait(3.0),
+		gd.wait(duration * 0.5),
 		gd.perform("animation_disappear", self),
-		gd.wait(3.0),
+		gd.wait(duration * 0.5),
 		gd.perform("finished_animation", self)
 	])\
 	.start(self)
@@ -89,12 +78,12 @@ var noise_tex2 = preload("./src/noise2.png")
 func animation_appear():
 	_set_shader_texture_value("noise_tex", noise_tex2)
 	_set_shader_f_value("process_value", 1.0)
-	gd.custom_action("update_appear", self, 3.0).with_easing(1.5).start(self)
+	gd.custom_action("update_appear", self, duration * 0.5).with_easing(1.5).start(self)
 
 func animation_disappear():
 	_set_shader_texture_value("noise_tex", noise_tex1)
 	_set_shader_f_value("process_value", 0.0)
-	gd.custom_action("update_disappear", self, 3.0).with_easing(3.0).start(self)
+	gd.custom_action("update_disappear", self, duration * 0.5).with_easing(3.0).start(self)
 
 
 func update_disappear(_value: float, eased_value: float, _delta: float):

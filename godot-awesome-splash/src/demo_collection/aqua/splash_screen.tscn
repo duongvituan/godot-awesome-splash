@@ -38,7 +38,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
 
-[node name="AweSplashScreen" type="Node2D"]
+[node name="SplashAqua" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

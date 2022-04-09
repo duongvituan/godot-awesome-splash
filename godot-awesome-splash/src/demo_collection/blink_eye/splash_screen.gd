@@ -10,9 +10,13 @@ onready var title_node := $AspectNode/TitleNode
 onready var bg_color := $CanvasLayer/ColorRect
 
 
-const LOGO_PATH := "res://src/demo_collection/blink_eye/logo.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+export(String, FILE) var LOGO_PATH = "res://src/demo_collection/blink_eye/logo.png"
+export(String) var TITLE := "GODOT"
+export(String) var DESCRIPTION := "Game engine"
+
+export (float) var duration := 3.0
+var fade_time_per_character = 0.2
+var text_animation_time = 1.0
 
 const SPACE_LOGO_AND_TITLE := 50.0
 
@@ -27,7 +31,7 @@ const DESCRIPT_FONT_SIZE = 120
 
 const FADE_EYE_TIME = 1.0
 const MOVE_TO_LEFT_TIME = 0.2
-const FADE_TIME_PER_GODOT_TEXT = 0.2
+
 
 
 func get_name() -> String:
@@ -69,6 +73,17 @@ func config():
 	info_node.text = DESCRIPTION
 	info_node.position = center_point + Vector2(0, 130)
 	info_node.modulate.a = 0
+	
+	var total_character = title_node.get_all_text_node().size()
+	text_animation_time = duration - 0.4 - MOVE_TO_LEFT_TIME - FADE_EYE_TIME
+	if total_character == 0:
+		total_character = 1.0
+		text_animation_time
+	
+	if text_animation_time <= 0:
+		text_animation_time = 1.0
+	
+	fade_time_per_character = text_animation_time * 0.6 / total_character
 
 
 func main_animation():
@@ -90,7 +105,7 @@ func fade_eye_godot_sprite():
 
 func show_text_animation():
 	var delay = 0.0
-	var time_fade = FADE_TIME_PER_GODOT_TEXT
+	var time_fade = fade_time_per_character
 	var count = 0.0
 	
 	# Animation Slide Text "Godot"
@@ -101,9 +116,9 @@ func show_text_animation():
 	
 	# Wail show "Godot" finished and start appear info node
 	gd.sequence([
-		gd.wait(time_fade * count),
-		gd.fade_alpha_to(1.0, 0.5),
-		gd.wait(0.5),
+		gd.wait(text_animation_time * 0.6),
+		gd.fade_alpha_to(1.0, text_animation_time * 0.2),
+		gd.wait(text_animation_time * 0.2 + 0.5),
 		gd.perform("finished_animation", self)
 	]).start(info_node)
 

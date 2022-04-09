@@ -13,9 +13,9 @@ onready var circle := $AspectNode/CenterNode/LogoContainer/Circle
 onready var small_circle := $AspectNode/CenterNode/LogoContainer/SmallCircle
 
 
-const LOGO_PATH := "res://src/demo_collection/twist/src/logo.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+export(String, FILE) var LOGO_PATH = "res://src/demo_collection/twist/src/logo.png"
+export(String) var TITLE := "GODOT"
+export(String) var DESCRIPTION := "Game engine"
 
 const BG_COLOR = Color8(0, 0, 0, 255)
 const LOGO_COLOR = Color8(255, 255, 255, 255)

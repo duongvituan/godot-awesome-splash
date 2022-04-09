@@ -32,7 +32,7 @@ font_data = ExtResource( 5 )
 size = 120
 font_data = ExtResource( 6 )
 
-[node name="AweSplashScreen" type="Node2D"]
+[node name="SplashCircleJump01" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="AspectNode" parent="." instance=ExtResource( 1 )]

@@ -11,9 +11,11 @@ onready var sponges := $AspectNode/Sponges
 onready var wave1 := $AspectNode/Wave1
 onready var wave2 := $AspectNode/Wave2
 
-const LOGO_PATH := "res://src/demo_collection/aqua/assets/logo.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+export(String, FILE) var LOGO_PATH = "res://src/demo_collection/aqua/assets/logo.png"
+export(String) var TITLE := "GODOT"
+export(String) var DESCRIPTION := "Game engine"
+
+export (float) var duration := 4.0
 
 const LOGO_COLOR = Color8(255, 255, 255, 255)
 const TITLE_COLOR = Color8(255, 255, 255, 255)
@@ -26,8 +28,8 @@ const COLOR_WAVE1 = Color8(0, 132, 222, 255)
 const COLOR_WAVE2 = Color8(255, 255, 255, 255)
 const BACKGROUND_COLOR = Color8(255, 255, 255, 255)
 
-const WAVE1_MOVE_UP_TIME = 2.0
-const WAVE2_MOVE_UP_TIME = 2.0
+var wave1_move_up_time = 2.0
+var wave2_move_up_time = 2.0
 const PREPARE_MOVE_OTHER_SCREEN = 0.2 # time prepare move to other screen after animation finished
 
 const SPONGE_MOVE_X_RANGE = Vector2(-450, 450)
@@ -45,6 +47,10 @@ func play():
 
 
 func config():
+	wave1_move_up_time = duration * 0.5
+	wave2_move_up_time = duration * 0.4
+	
+	
 	var center_point = self.origin_size / 2.0
 	logo_container.position = center_point + Vector2(0, 300)
 	logo_container.scale = Vector2(1, 1)
@@ -69,10 +75,9 @@ func config():
 	
 
 
-
 func start_main_animation():
 	# move up wave 1
-	gd.move_by(Vector2(1500, -6000), WAVE1_MOVE_UP_TIME).start(wave1)
+	gd.move_by(Vector2(1500, -6000), wave1_move_up_time).start(wave1)
 	
 	
 	# move up all sponges
@@ -82,24 +87,24 @@ func start_main_animation():
 	
 	# wait and move up wave 2
 	gd.sequence([
-		gd.wait(WAVE1_MOVE_UP_TIME + 0.3),
+		gd.wait(wave1_move_up_time + 0.3),
 		gd.move_by(Vector2(1500, -6000), 2.0),
 	]).start(wave2)
 	
 	
 	# move up all logo and all sponges in wave2
-	var action_move_up = gd.move_by(Vector2(0, -3000), WAVE2_MOVE_UP_TIME).with_easing(0.8)
+	var action_move_up = gd.move_by(Vector2(0, -3000), wave2_move_up_time).with_easing(0.8)
 	gd.sequence([
-		gd.wait(WAVE1_MOVE_UP_TIME + 0.7),
+		gd.wait(wave1_move_up_time + 0.7),
 		gd.group([
 			gd.run(action_move_up, sponges),
-			gd.scale_to(0.5, WAVE2_MOVE_UP_TIME * 0.85),
+			gd.scale_to(0.5, wave2_move_up_time * 0.85),
 			action_move_up,
 		])
 	]).start(logo_container)
 	
 	gd.sequence([
-		gd.wait(WAVE1_MOVE_UP_TIME + WAVE2_MOVE_UP_TIME * 0.8 + PREPARE_MOVE_OTHER_SCREEN),
+		gd.wait(wave1_move_up_time + wave2_move_up_time * 0.8 + PREPARE_MOVE_OTHER_SCREEN),
 		gd.perform("finished_animation", self)
 	]).start(self)
 

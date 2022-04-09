@@ -7,6 +7,12 @@ uniform float blur_intensity: hint_range(0, 32) = 4.0;
 uniform float process_value: hint_range(0, 1) = 0;
 
 
+vec2 get_pixel_uv(vec2 uv, float x)
+{
+	uv = floor(uv * x + 0.5) / x;
+	return uv;
+}
+
 vec4 fade_transition(vec4 txt, vec4 fade_color, float v)
 {
 	txt.rgb = mix(txt.rgb, fade_color.rgb, v);
@@ -65,6 +71,13 @@ void fragment()
 	{
 		output_color = blur(UV, TEXTURE, process_value * blur_intensity);
 		output_color = fade_transition(output_color, color, process_value);
+	}
+	else if (transition_type == 5) // PIXEL
+	{
+		float size = mix(1.0, 128.0, 1.0 - process_value);
+		vec2 pixel_uv = get_pixel_uv(UV, size);
+		pixel_uv = mix(UV, pixel_uv, vec2(process_value));
+		output_color = texture(TEXTURE, pixel_uv);
 	}
 	
 	COLOR = output_color;

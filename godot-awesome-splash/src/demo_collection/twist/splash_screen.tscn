@@ -54,7 +54,7 @@ font_data = ExtResource( 6 )
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[node name="AweSplashScreen" type="Node2D"]
+[node name="SplashTwist" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="AspectNode" parent="." instance=ExtResource( 1 )]
@@ -90,9 +90,7 @@ margin_right = 400.0
 margin_bottom = 400.0
 texture = ExtResource( 8 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 6
 
 [node name="SmallCircle" type="ColorRect" parent="AspectNode/CenterNode/LogoContainer"]
 material = SubResource( 5 )

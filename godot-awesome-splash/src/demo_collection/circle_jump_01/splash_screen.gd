@@ -8,9 +8,9 @@ onready var title_node := $AspectNode/TitleNode
 onready var background := $CanvasLayer/ColorRect
 
 
-const LOGO_PATH := "res://src/demo_collection/circle_jump_01/logo.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+export(String, FILE) var LOGO_PATH = "res://src/demo_collection/circle_jump_01/splash_screen.gd"
+export(String) var TITLE := "GODOT"
+export(String) var DESCRIPTION := "Game engine"
 
 const SPACE_LOGO_AND_TITLE := 50.0
 

@@ -24,13 +24,14 @@ font_data = ExtResource( 3 )
 size = 120
 font_data = ExtResource( 2 )
 
-[node name="AweSplashScreenViewport" type="Node2D"]
+[node name="SplashZoom" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 material = SubResource( 4 )
 margin_right = 1024.0
 margin_bottom = 600.0
+mouse_filter = 2
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 1024, 600 )
@@ -65,6 +66,7 @@ margin_right = 300.0
 margin_bottom = 40.0
 texture = ExtResource( 7 )
 expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }

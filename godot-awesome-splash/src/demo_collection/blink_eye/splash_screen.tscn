@@ -34,7 +34,7 @@ void fragment() {
 shader = SubResource( 3 )
 shader_param/color = Color( 0, 0.8, 0.741176, 1 )
 
-[node name="AweSplashScreen" type="Node2D"]
+[node name="SplashBinkEye" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="AspectNode" parent="." instance=ExtResource( 1 )]
@@ -63,9 +63,7 @@ margin_right = 300.0
 margin_bottom = 40.0
 texture = ExtResource( 8 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 6
 
 [node name="LeftEye" type="ColorRect" parent="AspectNode/LogoContainer"]
 material = SubResource( 4 )

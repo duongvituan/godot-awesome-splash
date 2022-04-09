@@ -8,6 +8,7 @@ var shader_meterial setget ,_get_shader_meterial
 func _ready():
 	._ready()
 
+
 func _get_aspect_node() -> AspectNode:
 	if viewport == null:
 		return null

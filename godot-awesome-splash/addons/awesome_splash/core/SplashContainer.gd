@@ -24,5 +24,7 @@ func _skip_awe_splash_by_event(event) -> bool:
 
 # Todo: move to other screen here:
 func _on_finished_all_splash_screen():
-	print("_on_finished_all_splash_screen")
-	get_tree().change_scene("res://Main.tscn")
+	if move_to_scene != null:
+		get_tree().change_scene_to(move_to_scene)
+	else:
+		push_error("Please set move_to_scene in SplashContainer")

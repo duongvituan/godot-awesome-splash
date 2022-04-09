@@ -25,7 +25,7 @@ font_data = ExtResource( 3 )
 size = 120
 font_data = ExtResource( 4 )
 
-[node name="AweSplashScreenViewport" type="Node2D"]
+[node name="SplashFire" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
@@ -70,6 +70,7 @@ margin_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource( 5 )
 expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }

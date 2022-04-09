@@ -7,9 +7,10 @@ onready var title_node := $AspectNode/TitleNode
 onready var background := $CanvasLayer/ColorRect
 
 
-const LOGO_PATH := "res://src/demo_collection/slide/icon_color.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+export(String, FILE) var LOGO_PATH = "res://src/demo_collection/slide/icon_color.png"
+export(String) var TITLE := "GODOT"
+export(String) var DESCRIPTION := "Game engine"
+
 
 const TITLE_FONT_SIZE = 230
 const DESCRIPT_FONT_SIZE = 120

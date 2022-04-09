@@ -17,7 +17,7 @@ font_data = ExtResource( 5 )
 size = 120
 font_data = ExtResource( 7 )
 
-[node name="AweSomeSplash" type="Node2D"]
+[node name="SplashSlide" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -62,8 +62,6 @@ margin_bottom = 250.0
 rect_pivot_offset = Vector2( 250, 250 )
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 5
 
 [editable path="AspectNode"]

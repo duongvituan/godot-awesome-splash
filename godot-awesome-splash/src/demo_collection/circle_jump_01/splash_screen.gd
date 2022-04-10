@@ -8,20 +8,17 @@ onready var title_node := $AspectNode/TitleNode
 onready var background := $CanvasLayer/ColorRect
 
 
-export(String, FILE) var LOGO_PATH = "res://src/demo_collection/circle_jump_01/splash_screen.gd"
-export(String) var TITLE := "GODOT"
-export(String) var DESCRIPTION := "Game engine"
+export(String, FILE) var logo_path = "res://src/demo_collection/circle_jump_01/logo.png"
+export(String) var title := "GODOT"
+export(String) var description := "Game engine"
+
+export (Color) var background_color = Color8(0, 0, 0, 255)
+export (Color) var logo_color =  Color8(255, 255, 255, 255)
+export (Color) var font_color := Color.white
+export (float) var title_font_size := 230
+export (float) var description_font_size := 120
 
 const SPACE_LOGO_AND_TITLE := 50.0
-
-const BG_COLOR = Color8(0, 0, 0, 255)
-const LOGO_COLOR = Color8(255, 255, 255, 255)
-const TITLE_COLOR = Color8(255, 255, 255, 255)
-const DESCRIPTION_COLOR = Color8(200, 200, 200, 255)
-
-const TITLE_FONT_SIZE = 230
-const DESCRIPT_FONT_SIZE = 120
-
 const BALL_JUMP_IN_TIME = 1.0
 const BALL_BOUNCE_TIME = 0.3
 const JUMP_EACH_CHAR_TIME = 0.4
@@ -37,31 +34,31 @@ func play():
 
 
 func config():
-	background.color = BG_COLOR
+	background.color = background_color
 	var center_point = self.origin_size / 2.0
 	
-	logo_container.modulate = LOGO_COLOR
+	logo_container.modulate = logo_color
 	logo_container.position = center_point + Vector2(0, 2000)
 	logo_container.scale = Vector2(10, 10)
 	
 	circle.modulate.a = 1
-	logo.texture = load_texture(LOGO_PATH)
+	logo.texture = load_texture(logo_path)
 	logo.modulate.a = 0
 	
 	# config title
-	title_node.font.size = TITLE_FONT_SIZE
-	title_node.modulate = TITLE_COLOR
-	title_node.text = TITLE
+	title_node.font.size = title_font_size
+	title_node.modulate = font_color
+	title_node.text = title
 	var shift_x = (SPACE_LOGO_AND_TITLE + logo_size()) / 2.0
 	title_node.position = center_point + Vector2(shift_x, -50)
 	for child in title_node.get_all_text_node():
 		child.modulate.a = 0
 	
 	# config description
-	info_node.font.size = DESCRIPT_FONT_SIZE
-	info_node.modulate = DESCRIPTION_COLOR
+	info_node.font.size = description_font_size
+	info_node.modulate = font_color
 	info_node.modulate.a = 0
-	info_node.text = DESCRIPTION
+	info_node.text = description
 	info_node.position = center_point + Vector2(0, 150)
 
 

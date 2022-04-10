@@ -7,17 +7,17 @@ onready var title_node := $AspectNode/TitleNode
 onready var background := $CanvasLayer/ColorRect
 
 
-export(String, FILE) var LOGO_PATH = "res://src/demo_collection/slide/icon_color.png"
-export(String) var TITLE := "GODOT"
-export(String) var DESCRIPTION := "Game engine"
+export(String, FILE) var logo_path = "res://src/demo_collection/slide/icon_color.png"
+export(String) var title := "GODOT"
+export(String) var description := "Game engine"
 
+export (Color) var background_color = Color8(240, 240, 240, 255)
+export (Color) var logo_color =  Color8(255, 255, 255, 255)
+export (Color) var title_font_color := Color8(56, 57, 58, 255)
+export (Color) var description_font_color := Color8(98, 99, 102, 255)
+export (float) var title_font_size := 230
+export (float) var description_font_size := 120
 
-const TITLE_FONT_SIZE = 230
-const DESCRIPT_FONT_SIZE = 120
-
-const BG_COLOR = Color8(240, 240, 240, 255)
-const TITLE_COLOR = Color8(56, 57, 58, 255)
-const DESCRIPTION_COLOR = Color8(98, 99, 102, 255)
 
 const DISTANCE_MOVE = 3000
 const FADE_LOGO_TIME = 1.0
@@ -37,24 +37,24 @@ func play():
 
 
 func config():
-	background.color = BG_COLOR
+	background.color = background_color
 	var center_point = self.origin_size / 2.0
 	
-	logo_texture.texture = load_texture(LOGO_PATH)
+	logo_texture.texture = load_texture(logo_path)
 	logo.position = center_point + Vector2(0, -300)
 	logo.modulate.a = 0
 	
-	title_node.font.size = TITLE_FONT_SIZE
-	title_node.modulate = TITLE_COLOR
-	title_node.text = TITLE
+	title_node.font.size = title_font_size
+	title_node.modulate = title_font_color
+	title_node.text = title
 	title_node.position = center_point + Vector2(0, 50)
 	for char_node in title_node.get_all_text_node():
 		char_node.position.x -= DISTANCE_MOVE
 		char_node.modulate.a = 1
 	
-	info_node.font.size = DESCRIPT_FONT_SIZE
-	info_node.modulate = DESCRIPTION_COLOR
-	info_node.text = DESCRIPTION
+	info_node.font.size = description_font_size
+	info_node.modulate = description_font_color
+	info_node.text = description
 	info_node.position = center_point + Vector2(0, 250)
 	info_node.modulate.a = 0
 

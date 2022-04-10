@@ -10,9 +10,16 @@ onready var title_node := $AspectNode/TitleNode
 onready var bg_color := $CanvasLayer/ColorRect
 
 
-export(String, FILE) var LOGO_PATH = "res://src/demo_collection/blink_eye/logo.png"
-export(String) var TITLE := "GODOT"
-export(String) var DESCRIPTION := "Game engine"
+export(String, FILE) var logo_path = "res://src/demo_collection/blink_eye/logo.png"
+export(String) var title := "GODOT"
+export(String) var description := "Game engine"
+
+export (Color) var background_color = Color8(0, 204, 189, 255)
+export (Color) var logo_color =  Color8(255, 255, 255, 255)
+export (Color) var font_color := Color.white
+export (float) var title_font_size := 230
+export (float) var description_font_size := 120
+
 
 export (float) var duration := 3.0
 var fade_time_per_character = 0.2
@@ -20,18 +27,9 @@ var text_animation_time = 1.0
 
 const SPACE_LOGO_AND_TITLE := 50.0
 
-const BG_COLOR = Color8(0, 204, 189, 255)
-const LOGO_COLOR = Color8(255, 255, 255, 255)
-const TITLE_COLOR = Color8(255, 255, 255, 255)
-const DESCRIPTION_COLOR = Color8(255, 255, 255, 255)
-
-const TITLE_FONT_SIZE = 230
-const DESCRIPT_FONT_SIZE = 120
-
 
 const FADE_EYE_TIME = 1.0
 const MOVE_TO_LEFT_TIME = 0.2
-
 
 
 func get_name() -> String:
@@ -45,32 +43,32 @@ func play():
 
 
 func config():
-	bg_color.color = BG_COLOR
-	logo.texture = load_texture(LOGO_PATH)
-	logo.modulate = LOGO_COLOR
-	godot_left_eye.color = BG_COLOR
+	bg_color.color = background_color
+	logo.texture = load_texture(logo_path)
+	logo.modulate = logo_color
+	godot_left_eye.color = background_color
 	godot_left_eye.modulate.a = 1.0
-	godot_right_eye.color = BG_COLOR
+	godot_right_eye.color = background_color
 	godot_right_eye.modulate.a = 1.0
 	
 	var center_point = self.origin_size / 2.0
-	logo_container.modulate = LOGO_COLOR
+	logo_container.modulate = logo_color
 	logo_container.position = center_point + Vector2(0, 50)
 	logo_container.scale = Vector2(0.5, 0.5)
 	
 	# Config TitleNode
-	title_node.font.size = TITLE_FONT_SIZE
-	title_node.modulate = TITLE_COLOR
-	title_node.text = TITLE
+	title_node.font.size = title_font_size
+	title_node.modulate = font_color
+	title_node.text = title
 	var shift_x = (SPACE_LOGO_AND_TITLE + logo_size()) / 2.0
 	title_node.position = center_point + Vector2(shift_x, -50)
 	for child in title_node.get_all_text_node():
 		child.modulate.a = 0
 	
 	# Config InfoNode
-	info_node.font.size = DESCRIPT_FONT_SIZE
-	info_node.modulate = DESCRIPTION_COLOR
-	info_node.text = DESCRIPTION
+	info_node.font.size = description_font_size
+	info_node.modulate = font_color
+	info_node.text = description
 	info_node.position = center_point + Vector2(0, 130)
 	info_node.modulate.a = 0
 	

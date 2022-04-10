@@ -13,17 +13,16 @@ onready var circle := $AspectNode/CenterNode/LogoContainer/Circle
 onready var small_circle := $AspectNode/CenterNode/LogoContainer/SmallCircle
 
 
-export(String, FILE) var LOGO_PATH = "res://src/demo_collection/twist/src/logo.png"
-export(String) var TITLE := "GODOT"
-export(String) var DESCRIPTION := "Game engine"
+export(String, FILE) var logo_path = "res://src/demo_collection/twist/src/logo.png"
+export(String) var title := "GODOT"
+export(String) var description := "Game engine"
 
-const BG_COLOR = Color8(0, 0, 0, 255)
-const LOGO_COLOR = Color8(255, 255, 255, 255)
-const TITLE_COLOR = Color8(255, 255, 255, 255)
-const DESCRIPTION_COLOR = Color8(200, 200, 200, 255)
+export (Color) var background_color = Color8(0, 0, 0, 255)
+export (Color) var logo_color =  Color8(255, 255, 255, 255)
+export (Color) var font_color := Color.white
+export (float) var title_font_size := 230
+export (float) var description_font_size := 120
 
-const TITLE_FONT_SIZE = 230
-const DESCRIPT_FONT_SIZE = 120
 
 const SHAKE_TEXT_TIME = 0.2
 const SPINNY_CIRCE_TIME = 1.5
@@ -48,28 +47,28 @@ func play():
 
 
 func config():
-	background.color = BG_COLOR
+	background.color = background_color
 	var center_point = self.origin_size / 2.0
 	
 	center_node.position = center_point + Vector2(0, -300)
 	if USE_SPINNY_CIRCE:
 		logo_container.position.x = 1500
 	logo_container.scale = Vector2(0.5, 0.5)
-	logo_container.modulate = LOGO_COLOR
-	logo.texture = load_texture(LOGO_PATH)
+	logo_container.modulate = logo_color
+	logo.texture = load_texture(logo_path)
 	logo.modulate.a = 0
 	
 	# config title node
-	title_node.font.size = TITLE_FONT_SIZE
-	title_node.modulate = TITLE_COLOR
-	title_node.text = TITLE
+	title_node.font.size = title_font_size
+	title_node.modulate = font_color
+	title_node.text = title
 	title_node.position = center_point + Vector2(0, 200)
 	title_node.visible = false
 	
 	#config info node
-	info_node.font.size = DESCRIPT_FONT_SIZE
-	info_node.text = DESCRIPTION
-	info_node.modulate = DESCRIPTION_COLOR
+	info_node.font.size = description_font_size
+	info_node.text = description
+	info_node.modulate = font_color
 	info_node.position = center_point + Vector2(0, 400)
 	info_node.modulate.a = 0
 	
@@ -81,7 +80,7 @@ func config():
 	
 	if USE_TRAIL_EFFTECT:
 		trail_node.draw_on_node = logo_container
-		trail_node.modulate = LOGO_COLOR
+		trail_node.modulate = logo_color
 
 
 

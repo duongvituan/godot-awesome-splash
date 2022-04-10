@@ -11,25 +11,25 @@ onready var sponges := $AspectNode/Sponges
 onready var wave1 := $AspectNode/Wave1
 onready var wave2 := $AspectNode/Wave2
 
-export(String, FILE) var LOGO_PATH = "res://src/demo_collection/aqua/assets/logo.png"
-export(String) var TITLE := "GODOT"
-export(String) var DESCRIPTION := "Game engine"
+export(String, FILE) var logo_path = "res://src/demo_collection/aqua/assets/logo.png"
+export(String) var title := "GODOT"
+export(String) var description := "Game engine"
 
 export (float) var duration := 4.0
+export (Color) var background_color := Color.white
 
-const LOGO_COLOR = Color8(255, 255, 255, 255)
-const TITLE_COLOR = Color8(255, 255, 255, 255)
-const DESCRIPTION_COLOR = Color8(255, 255, 255, 255)
+export (Color) var font_color := Color.white
+export (float) var title_font_size := 230
+export (float) var description_font_size := 120
 
-const TITLE_FONT_SIZE = 230
-const DESCRIPT_FONT_SIZE = 120
+export (Color) var logo_color :=  Color8(255, 255, 255, 255)
+export (Color) var color_wave1 := Color8(0, 132, 222, 255)
+export (Color) var color_wave2 :=  Color8(255, 255, 255, 255)
 
-const COLOR_WAVE1 = Color8(0, 132, 222, 255)
-const COLOR_WAVE2 = Color8(255, 255, 255, 255)
-const BACKGROUND_COLOR = Color8(255, 255, 255, 255)
 
 var wave1_move_up_time = 2.0
 var wave2_move_up_time = 2.0
+
 const PREPARE_MOVE_OTHER_SCREEN = 0.2 # time prepare move to other screen after animation finished
 
 const SPONGE_MOVE_X_RANGE = Vector2(-450, 450)
@@ -54,24 +54,24 @@ func config():
 	var center_point = self.origin_size / 2.0
 	logo_container.position = center_point + Vector2(0, 300)
 	logo_container.scale = Vector2(1, 1)
-	logo_container.modulate = BACKGROUND_COLOR
+	logo_container.modulate = background_color
 	
-	logo.texture = load_texture(LOGO_PATH)
-	logo.modulate = LOGO_COLOR
+	logo.texture = load_texture(logo_path)
+	logo.modulate = logo_color
 	
-	background.color = BACKGROUND_COLOR
-	wave1.modulate = COLOR_WAVE1
-	wave2.modulate = COLOR_WAVE2
+	background.color = background_color
+	wave1.modulate = color_wave1
+	wave2.modulate = color_wave2
 	
 	sponges.position = Vector2(center_point.x, self.origin_size.y + 1500.0)
 	
-	title_node.font.size = TITLE_FONT_SIZE
-	title_node.modulate = TITLE_COLOR
-	title_node.text = TITLE
+	title_node.font.size = title_font_size
+	title_node.modulate = font_color
+	title_node.text = title
 	
-	info_node.font.size = DESCRIPT_FONT_SIZE
-	info_node.text = DESCRIPTION
-	info_node.modulate = DESCRIPTION_COLOR
+	info_node.font.size = description_font_size
+	info_node.text = description
+	info_node.modulate = font_color
 	
 
 

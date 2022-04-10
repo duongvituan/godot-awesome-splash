@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/awesome_splash/core/SplashContainer.gd" type="Script" id=1]
 [ext_resource path="res://TestMain.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://src/demo_info_view/not_for_kid/not_for_kid.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/demo_info_view/controller_bw/controller_bw.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/demo_info_view/save_game_bw/save_game_bw.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/demo_collection/blink_eye/splash_screen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/demo_collection/circle_jump_02/splash_screen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/demo_collection/twist/splash_screen.tscn" type="PackedScene" id=9]
 
 [node name="SplashContainer" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,14 +19,20 @@ custom_node/default_time = 1.0
 skip/type = 0
 transition_time = 1.0
 
+[node name="SplashTwist" parent="." instance=ExtResource( 9 )]
+
+[node name="SplashCircleJump02" parent="." instance=ExtResource( 8 )]
+
+[node name="SplashBinkEye" parent="." instance=ExtResource( 7 )]
+
 [node name="GodotSplash" parent="." instance=ExtResource( 3 )]
 is_skip_appear_transition = true
 is_skip_disappear_transition = true
 
 [node name="MySPlash" parent="." instance=ExtResource( 3 )]
 is_skip_appear_transition = true
-TITLE = "My Game"
-DESCRIPTION = "My description"
+title = "My Game"
+description = ""
 
 [node name="best_with_controller_bw" parent="." instance=ExtResource( 5 )]
 

@@ -4,7 +4,7 @@
 - Added some animations when scrolling the screens.
 - You can customize the types of skip, type transition, parameter splash screens in the Splash Container inspector.
 
-Video: update late
+Video: update later
 
 ## Overview
 Collection of splash screens for Godot Engine. Easy to use, fast Installing, multiple resolutions.
@@ -21,9 +21,7 @@ Run on mobile:
 
 ![Mobi](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/mobile_size.gif)
 
-Support to easily change logo, title, description by changing constant variables
-
-![Change](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/change_info.gif)
+Support to easily change logo, title, description by changing param on inspector
 
 You can use **preview_demo** to choose the right splash screen for your project:
 
@@ -52,6 +50,9 @@ if you want to use the templates in **demo_info_view** then also create and copy
 
 If you need more details, you can watch the video above.
 
+## Docs
+- If you need more information about **docs**, please refer to the [link](docs.md)
+
 
 ## QA:
 ### How to set main screen is AwesomeSplash.
@@ -79,7 +80,7 @@ Yes, you can change background color, animation time, logo, title... via inspect
 
 
 ### I want to the user that can skip this splash when they tap on the screen.
-![splash](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/splash.png)
+![splash](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/container_splash.png)
 Yes, you can set it at 6 in above image
 
 ### I want to run on mobile (android, ios.. ), what do I need to do?

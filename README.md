@@ -30,7 +30,9 @@ You can use **preview_demo** to choose the right splash screen for your project:
 
 ## Install and use
 
-Watch tutorial video [here](http://www.youtube.com/watch?v=5ULQduv5GZw)
+Watch tutorial video for v.0.2 [here](http://www.youtube.com/watch?v=5ULQduv5GZw) 
+
+Tutorial video for v.0.3: Soon coming
 
 
 ### Installation
@@ -41,11 +43,15 @@ If you need more details, you can watch the video above.
 
 ### How to use AwesomeSplash
 1. Create folder src/demo_collection/ (if it **doesn't exist** then you can create **src** folder and **demo_collection** folder)
+
 if you want to use the templates in **demo_info_view** then also create and copy to demo_info_view folder
 
 2. Copy demo splash you like to your project in to demo_collection folder.
+
 (Note: If you copy to another folder, just fix the "Load failed due to missing dependencies" error by clicking "Fix Dependencies" and selecting your path.)
+
 3. Create SplashContainer.
+
 4. Drag and drop splash_screen.tscn and your node to SplashContainer.
 
 If you need more details, you can watch the video above.

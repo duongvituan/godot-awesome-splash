@@ -21,7 +21,8 @@ You can change animation types while transition with this node.
     
     - CUSTOM: It will not automatically transition with custom node, you need to move the screen with code.
     
-    ex: code when use custom mode:
+ex: code when use custom mode:
+
 ```
     func _input(event):
         if event.is_action_pressed("enter"):

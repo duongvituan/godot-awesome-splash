@@ -75,12 +75,16 @@ I don't know why - I didn't get this error in the old version, but you can close
 Yes, after successful first run you can change it, godot will automatically fix the import for you. So after successful run you can change the directory of the code.
 
 ### I want to change the logo, title, and description in the template.
+
 ![splash](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/splash.png)
+
 Yes, you can change background color, animation time, logo, title... via inspector (at - 3 or 5 in above image)
 
 
 ### I want to the user that can skip this splash when they tap on the screen.
+
 ![splash](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/container_splash.png)
+
 Yes, you can set it at 6 in above image
 
 ### I want to run on mobile (android, ios.. ), what do I need to do?
@@ -101,7 +105,9 @@ You can contribute code and submit pull or you can provide ideas and resources b
 
 
 ## Support Me
+
 If this plugin is useful to you. Buy me a cup of coffee if you can. 
+
 It motivates me to make more splash temporary and info_view in this plugin.
 
 <a href="https://www.buymeacoffee.com/duongvituan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>

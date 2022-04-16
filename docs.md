@@ -86,3 +86,13 @@ func _custom_splash_did_disappear():
     pass
 ```
 
+For example, you want to wait sometime when use Custom Node with SplashContainer has **Custom Node Type** == CUSTOM
+
+```python
+func _custom_splash_did_appear():
+    var time_in_seconds = 2
+    yield(get_tree().create_timer(time_in_seconds), "timeout")
+    
+    var container = sp.get_current_splash_container()
+    container.play_next_screen()
+```

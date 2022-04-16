@@ -4,7 +4,7 @@
 - Added some animations when scrolling the screens.
 - You can customize the types of skip, type transition, parameter splash screens in the Splash Container inspector.
 
-I used [new_ver](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/intro_ver_0.3.gif)) for animation.
+![new_ver](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/intro_ver_0.3.gif)
 
 ## Overview
 Collection of splash screens for Godot Engine. Easy to use, fast Installing, multiple resolutions.

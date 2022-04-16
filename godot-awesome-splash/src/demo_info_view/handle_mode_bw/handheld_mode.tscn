@@ -7,7 +7,7 @@
 size = 32
 font_data = ExtResource( 1 )
 
-[node name="HandheldMode" type="Node2D"]
+[node name="handheld_mode" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -28,6 +28,10 @@ You can use **preview_demo** to choose the right splash screen for your project:
 ![Preview](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/preview_demo.gif)
 
 
+## Download
+you can download all versions [here](https://github.com/duongvituan/godot-awesome-splash/releases)
+
+
 ## Install and use
 
 Watch tutorial video for v.0.2 [here](http://www.youtube.com/watch?v=5ULQduv5GZw) 
@@ -44,7 +48,7 @@ If you need more details, you can watch the video above.
 ### How to use AwesomeSplash
 1. Create folder src/demo_collection/ (if it **doesn't exist** then you can create **src** folder and **demo_collection** folder)
 
-if you want to use the templates in **demo_info_view** then also create and copy to demo_info_view folder
+if you want to use the templates in **demo_info_view** then also create and copy to demo_info_view folder  (if it **doesn't exist** then you can create **src** folder and **demo_info_view** folder)
 
 2. Copy demo splash you like to your project in to demo_collection folder.
 
@@ -55,6 +59,7 @@ if you want to use the templates in **demo_info_view** then also create and copy
 4. Drag and drop splash_screen.tscn and your node to SplashContainer.
 
 If you need more details, you can watch the video above.
+
 
 ## Docs
 - If you need more information about **docs**, please refer to the [link](docs.md)

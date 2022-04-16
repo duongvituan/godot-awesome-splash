@@ -242,6 +242,9 @@ func _on_finished_animation_screen_appear():
 		return
 	
 	# current screen is custom
+	if current_screen.has_method("_custom_splash_did_appear"):
+		current_screen._custom_splash_did_appear()
+	
 	if skip_custom_screen_type == SkipCustomNodeType.CUSTOM:
 		return
 	
@@ -250,6 +253,10 @@ func _on_finished_animation_screen_appear():
 
 func _on_finished_animation_screen_disappear():
 	._on_finished_animation_screen_disappear()
+	
+	if current_screen.has_method("_custom_splash_did_disappear"):
+		current_screen._custom_splash_did_disappear()
+	
 	play_next_screen()
 
 

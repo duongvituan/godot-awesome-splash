@@ -70,3 +70,19 @@ You can change logo or title or description in (3)
 This can be your splash screen, or some info_view samples (used to warn game type 18+, or symbol when saving game ...).
 
 You can refer to it in the directory: src/demo_info_view
+
+
+### Delegate in case Custom Node
+
+You can add 2 functions to your custom node:
+
+```python
+# This func will auto call from SplashContainer when your node appear
+func _custom_splash_did_appear():
+    pass
+
+# This func will auto call from SplashContainer when your node disappear
+func _custom_splash_did_disappear():
+    pass
+```
+

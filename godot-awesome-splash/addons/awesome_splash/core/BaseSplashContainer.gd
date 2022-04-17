@@ -189,6 +189,13 @@ func play_screen(screen):
 		_start_animation_screen_will_appear()
 
 
+func transition_next_screen():
+	if _check_current_screen_is_awe_screen():
+		play_next_screen()
+	else:
+		# Custom Node
+		_on_finished_waiting_custom_screen()
+
 ### PRIVATE METHODS ============================================================
 
 func _setup():

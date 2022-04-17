@@ -27,7 +27,7 @@ ex: code when use custom mode:
     func _input(event):
         if event.is_action_pressed("enter"):
             var container = sp.get_current_splash_container()
-            container.play_next_screen()
+            container.transition_next_screen()
 ```
     
 5 - Default Time (for custom node): Waiting time when you use AUTO mode
@@ -94,5 +94,5 @@ func _custom_splash_did_appear():
     yield(get_tree().create_timer(time_in_seconds), "timeout")
     
     var container = sp.get_current_splash_container()
-    container.play_next_screen()
+    container.transition_next_screen()
 ```

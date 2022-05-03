@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/awesome_splash/core/SplashContainer.gd" type="Script" id=1]
+[ext_resource path="res://src/example/dummy_main_menu/main_menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/demo_collection/zoom/splash_screen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/demo_info_view/save_game_bw/save_game_bw.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/example/press_space_and_move_next_screen.gd" type="Script" id=5]
+[ext_resource path="res://src/example/wait_and_move_next_screen.gd" type="Script" id=6]
+[ext_resource path="res://src/demo_info_view/controller_bw/controller_bw.tscn" type="PackedScene" id=7]
+
+[node name="SplashContainer" type="Node2D"]
+script = ExtResource( 1 )
+move_to_scene = ExtResource( 2 )
+trainsition_type = 5
+custom_node/type = 1
+skip/type = 0
+transition_time = 1.0
+
+[node name="GodorSplash" parent="." instance=ExtResource( 3 )]
+visible = false
+is_skip_appear_transition = true
+is_skip_disappear_transition = true
+
+[node name="MySplash" parent="." instance=ExtResource( 3 )]
+visible = false
+is_skip_appear_transition = true
+logo_path = "res://src/example/logo.png"
+title = "PIXEL GAME"
+description = "8bit studio"
+
+[node name="best_with_controller_bw" parent="." instance=ExtResource( 7 )]
+visible = false
+script = ExtResource( 6 )
+
+[node name="save_game_bw" parent="." instance=ExtResource( 4 )]
+visible = false
+script = ExtResource( 5 )

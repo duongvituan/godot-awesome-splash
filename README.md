@@ -36,7 +36,7 @@ you can download all versions [here](https://github.com/duongvituan/godot-awesom
 
 Watch tutorial video for v.0.2 [here](http://www.youtube.com/watch?v=5ULQduv5GZw) 
 
-Tutorial video for v.0.3: Soon coming
+Tutorial video for v.0.3: [here](https://www.youtube.com/watch?v=Q-8Ykdc5F8w)
 
 
 ### Installation

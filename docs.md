@@ -96,3 +96,12 @@ func _custom_splash_did_appear():
     var container = sp.get_current_splash_container()
     container.transition_next_screen()
 ```
+
+### Skip transition animation in Custom Node
+
+You can add 2 variables to script of your custom node. Default values is False.
+
+```python
+export(bool) var is_skip_appear_transition = false
+export(bool) var is_skip_disappear_transition = false
+```

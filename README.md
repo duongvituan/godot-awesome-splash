@@ -1,7 +1,7 @@
 ## New features in version 0.3
 - Splash Container can now contain multiple splash screens.
 - Splash Container can work with your node (in v0.2 it can only work with my SplashScreen).
-- Added some animations when scrolling the screens.
+- Added some animations when transition to move to next screen.
 - You can customize the types of skip, type transition, parameter splash screens in the Splash Container inspector.
 
 ![new_ver](https://github.com/duongvituan/godot-awesome-splash/blob/master/image_readme/intro_ver_0.3.gif)

@@ -78,7 +78,8 @@ Please put the correct "demo folder" in the path **src/demo_collection/**
 (Note: If you copy to another folder, just fix the "Load failed due to missing dependencies" error by clicking "Fix Dependencies" and selecting your path.)
 
 ### Certain logos not showing after export
-It has been fixed [here](https://github.com/duongvituan/godot-awesome-splash/pull/6)
+It has been fixed [here](https://github.com/duongvituan/godot-awesome-splash/pull/6).
+
 Please try again with new version (>=v 0.3.2)
 
 ### I got the sprite_language.cpp error message when I installed the plugin:

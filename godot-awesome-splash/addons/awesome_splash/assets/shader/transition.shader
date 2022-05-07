@@ -4,6 +4,8 @@ uniform int transition_type = 0;
 uniform vec4 color : hint_color = vec4(1, 1, 1, 1);
 uniform float diamond_size: hint_range(0, 1) = 0;
 uniform float blur_intensity: hint_range(0, 32) = 4.0;
+uniform float min_pixel: hint_range(1, 256) = 1;
+uniform float max_pixel: hint_range(1, 256) = 128;
 uniform float process_value: hint_range(0, 1) = 0;
 
 
@@ -74,7 +76,13 @@ void fragment()
 	}
 	else if (transition_type == 5) // PIXEL
 	{
-		float size = mix(1.0, 128.0, 1.0 - process_value);
+		float v1 = min_pixel;
+		float v2 = max_pixel;
+		if (v1 >= v2) {
+			v1 = 1.0;
+			v2 = 128.0;
+		}
+		float size = mix(v1, v2, 1.0 - process_value);
 		vec2 pixel_uv = get_pixel_uv(UV, size);
 		pixel_uv = mix(UV, pixel_uv, vec2(process_value));
 		output_color = texture(TEXTURE, pixel_uv);

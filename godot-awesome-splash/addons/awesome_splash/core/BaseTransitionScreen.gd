@@ -19,6 +19,8 @@ var status: int = TransitionStatus.NONE
 
 var blur_intensity: float = 4.0
 var diamond_size: float = 32.0
+var min_pixel: float = 1.0
+var max_pixel: float = 128.0
 var transition_time: float = 1.0
 var fade_color: Color = Color.white
 
@@ -133,8 +135,22 @@ func _get_property_list():
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 		})
-
+		
 	if trainsition_type == TrainsitionType.PIXEL:
+		property_list.append({
+			"name": "min_pixel",
+			"type": TYPE_REAL,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_NONE,
+			})
+		
+		property_list.append({
+			"name": "max_pixel",
+			"type": TYPE_REAL,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_NONE,
+			})
+		
 		property_list.append({
 			"name": "transition_time",
 			"type": TYPE_REAL,
@@ -153,6 +169,8 @@ func _setup_transition():
 	shader_meterial.set_shader_param("color", fade_color)
 	shader_meterial.set_shader_param("diamond_size", diamond_size)
 	shader_meterial.set_shader_param("blur_intensity", blur_intensity)
+	shader_meterial.set_shader_param("min_pixel", min_pixel)
+	shader_meterial.set_shader_param("max_pixel", max_pixel)
 	shader_meterial.set_shader_param("transition_type", trainsition_type)
 	
 	viewport = Viewport.new()

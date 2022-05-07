@@ -14,6 +14,8 @@ move_to_scene = ExtResource( 2 )
 trainsition_type = 5
 custom_node/type = 1
 skip/type = 0
+min_pixel = 1.0
+max_pixel = 128.0
 transition_time = 1.0
 
 [node name="GodorSplash" parent="." instance=ExtResource( 3 )]

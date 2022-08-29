@@ -15,8 +15,8 @@ export (Color) var background_color = Color8(240, 240, 240, 255)
 export (Color) var logo_color =  Color8(255, 255, 255, 255)
 export (Color) var title_font_color := Color8(56, 57, 58, 255)
 export (Color) var description_font_color := Color8(98, 99, 102, 255)
-export (float) var title_font_size := 230
-export (float) var description_font_size := 120
+export (float) var title_font_size := 230.0
+export (float) var description_font_size := 120.0
 
 
 const DISTANCE_MOVE = 3000

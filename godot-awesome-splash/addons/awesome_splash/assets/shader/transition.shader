@@ -29,7 +29,7 @@ vec4 diamond_transition(vec4 txt, vec4 fade_color, vec2 uv, vec2 fragcoord, floa
 	float xDistance = abs(xFraction - 0.5);
 	float yDistance = abs(yFraction - 0.5);
     
-	if (xDistance + yDistance + uv.y > v * 3f) {
+	if (xDistance + yDistance + uv.y > v * 3.0) {
 		return txt;
 	}
 	return fade_color;

@@ -16,8 +16,8 @@ export (Color) var background_color := Color.black
 
 export (Color) var logo_color :=  Color8(255, 255, 255, 255)
 export (Color) var font_color := Color.white
-export (float) var title_font_size := 230
-export (float) var description_font_size := 120
+export (float) var title_font_size := 230.0
+export (float) var description_font_size := 120.0
 
 
 var time_appear: float

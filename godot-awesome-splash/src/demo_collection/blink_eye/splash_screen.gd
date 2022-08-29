@@ -17,8 +17,8 @@ export(String) var description := "Game engine"
 export (Color) var background_color = Color8(0, 204, 189, 255)
 export (Color) var logo_color =  Color8(255, 255, 255, 255)
 export (Color) var font_color := Color.white
-export (float) var title_font_size := 230
-export (float) var description_font_size := 120
+export (float) var title_font_size := 230.0
+export (float) var description_font_size := 120.0
 
 
 export (float) var duration := 3.0
@@ -76,7 +76,6 @@ func config():
 	text_animation_time = duration - 0.4 - MOVE_TO_LEFT_TIME - FADE_EYE_TIME
 	if total_character == 0:
 		total_character = 1.0
-		text_animation_time
 	
 	if text_animation_time <= 0:
 		text_animation_time = 1.0
@@ -104,13 +103,11 @@ func fade_eye_godot_sprite():
 func show_text_animation():
 	var delay = 0.0
 	var time_fade = fade_time_per_character
-	var count = 0.0
 	
 	# Animation Slide Text "Godot"
 	for text_node in title_node.get_all_text_node():
 		gd.fade_alpha_to(1.0, time_fade).with_delay(delay).start(text_node)
 		delay += time_fade
-		count += 1.0
 	
 	# Wail show "Godot" finished and start appear info node
 	gd.sequence([

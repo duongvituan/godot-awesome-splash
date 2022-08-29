@@ -15,8 +15,8 @@ export(String) var description := "Game engine"
 export (Color) var background_color = Color8(0, 0, 0, 255)
 export (Color) var logo_color =  Color8(255, 255, 255, 255)
 export (Color) var font_color := Color.white
-export (float) var title_font_size := 230
-export (float) var description_font_size := 120
+export (float) var title_font_size := 230.0
+export (float) var description_font_size := 120.0
 
 
 const LOGO_TO_BALL_TIME = 1.0
@@ -187,12 +187,12 @@ func shake_character(duration):
 
 func make_custom_range(number: int) -> Array:
 	var output = []
-	for i in number / 2:
+	for i in int(number / 2.0):
 		output.append(i)
 		output.append(number - 1 - i)
 	
 	if number % 2 == 1:
-		output.append(number / 2)
+		output.append(int(number / 2.0))
 	return output
 
 

@@ -1,8 +1,8 @@
 class_name GDActionNodeInstant extends GDActionNode
 
 
-func _init(action, key, node).(action, key, node):
-	pass
+func _init(action, key, node):
+	super(action, key, node)
 
 
 func get_class() -> String:

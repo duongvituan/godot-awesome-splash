@@ -3,7 +3,8 @@ class_name GDActionRotateBy extends GDActionInterval
 var by_angle: float
 
 
-func _init(by_angle: float, duration: float, gd_utils: Node).(duration, gd_utils):
+func _init(by_angle: float, duration: float, gd_utils: Node):
+	super(duration, gd_utils)
 	self.by_angle = by_angle
 
 
@@ -15,7 +16,7 @@ func _create_action_node(key: String, node):
 
 
 func _run_action(action_node: GDActionNode, delay: float, speed: float):
-	._run_action(action_node, delay, speed)
+	super._run_action(action_node, delay, speed)
 	action_node.rotate_by(by_angle, duration, delay, speed)
 
 

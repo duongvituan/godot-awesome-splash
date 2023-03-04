@@ -8,8 +8,8 @@ func get_class() -> String:
 	return "GDActionNodeSequence"
 
 
-func _init(action, key, node).(action, key, node):
-	pass
+func _init(action, key, node):
+	super(action, key, node)
 
 
 func start_sequence(list_action: Array, delay: float, speed: float):
@@ -25,7 +25,7 @@ func _start_action():
 
 
 func _on_action_object_completed(action_node):
-	action_node.disconnect("finished", self, "_on_action_object_completed")
+	action_node.finished_action_signal.disconnect(self._on_action_object_completed)
 	
 	if index_action >= self.list_action.size() - 1:
 		finished()
@@ -43,6 +43,6 @@ func _run_sequence(index: int) -> void:
 	
 	var current_action_object = list_action[index]._start_from_action(node, key, speed)
 	
-	if not current_action_object.is_connected("finished", self, "_on_action_object_completed"):
-		current_action_object.connect("finished", self, "_on_action_object_completed")
+	if not current_action_object.finished_action_signal.is_connected(self._on_action_object_completed):
+		current_action_object.finished_action_signal.connect(self._on_action_object_completed)
 

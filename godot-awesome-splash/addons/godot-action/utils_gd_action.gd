@@ -1,7 +1,7 @@
 extends Node
 
-onready var ease_func: GDEaseFunc = $ease_func
-onready var _cache = $cache
+@onready var ease_func: GDEaseFunc = $ease_func
+@onready var _cache = $cache
 
 # Animating a Node's Position in a Linear Path
 # Animate linear node movement.

@@ -9,8 +9,8 @@ func get_class() -> String:
 	return "GDActionNodeInterval"
 
 
-func _init(action, key, node).(action, key, node):
-	pass
+func _init(action, key, node):
+	super(action, key, node)
 
 
 func _process(delta):
@@ -46,7 +46,7 @@ func _update_ease_in(value: float, delta: float):
 		old_eased_value = eased_value
 		
 	elif time_func != null:
-		var eased_value = time_func.interpolate(value / duration)
+		var eased_value = time_func.sample(value / duration)
 		_update(eased_value * duration, eased_value, (eased_value - old_eased_value) * duration)
 		old_eased_value = eased_value
 		
@@ -63,6 +63,6 @@ func _update(value: float, eased_value: float, delta: float):
 
 
 func _reset_value():
-	._reset_value()
+	super._reset_value()
 	self.old_eased_value = 0.0
 	

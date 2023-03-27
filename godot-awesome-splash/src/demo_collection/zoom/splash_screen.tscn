@@ -1,83 +1,70 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://b5aj1thqf6837"]
 
-[ext_resource path="res://src/demo_collection/zoom/splash_screen.gd" type="Script" id=1]
-[ext_resource path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://addons/awesome_splash/text_node/AweListTextNode.gd" type="Script" id=4]
-[ext_resource path="res://addons/awesome_splash/text_node/AweTextNode.gd" type="Script" id=5]
-[ext_resource path="res://addons/awesome_splash/core/AspectNode.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/demo_collection/zoom/src/logo.png" type="Texture" id=7]
-[ext_resource path="res://src/demo_collection/zoom/src/zoom.shader" type="Shader" id=8]
+[ext_resource type="Script" path="res://src/demo_collection/zoom/splash_screen.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://c16j2dpd4aaan" path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" id="2"]
+[ext_resource type="Shader" path="res://src/demo_collection/zoom/src/zoom.gdshader" id="2_q8kve"]
+[ext_resource type="FontFile" uid="uid://cutl8y5rc6e1o" path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" id="3"]
+[ext_resource type="Script" path="res://addons/awesome_splash/text_node/AweListTextNode.gd" id="4"]
+[ext_resource type="Script" path="res://addons/awesome_splash/text_node/AweTextNode.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://8a0stk7534cu" path="res://addons/awesome_splash/core/AspectNode.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://cfy6egv1jsfak" path="res://src/demo_collection/zoom/src/logo.png" id="7"]
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 8 )
-shader_param/min_zoom = 1.0
-shader_param/max_zoom = 1.1
-shader_param/process_value = 0.0
-shader_param/fade = 1.0
-
-[sub_resource type="DynamicFont" id=1]
-size = 230
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 120
-font_data = ExtResource( 2 )
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxj5c"]
+shader = ExtResource("2_q8kve")
+shader_parameter/min_zoom = 1.0
+shader_parameter/max_zoom = 1.1
+shader_parameter/process_value = 0.0
+shader_parameter/fade = 1.0
 
 [node name="SplashZoom" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-material = SubResource( 4 )
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_vxj5c")
 mouse_filter = 2
 
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 1024, 600 )
-own_world = true
+[node name="Viewport" type="SubViewport" parent="ViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-render_target_update_mode = 3
+size = Vector2i(1024, 600)
+render_target_update_mode = 4
 
-[node name="AspectNode" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
+[node name="AspectNode" parent="ViewportContainer/Viewport" instance=ExtResource("6")]
 
 [node name="OutlineFrame" parent="ViewportContainer/Viewport/AspectNode" index="0"]
-margin_right = 1400.0
-margin_bottom = 1400.0
+offset_right = 1400.0
+offset_bottom = 1400.0
 
 [node name="TitleNode" type="Node2D" parent="ViewportContainer/Viewport/AspectNode"]
-script = ExtResource( 4 )
-font = SubResource( 1 )
-anchor = Vector2( 0.5, 0.5 )
-char_anchor = Vector2( 0.5, 0.5 )
+script = ExtResource("4")
+font = ExtResource("3")
+anchor = Vector2(0.5, 0.5)
+char_anchor = Vector2(0.5, 0.5)
 
 [node name="InfoNode" type="Node2D" parent="ViewportContainer/Viewport/AspectNode"]
-script = ExtResource( 5 )
-anchor = Vector2( 0.5, 0.5 )
-font = SubResource( 2 )
+script = ExtResource("5")
+anchor = Vector2(0.5, 0.5)
+font = ExtResource("2")
 
 [node name="LogoContainer" type="Node2D" parent="ViewportContainer/Viewport/AspectNode"]
 
 [node name="Logo" type="TextureRect" parent="ViewportContainer/Viewport/AspectNode/LogoContainer"]
-margin_left = -300.0
-margin_top = -560.0
-margin_right = 300.0
-margin_bottom = 40.0
-texture = ExtResource( 7 )
-expand = true
+offset_left = -300.0
+offset_top = -560.0
+offset_right = 300.0
+offset_bottom = 40.0
+texture = ExtResource("7")
+expand_mode = 1
 stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 
 [editable path="ViewportContainer/Viewport/AspectNode"]

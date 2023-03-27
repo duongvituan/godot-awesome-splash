@@ -22,7 +22,7 @@ const TITLE_FONT_SIZE = 230
 const DESCRIPT_FONT_SIZE = 120
 
 
-func get_name() -> String:
+func get_splash_screen_name() -> String:
 	return "Temp"
 
 

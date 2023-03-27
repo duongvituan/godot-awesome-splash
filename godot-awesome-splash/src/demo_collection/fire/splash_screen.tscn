@@ -1,90 +1,73 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://c1a6h17cr3guq"]
 
-[ext_resource path="res://addons/awesome_splash/text_node/AweListTextNode.gd" type="Script" id=1]
-[ext_resource path="res://addons/awesome_splash/text_node/AweTextNode.gd" type="Script" id=2]
-[ext_resource path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://src/demo_collection/fire/src/logo.png" type="Texture" id=5]
-[ext_resource path="res://src/demo_collection/fire/splash_screen.gd" type="Script" id=6]
-[ext_resource path="res://addons/awesome_splash/core/AspectNode.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/demo_collection/fire/src/burn.shader" type="Shader" id=8]
-[ext_resource path="res://src/demo_collection/fire/src/noise2.png" type="Texture" id=9]
+[ext_resource type="Script" path="res://addons/awesome_splash/text_node/AweListTextNode.gd" id="1"]
+[ext_resource type="Script" path="res://addons/awesome_splash/text_node/AweTextNode.gd" id="2"]
+[ext_resource type="Shader" path="res://src/demo_collection/fire/src/burn.gdshader" id="2_58c68"]
+[ext_resource type="FontFile" uid="uid://cutl8y5rc6e1o" path="res://addons/awesome_splash/assets/font/LilitaOne-Regular.ttf" id="3"]
+[ext_resource type="Texture2D" uid="uid://34h1v3g483n0" path="res://src/demo_collection/fire/src/noise2.png" id="3_wem06"]
+[ext_resource type="FontFile" uid="uid://c16j2dpd4aaan" path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" id="4"]
+[ext_resource type="Texture2D" uid="uid://cbsnq8uksgmgq" path="res://src/demo_collection/fire/src/logo.png" id="5"]
+[ext_resource type="Script" path="res://src/demo_collection/fire/splash_screen.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://8a0stk7534cu" path="res://addons/awesome_splash/core/AspectNode.tscn" id="7"]
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 8 )
-shader_param/burn_color = Color( 1, 0.3, 0.05, 1 )
-shader_param/process_value = 1.0
-shader_param/fade = 1.0
-shader_param/noise_tex = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 230
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 120
-font_data = ExtResource( 4 )
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yij7a"]
+shader = ExtResource("2_58c68")
+shader_parameter/burn_color = Color(1, 0.305882, 0.0509804, 1)
+shader_parameter/process_value = 1.0
+shader_parameter/fade = 1.0
+shader_parameter/noise_tex = ExtResource("3_wem06")
 
 [node name="SplashFire" type="Node2D"]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-material = SubResource( 3 )
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_yij7a")
+offset_right = 1400.0
+offset_bottom = 1400.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-own_world = true
+[node name="Viewport" type="SubViewport" parent="ViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-render_target_update_mode = 3
+render_target_update_mode = 4
 
-[node name="AspectNode" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
+[node name="AspectNode" parent="ViewportContainer/Viewport" instance=ExtResource("7")]
 
 [node name="OutlineFrame" parent="ViewportContainer/Viewport/AspectNode" index="0"]
-margin_right = 1400.0
-margin_bottom = 1400.0
+offset_right = 1400.0
+offset_bottom = 1400.0
 
 [node name="TitleNode" type="Node2D" parent="ViewportContainer/Viewport/AspectNode"]
-script = ExtResource( 1 )
-font = SubResource( 1 )
-anchor = Vector2( 0.5, 0.5 )
-char_anchor = Vector2( 0.5, 0.5 )
+script = ExtResource("1")
+font = ExtResource("3")
+anchor = Vector2(0.5, 0.5)
+char_anchor = Vector2(0.5, 0.5)
 
 [node name="InfoNode" type="Node2D" parent="ViewportContainer/Viewport/AspectNode"]
-script = ExtResource( 2 )
-anchor = Vector2( 0.5, 0.5 )
-font = SubResource( 2 )
+script = ExtResource("2")
+anchor = Vector2(0.5, 0.5)
+font = ExtResource("4")
 
 [node name="LogoContainer" type="Node2D" parent="ViewportContainer/Viewport/AspectNode"]
 
 [node name="Logo" type="TextureRect" parent="ViewportContainer/Viewport/AspectNode/LogoContainer"]
-margin_left = -300.0
-margin_top = -560.0
-margin_right = 300.0
-margin_bottom = 40.0
+offset_left = -300.0
+offset_top = -560.0
+offset_right = 300.0
+offset_bottom = 40.0
 mouse_filter = 2
-texture = ExtResource( 5 )
-expand = true
+texture = ExtResource("5")
+expand_mode = 1
 stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 1)
 
 [editable path="ViewportContainer/Viewport/AspectNode"]

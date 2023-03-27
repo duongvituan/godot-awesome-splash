@@ -4,7 +4,7 @@ var draw_on_node: Node2D # set from parent
 var is_drawing: bool = false
 var point = Vector2.ZERO
 
-export var length = 10
+@export var length = 10
 
 func _ready():
 	global_position = Vector2.ZERO

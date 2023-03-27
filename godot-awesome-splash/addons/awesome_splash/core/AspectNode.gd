@@ -21,18 +21,19 @@
 ##                        #      #            #      #                          
 ##                        ############################                                                    
 ##                                                                            
-##                                                                            
+##            
+@icon("res://addons/awesome_splash/assets/icon/aspect_node_icon.png")                                                                
 extends Node2D
-class_name AspectNode, "res://addons/awesome_splash/assets/icon/aspect_node_icon.png"
+class_name AspectNode
 
-var origin_size: Vector2  setget , _get_origin_size
-var parrent_size: Vector2 setget _set_parrent_size
+var origin_size: Vector2  : get = _get_origin_size
+var parrent_size: Vector2 : set = _set_parrent_size
 
-onready var outline_frame := $OutlineFrame
+@onready var outline_frame := $OutlineFrame
 
 
 func _get_origin_size() -> Vector2:
-	return outline_frame.rect_size
+	return outline_frame.size
 
 
 func _set_parrent_size(parrent_size: Vector2):

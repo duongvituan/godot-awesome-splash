@@ -15,7 +15,7 @@ func _process(delta):
 	current_time += delta
 	if current_time >= max_time:
 		set_process(false)
-		emit_signal("finished")
+		finished.emit()
 
 
 func wait(time: float):

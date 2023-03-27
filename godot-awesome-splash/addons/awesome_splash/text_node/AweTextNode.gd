@@ -1,31 +1,34 @@
+@icon("res://addons/awesome_splash/assets/icon/text_node_icon.png")
 extends Node2D
-class_name AweTextNode, "res://addons/awesome_splash/assets/icon/text_node_icon.png"
+class_name AweTextNode
 
-export var anchor: Vector2
-export var font: DynamicFont setget _set_font
-export var text: String setget _set_text, _get_text
+@export var anchor: Vector2
+@export var font: FontFile : set = _set_font
+@export var text: String : set = _set_text, get =_get_text
 
 var label: Label
 
-func _init(anchor: Vector2 = Vector2.ZERO, dynamic_font: DynamicFont = null):
+func _init(anchor: Vector2 = Vector2.ZERO, font_file: FontFile = null):
 	label = Label.new()
-	label.align = 1 # Center
-	label.valign = 1 # Center
-	label.set("custom_fonts/font", dynamic_font)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	if font_file != null:
+		label.add_theme_font_override("font", font_file)
 	add_child(label)
 	self.anchor = anchor
-	self.font = dynamic_font
+	self.font = font_file
 
 
 func _ready():
 	if font != null:
-		label.set("custom_fonts/font", font)
+		label.add_theme_font_override("font", font)
 		_update_layout()
 
 
 func _set_font(value):
 	font = value
-	label.set("custom_fonts/font", value)
+	if font != null:
+		label.add_theme_font_override("font", font)
 	_update_layout()
 
 
@@ -45,7 +48,7 @@ func _get_text() -> String:
 
 
 func get_true_size() -> Vector2:
-	return Vector2(label.rect_size.x, label.rect_size.y * 0.64)
+	return Vector2(label.size.x, label.size.y * 0.64)
 
 
 func get_coordinates_top_left_char() -> Vector2:
@@ -59,12 +62,12 @@ func _update_layout():
 	remove_child(label)
 	add_child(label)
 	
-	var label_rect = label.rect_size
+	var label_rect = label.size
 	var true_size = get_true_size()
 	
 	var x = -(label_rect.x - true_size.x) / 2.0 - true_size.x * anchor.x
 	var y = -(label_rect.y - true_size.y) / 2.0 - true_size.y * anchor.y
-	label.rect_position = Vector2(x, y)
+	label.position = Vector2(x, y)
 
 
 # CHUA TEST LAI
@@ -78,8 +81,8 @@ func update_anchor(new_anchor: Vector2):
 	var shift_x = true_size.x * diff_anchor.x
 	var shift_y = true_size.y * diff_anchor.y
 	
-	label.rect_position.x -= shift_x
-	label.rect_position.y -= shift_y
+	label.position.x -= shift_x
+	label.position.y -= shift_y
 	
 	position.x += shift_x
 	position.y += shift_y

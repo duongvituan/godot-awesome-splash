@@ -1,49 +1,52 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://8a0stk7534cu"]
 
-[ext_resource path="res://addons/awesome_splash/core/AspectNode.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://addons/awesome_splash/core/AspectNode.gd" id="1"]
 
 [node name="AspectNode" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="OutlineFrame" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1024.0
-margin_bottom = 600.0
+offset_right = 1024.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+metadata/_edit_group_ = true
 
 [node name="Left" type="ColorRect" parent="OutlineFrame"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 9
 anchor_bottom = 1.0
-rect_min_size = Vector2( 5, 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_vertical = 2
 
 [node name="Right" type="ColorRect" parent="OutlineFrame"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 5, 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="Top" type="ColorRect" parent="OutlineFrame"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 10
 anchor_right = 1.0
-rect_min_size = Vector2( 5, 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
 
 [node name="Bottom" type="ColorRect" parent="OutlineFrame"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 5, 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 0

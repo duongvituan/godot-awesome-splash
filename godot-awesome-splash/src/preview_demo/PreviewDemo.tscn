@@ -1,165 +1,117 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://chbfohd3nq3wy"]
 
-[ext_resource path="res://addons/awesome_splash/core/BaseSplashContainer.gd" type="Script" id=1]
-[ext_resource path="res://src/preview_demo/ScreenLoader.gd" type="Script" id=2]
-[ext_resource path="res://src/preview_demo/PreviewDemo.gd" type="Script" id=3]
-[ext_resource path="res://src/preview_demo/assets/D.png" type="Texture" id=4]
-[ext_resource path="res://src/preview_demo/assets/L_Click.png" type="Texture" id=5]
-[ext_resource path="res://src/preview_demo/assets/Right.png" type="Texture" id=6]
-[ext_resource path="res://src/preview_demo/assets/Space.png" type="Texture" id=7]
-[ext_resource path="res://src/preview_demo/assets/A.png" type="Texture" id=8]
-[ext_resource path="res://src/preview_demo/assets/Left.png" type="Texture" id=9]
+[ext_resource type="Script" path="res://addons/awesome_splash/core/BaseSplashContainer.gd" id="1"]
+[ext_resource type="Script" path="res://src/preview_demo/ScreenLoader.gd" id="2"]
+[ext_resource type="Script" path="res://src/preview_demo/PreviewDemo.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://c7nm8bkw4k8sg" path="res://src/preview_demo/assets/D.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cq4s4k5e3sfd0" path="res://src/preview_demo/assets/L_Click.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bxqgj0fuywxwf" path="res://src/preview_demo/assets/Right.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://tlrbsttwbnu7" path="res://src/preview_demo/assets/Space.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://8ewvsijx135w" path="res://src/preview_demo/assets/A.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://t38f83miuc8p" path="res://src/preview_demo/assets/Left.png" id="9"]
 
 [node name="PreviewDemo" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="SplashPlayer" type="Node2D" parent="."]
-script = ExtResource( 1 )
-custom_node/type = 0
-custom_node/default_time = 1.0
-skip/type = 0
-transition_time = 1.0
-fade_color = Color( 1, 1, 1, 1 )
+script = ExtResource("1")
 
 [node name="ScreenLoader" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Panel" type="Panel" parent="."]
-modulate = Color( 1, 1, 1, 0.588235 )
-margin_right = 237.0
-margin_bottom = 150.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+modulate = Color(1, 1, 1, 0.588235)
+offset_right = 250.0
+offset_bottom = 180.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 227.0
-margin_bottom = 140.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
-margin_right = 217.0
-margin_bottom = 18.0
+layout_mode = 2
 size_flags_vertical = 3
 text = "Name: Demo 1"
 
 [node name="HSplitContainer" type="VSplitContainer" parent="Panel/MarginContainer/VBoxContainer"]
-margin_top = 22.0
-margin_right = 217.0
-margin_bottom = 40.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
-margin_top = 44.0
-margin_right = 217.0
-margin_bottom = 63.0
+layout_mode = 2
 size_flags_vertical = 3
 text = "CONTROL:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBox" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-margin_top = 67.0
-margin_right = 217.0
-margin_bottom = 85.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBox"]
-margin_top = 2.0
-margin_right = 81.0
-margin_bottom = 16.0
+layout_mode = 2
 text = "Next Demo: "
 
 [node name="TextureRect2" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBox"]
-margin_left = 85.0
-margin_right = 101.0
-margin_bottom = 18.0
-texture = ExtResource( 4 )
+layout_mode = 2
+texture = ExtResource("4")
+expand_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBox"]
-margin_left = 105.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 16.0
+layout_mode = 2
 text = "or"
 
 [node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBox"]
-margin_left = 122.0
-margin_right = 138.0
-margin_bottom = 18.0
-texture = ExtResource( 6 )
+layout_mode = 2
+texture = ExtResource("6")
+expand_mode = 2
 
 [node name="Label3" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBox"]
-margin_left = 142.0
-margin_top = 2.0
-margin_right = 155.0
-margin_bottom = 16.0
+layout_mode = 2
 text = "or"
 
 [node name="TextureRect3" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBox"]
-margin_left = 159.0
-margin_right = 175.0
-margin_bottom = 18.0
-texture = ExtResource( 5 )
+layout_mode = 2
+texture = ExtResource("5")
+expand_mode = 2
 
 [node name="HBox2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-margin_top = 89.0
-margin_right = 217.0
-margin_bottom = 107.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBox2"]
-margin_top = 2.0
-margin_right = 106.0
-margin_bottom = 16.0
+layout_mode = 2
 text = "Previous Demo: "
 
 [node name="TextureRect2" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBox2"]
-margin_left = 110.0
-margin_right = 126.0
-margin_bottom = 18.0
-texture = ExtResource( 8 )
+layout_mode = 2
+texture = ExtResource("8")
+expand_mode = 2
 
 [node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBox2"]
-margin_left = 130.0
-margin_top = 2.0
-margin_right = 143.0
-margin_bottom = 16.0
+layout_mode = 2
 text = "or"
 
 [node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBox2"]
-margin_left = 147.0
-margin_right = 163.0
-margin_bottom = 18.0
-texture = ExtResource( 9 )
+layout_mode = 2
+texture = ExtResource("9")
+expand_mode = 2
 
 [node name="HBox3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-margin_top = 111.0
-margin_right = 217.0
-margin_bottom = 130.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBox3"]
-margin_top = 2.0
-margin_right = 40.0
-margin_bottom = 16.0
+layout_mode = 2
 text = "Reset:"
 
 [node name="TextureRect2" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBox3"]
-margin_left = 44.0
-margin_right = 60.0
-margin_bottom = 19.0
-texture = ExtResource( 7 )
+layout_mode = 2
+texture = ExtResource("7")
+expand_mode = 2

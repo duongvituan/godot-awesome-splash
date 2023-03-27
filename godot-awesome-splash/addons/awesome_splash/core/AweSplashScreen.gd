@@ -1,16 +1,17 @@
-tool
+@icon("res://addons/awesome_splash/assets/icon/splash_screen_icon.png")
+@tool
 extends Node2D
-class_name AweSplashScreen, "res://addons/awesome_splash/assets/icon/splash_screen_icon.png"
+class_name AweSplashScreen
 
 signal finished
 
-export(bool) var is_skip_appear_transition = false
-export(bool) var is_skip_disappear_transition = false
+@export var is_skip_appear_transition: bool = false
+@export var is_skip_disappear_transition: bool = false
 
-onready var aspect_node: AspectNode setget ,_get_aspect_node
-onready var outline_frame: Control setget, _get_outline_frame
+@onready var aspect_node: AspectNode : get = _get_aspect_node
+@onready var outline_frame: Control : get = _get_outline_frame
 
-var origin_size: Vector2  setget , _get_origin_size
+var origin_size: Vector2 : get = _get_origin_size
 
 
 ### BUILD IN ENGINE METHODS ====================================================
@@ -22,7 +23,7 @@ func _ready():
 
 
 func _get_configuration_warning():
-	var warnings = PoolStringArray()
+	var warnings = PackedStringArray()
 	if not self.outline_frame:
 		warnings.append("%s is missing a AspectNode" % name)
 		warnings.append("You can add AspectNode from \"Instance child scene\" button ")
@@ -39,16 +40,16 @@ func update_aspect_node_frame(parent_size: Vector2):
 
 
 func load_texture(path: String) -> ImageTexture:
-	var image = Image.new()
-	var stream_texture = load(path)
-	var texture = ImageTexture.new()
-	if stream_texture == null:
+#	var image = Image.new()
+#	var stream_texture = load(path)
+	var image = Image.load_from_file(path)
+	var texture = ImageTexture.create_from_image(image)
+	if texture == null:
 		print("%s is load fail" % path)
-		return texture
-	image = stream_texture.get_data()
-	image.lock()
-	
-	texture.create_from_image(image, 0)
+		return ImageTexture.new()
+#	image = stream_texture.get_data()
+#	image.lock()
+
 	return texture
 
 ### PRIVATE METHODS ============================================================
@@ -90,7 +91,7 @@ func skip():
 
 ### VIRTUAL FUNC ===============================================================
 
-func get_name() -> String:
+func get_splash_screen_name() -> String:
 	return ""
 
 

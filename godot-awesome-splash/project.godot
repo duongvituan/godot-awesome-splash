@@ -19,6 +19,11 @@ config/features=PackedStringArray("4.0")
 gd="*res://addons/godot-action/utils_gd_action.tscn"
 sp="*res://addons/awesome_splash/utils_splash.gd"
 
+[display]
+
+window/size/window_width_override=2304
+window/size/window_height_override=1296
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-action/plugin.cfg")

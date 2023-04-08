@@ -179,8 +179,6 @@ func _setup_transition():
 	viewport_container.material = shader_meterial
 	viewport_container.add_child(viewport)
 	viewport.transparent_bg = true
-	# Todo: Tuan
-#	viewport.own_world = true
 	
 	get_viewport().size_changed.connect(self._update_screen_size_changed)
 
@@ -188,8 +186,6 @@ func _setup_transition():
 func _update_screen_size_changed():
 	var viewport_size = get_viewport_rect().size
 	viewport.size = viewport_size
-#	viewport_container.custom_minimum_size = viewport_size
-#	viewport_container.size = viewport_size
 
 
 func _start_animation_screen_will_appear():

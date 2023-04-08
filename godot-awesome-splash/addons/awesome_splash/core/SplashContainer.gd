@@ -9,6 +9,7 @@ class_name SplashContainer
 
 
 func _ready():
+	super._ready()
 	if not Engine.is_editor_hint():
 		finished_all.connect(self._on_finished_all_splash_screen)
 		start_play_list_screen()
@@ -26,6 +27,6 @@ func _skip_awe_splash_by_event(event) -> bool:
 # Todo: move to other screen here:
 func _on_finished_all_splash_screen():
 	if move_to_scene != null:
-		get_tree().change_scene_to(move_to_scene)
+		get_tree().change_scene_to_packed(move_to_scene)
 	else:
 		push_error("Please set move_to_scene in SplashContainer")

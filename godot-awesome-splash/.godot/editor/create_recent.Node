@@ -1,3 +1,6 @@
+VBoxContainer
+Label
+SplashContainer
 WorldEnvironment
 Sprite2D
 CanvasLayer

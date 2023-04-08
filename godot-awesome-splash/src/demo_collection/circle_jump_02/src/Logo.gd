@@ -1,8 +1,8 @@
 extends Node2D
 
-onready var logo := $Logo
-onready var circle := $Circle
-onready var shape_node := $ShapNode
+@onready var logo := $Logo
+@onready var circle := $Circle
+@onready var shape_node := $ShapNode
 
 var EASE_IN = 0.3
 var EASE_OUT = 3.0

@@ -6,8 +6,8 @@ func get_class() -> String:
 	return "GDActionNodeVisibility"
 
 
-func _init(action, key, node).(action, key, node):
-	pass
+func _init(action, key, node):
+	super(action, key, node)
 
 
 func _start_action():

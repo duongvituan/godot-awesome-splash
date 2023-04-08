@@ -1,32 +1,33 @@
 extends AweSplashScreen
 
-onready var logo_container := $AspectNode/LogoContainer
-onready var logo := $AspectNode/LogoContainer/Logo
-onready var circle := $AspectNode/LogoContainer/Circle
-onready var info_node := $AspectNode/InfoNode
-onready var title_node := $AspectNode/TitleNode
-onready var background := $CanvasLayer/ColorRect
+@onready var logo_container := $AspectNode/LogoContainer
+@onready var logo := $AspectNode/LogoContainer/Logo
+@onready var circle := $AspectNode/LogoContainer/Circle
+@onready var info_node := $AspectNode/InfoNode
+@onready var title_node := $AspectNode/TitleNode
+@onready var background := $CanvasLayer/ColorRect
 
 
-export(String, FILE) var logo_path = "res://src/demo_collection/circle_jump_01/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export_file("*png") var logo_path = "res://src/demo_collection/circle_jump_01/logo.png"
+@export var title := "GODOT"
+@export var description := "Game engine"
 
-export (Color) var background_color = Color8(0, 0, 0, 255)
-export (Color) var logo_color =  Color8(255, 255, 255, 255)
-export (Color) var font_color := Color.white
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export var background_color: Color = Color8(0, 0, 0, 255)
+@export var logo_color: Color =  Color8(255, 255, 255, 255)
+@export var font_color: Color = Color.WHITE
+@export var title_font_size := 230.0
+@export var description_font_size := 120.0
 
 const SPACE_LOGO_AND_TITLE := 50.0
 const BALL_JUMP_IN_TIME = 1.0
 const BALL_BOUNCE_TIME = 0.3
 const JUMP_EACH_CHAR_TIME = 0.4
 
-func get_name() -> String:
+func get_splash_screen_name() -> String:
 	return "Circle Jump 01"
 
 func _ready():
+	super._ready()
 	config()
 
 func play():
@@ -46,7 +47,7 @@ func config():
 	logo.modulate.a = 0
 	
 	# config title
-	title_node.font.size = title_font_size
+	title_node.font.fixed_size = title_font_size
 	title_node.modulate = font_color
 	title_node.text = title
 	var shift_x = (SPACE_LOGO_AND_TITLE + logo_size()) / 2.0
@@ -55,7 +56,7 @@ func config():
 		child.modulate.a = 0
 	
 	# config description
-	info_node.font.size = description_font_size
+	info_node.font.fixed_size = description_font_size
 	info_node.modulate = font_color
 	info_node.modulate.a = 0
 	info_node.text = description

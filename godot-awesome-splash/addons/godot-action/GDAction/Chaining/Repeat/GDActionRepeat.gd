@@ -4,7 +4,8 @@ var count: int = 1
 var action: GDAction
 
 
-func _init(action: GDAction, count: int, gd_utils: Node).(gd_utils):
+func _init(action: GDAction, count: int, gd_utils: Node):
+	super(gd_utils)
 	self.count = count
 	self.action = action
 
@@ -18,7 +19,7 @@ func _update_key_if_need(key: String) -> String:
 
 
 func _run_action(action_node: GDActionNode, delay: float, speed: float):
-	._run_action(action_node, delay, speed)
+	super._run_action(action_node, delay, speed)
 	action_node.start_repeat(action, count, delay, speed)
 
 

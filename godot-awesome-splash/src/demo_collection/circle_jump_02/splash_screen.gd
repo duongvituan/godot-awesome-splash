@@ -1,22 +1,22 @@
 extends AweSplashScreen
 
-onready var logo_container := $AspectNode/LogoContainer
-onready var logo := $AspectNode/LogoContainer/Logo
-onready var circle := $AspectNode/LogoContainer/Circle
-onready var shape_node := $AspectNode/LogoContainer/ShapNode
-onready var background := $CanvasLayer/ColorRect
-onready var info_node := $AspectNode/InfoNode
-onready var title_node := $AspectNode/TitleNode
+@onready var logo_container := $AspectNode/LogoContainer
+@onready var logo := $AspectNode/LogoContainer/Logo
+@onready var circle := $AspectNode/LogoContainer/Circle
+@onready var shape_node := $AspectNode/LogoContainer/ShapNode
+@onready var background := $CanvasLayer/ColorRect
+@onready var info_node := $AspectNode/InfoNode
+@onready var title_node := $AspectNode/TitleNode
 
-export(String, FILE) var logo_path = "res://src/demo_collection/circle_jump_02/src/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export_file("*png") var logo_path = "res://src/demo_collection/circle_jump_02/src/logo.png"
+@export var title := "GODOT"
+@export var description := "Game engine"
 
-export (Color) var background_color = Color8(0, 0, 0, 255)
-export (Color) var logo_color =  Color8(255, 255, 255, 255)
-export (Color) var font_color := Color.white
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export var background_color: Color = Color8(0, 0, 0, 255)
+@export var logo_color: Color =  Color8(255, 255, 255, 255)
+@export var font_color: Color = Color.WHITE
+@export var title_font_size := 230.0
+@export var description_font_size := 120.0
 
 
 const LOGO_TO_BALL_TIME = 1.0
@@ -30,11 +30,12 @@ const EASE_OUT = 4
 var list_origin_position: Array = []
 var custom_func_time = preload("./src/custom.tres")
 
-func get_name() -> String:
+func get_splash_screen_name() -> String:
 	return "Circle Jump 02"
 
 
 func _ready():
+	super._ready()
 	config()
 
 func play():
@@ -56,7 +57,7 @@ func config():
 	
 	
 	# Config Title Node
-	title_node.font.size = title_font_size
+	title_node.font.fixed_size = title_font_size
 	title_node.modulate = font_color
 	title_node.text = title
 	title_node.position = center_point + Vector2(0, 200)
@@ -70,7 +71,7 @@ func config():
 	
 	
 	# Config Info Node
-	info_node.font.size = description_font_size
+	info_node.font.fixed_size = description_font_size
 	info_node.modulate = font_color
 	info_node.modulate.a = 0
 	info_node.text = description

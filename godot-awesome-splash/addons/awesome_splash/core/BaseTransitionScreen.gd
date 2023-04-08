@@ -6,12 +6,12 @@ enum TransitionStatus {NONE, APPEAR, DISSAPPEAR}
 # It's not good to put move_to_scene variable in this class
 # I want it in a section like skip or custom node
 # but I don't find PackedScene in Variant.Type enum.
-export(PackedScene) var move_to_scene
+@export var move_to_scene: PackedScene
 
-export(TrainsitionType) var trainsition_type = TrainsitionType.FADE \
-	setget _set_transition_type
+@export var trainsition_type: TrainsitionType = TrainsitionType.FADE \
+	: set = _set_transition_type
 
-var fade_value: float setget _set_fade_value
+var fade_value: float : set = _set_fade_value
 var current_time: float = 0.0
 var animation_time: float = 0.0
 var status: int = TransitionStatus.NONE
@@ -22,12 +22,12 @@ var diamond_size: float = 32.0
 var min_pixel: float = 1.0
 var max_pixel: float = 128.0
 var transition_time: float = 1.0
-var fade_color: Color = Color.white
+var fade_color: Color = Color.WHITE
 
 
-var viewport_container: ViewportContainer
-var viewport: Viewport
-var transition_shader = preload("res://addons/awesome_splash/assets/shader/transition.shader")
+var viewport_container: SubViewportContainer
+var viewport: SubViewport
+var transition_shader = preload("res://addons/awesome_splash/assets/shader/transition.gdshader")
 var shader_meterial: ShaderMaterial
 
 
@@ -57,7 +57,7 @@ func _process(delta):
 # overridden function
 # call once when node selected. Added to ordinary export
 func _get_property_list():
-	if not Engine.editor_hint or not is_inside_tree():
+	if not Engine.is_editor_hint() or not is_inside_tree():
 		return []
 	
 	var property_list = []
@@ -65,7 +65,7 @@ func _get_property_list():
 	if trainsition_type == TrainsitionType.FADE:
 		property_list.append({
 			"name": "transition_time",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
@@ -80,14 +80,14 @@ func _get_property_list():
 	if trainsition_type == TrainsitionType.DIAMOND:
 		property_list.append({
 			"name": "diamond_size",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
 	
 		property_list.append({
 			"name": "transition_time",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
@@ -102,14 +102,14 @@ func _get_property_list():
 	if trainsition_type == TrainsitionType.BLUR:
 		property_list.append({
 			"name": "blur_intensity",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
 		
 		property_list.append({
 			"name": "transition_time",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
@@ -117,14 +117,14 @@ func _get_property_list():
 	if trainsition_type == TrainsitionType.BLUR_AND_FADE:
 		property_list.append({
 			"name": "blur_intensity",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
 		
 		property_list.append({
 			"name": "transition_time",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
@@ -139,21 +139,21 @@ func _get_property_list():
 	if trainsition_type == TrainsitionType.PIXEL:
 		property_list.append({
 			"name": "min_pixel",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
 		
 		property_list.append({
 			"name": "max_pixel",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
 		
 		property_list.append({
 			"name": "transition_time",
-			"type": TYPE_REAL,
+			"type": TYPE_FLOAT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_NONE,
 			})
@@ -166,29 +166,30 @@ func _get_property_list():
 func _setup_transition():
 	shader_meterial = ShaderMaterial.new()
 	shader_meterial.shader = transition_shader
-	shader_meterial.set_shader_param("color", fade_color)
-	shader_meterial.set_shader_param("diamond_size", diamond_size)
-	shader_meterial.set_shader_param("blur_intensity", blur_intensity)
-	shader_meterial.set_shader_param("min_pixel", min_pixel)
-	shader_meterial.set_shader_param("max_pixel", max_pixel)
-	shader_meterial.set_shader_param("transition_type", trainsition_type)
+	shader_meterial.set_shader_parameter("color", fade_color)
+	shader_meterial.set_shader_parameter("diamond_size", diamond_size)
+	shader_meterial.set_shader_parameter("blur_intensity", blur_intensity)
+	shader_meterial.set_shader_parameter("min_pixel", min_pixel)
+	shader_meterial.set_shader_parameter("max_pixel", max_pixel)
+	shader_meterial.set_shader_parameter("transition_type", trainsition_type)
 	
-	viewport = Viewport.new()
-	viewport_container = ViewportContainer.new()
+	viewport = SubViewport.new()
+	viewport_container = SubViewportContainer.new()
 	add_child(viewport_container)
 	viewport_container.material = shader_meterial
 	viewport_container.add_child(viewport)
 	viewport.transparent_bg = true
-	viewport.own_world = true
+	# Todo: Tuan
+#	viewport.own_world = true
 	
-	get_viewport().connect("size_changed", self, "_update_screen_size_changed")
+	get_viewport().size_changed.connect(self._update_screen_size_changed)
 
 
 func _update_screen_size_changed():
 	var viewport_size = get_viewport_rect().size
 	viewport.size = viewport_size
-	viewport_container.rect_min_size = viewport_size
-	viewport_container.rect_size = viewport_size
+#	viewport_container.custom_minimum_size = viewport_size
+#	viewport_container.size = viewport_size
 
 
 func _start_animation_screen_will_appear():
@@ -222,8 +223,8 @@ func _on_finished_animation_screen_disappear():
 ### SETGET METHODS =============================================================
 func _set_transition_type(value: int):
 	trainsition_type = value
-	property_list_changed_notify() # Call to update UI inspector
+	notify_property_list_changed() # Call to update UI inspector
 
 func _set_fade_value(value: float):
 	fade_value = value
-	self.shader_meterial.set_shader_param("process_value", value)
+	self.shader_meterial.set_shader_parameter("process_value", value)

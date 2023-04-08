@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var line2d := $Line2D
+@onready var line2d := $Line2D
 
 var origin_width = 0
 var origin_height = 0

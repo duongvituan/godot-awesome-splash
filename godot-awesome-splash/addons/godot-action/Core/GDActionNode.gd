@@ -6,7 +6,7 @@ enum NodeType {
 	CONTROL
 }
 
-signal finished(action_node)
+signal finished_action_signal(action_node)
 signal cancelled(action_node)
 
 var delay = 0.0
@@ -39,8 +39,8 @@ func _init(action, key: String, node: Node):
 	elif node is Node2D:
 		node_type = NodeType.NODE_2D
 	
-	connect("finished", action, "_on_action_node_completed")
-	connect("cancelled", action, "_on_action_node_cancelled")
+	finished_action_signal.connect(action._on_action_node_completed)
+	cancelled.connect(action._on_action_node_cancelled)
 
 
 func _ready():
@@ -54,14 +54,14 @@ func finished():
 	set_process(false)
 	is_done = true
 	action_done()
-	emit_signal("finished", self)
+	finished_action_signal.emit(self)
 
 
 func cancel():
 	set_process(false)
 	is_done = true
 	action_done()
-	emit_signal("cancelled", self)
+	cancelled.emit(self)
 
 
 func _run():

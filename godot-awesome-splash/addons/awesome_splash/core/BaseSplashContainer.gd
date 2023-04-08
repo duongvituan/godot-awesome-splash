@@ -1,4 +1,4 @@
-tool
+@tool
 extends "res://addons/awesome_splash/core/BaseTransitionScreen.gd"
 
 enum SkipScreenType {
@@ -28,7 +28,7 @@ var default_custom_node_time: float = 1.0
 ### BUILD IN ENGINE METHODS ====================================================
 
 func _get_configuration_warning():
-	var warnings = PoolStringArray()
+	var warnings = PackedStringArray()
 	if get_children().size() == 0:
 		warnings.append("%s is missing a AweSplashScreen or Custom Node" % name)
 	if move_to_scene == null:
@@ -37,7 +37,7 @@ func _get_configuration_warning():
 
 
 func _ready():
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
 	_setup()
 
@@ -86,12 +86,12 @@ func _set(property, value): # overridden
 	if property == "skip/type":
 		skip_screen_type = value
 	
-	property_list_changed_notify() # update inspect
+	notify_property_list_changed() # update inspect
 	return true
 
 
 func _get_property_list():
-	if not Engine.editor_hint or not is_inside_tree():
+	if not Engine.is_editor_hint() or not is_inside_tree():
 		return []
 	var property_list = []
 
@@ -101,7 +101,7 @@ func _get_property_list():
 			"type": TYPE_INT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_ENUM,
-			"hint_string": PoolStringArray(SkipCustomNodeType.keys()).join(","),
+			"hint_string": ",".join(PackedStringArray(SkipCustomNodeType.keys())),
 		}
 	)
 	
@@ -109,7 +109,7 @@ func _get_property_list():
 		property_list.append(
 			{
 				"name": "custom_node/default_time",
-				"type": TYPE_REAL,
+				"type": TYPE_FLOAT,
 				"usage": PROPERTY_USAGE_DEFAULT,
 				"hint": PROPERTY_HINT_NONE,
 			}
@@ -121,7 +121,7 @@ func _get_property_list():
 			"type": TYPE_INT,
 			"usage": PROPERTY_USAGE_DEFAULT,
 			"hint": PROPERTY_HINT_ENUM,
-			"hint_string": PoolStringArray(SkipScreenType.keys()).join(","),
+			"hint_string": ",".join(PackedStringArray(SkipScreenType.keys())),
 		}
 	)
 	return property_list
@@ -134,8 +134,8 @@ func start_play_list_screen():
 	if first_screen:
 		play_screen(first_screen)
 	else:
-		emit_signal("finished")
-		emit_signal("finished_all")
+		finished.emit()
+		finished_all.emit()
 
 
 func play_next_screen():
@@ -144,11 +144,11 @@ func play_next_screen():
 	# Get next splash screen and remove it in queue (list_screen)
 	var next_screen = list_screen.pop_front()
 	if next_screen == null:
-		emit_signal("finished")
-		emit_signal("finished_all")
+		finished.emit()
+		finished_all.emit()
 		return
 	
-	emit_signal("finished")
+	finished.emit()
 	play_screen(next_screen)
 
 
@@ -176,10 +176,8 @@ func play_screen(screen):
 	viewport.add_child(current_screen)
 	
 	if screen is AweSplashScreen:
-		current_screen.connect(
-			"finished",
-			self,
-			"_on_finished_animation_splash_screen"
+		current_screen.finished.connect(
+			self._on_finished_animation_splash_screen
 		)
 	
 	_update_screen_size_changed()
@@ -201,7 +199,7 @@ func transition_next_screen():
 func _setup():
 	_setup_transition()
 	add_child(awe_timer)
-	awe_timer.connect("finished", self, "_on_finished_waiting_custom_screen")
+	awe_timer.finished.connect(self._on_finished_waiting_custom_screen)
 	
 	for node in get_children():
 		if node is AweTimer:
@@ -221,9 +219,9 @@ func _check_current_screen_is_custom():
 
 
 func _update_screen_size_changed():
-	if Engine.editor_hint or self.current_screen == null:
+	if Engine.is_editor_hint() or self.current_screen == null:
 		return 
-	._update_screen_size_changed()
+	super._update_screen_size_changed()
 	
 	if not _check_current_screen_is_custom():
 		var viewport_size = get_viewport_rect().size
@@ -242,7 +240,7 @@ func _on_finished_animation_splash_screen():
 
 
 func _on_finished_animation_screen_appear():
-	._on_finished_animation_screen_appear()
+	super._on_finished_animation_screen_appear()
 	
 	if _check_current_screen_is_awe_screen():
 		current_screen.play()
@@ -259,7 +257,7 @@ func _on_finished_animation_screen_appear():
 
 
 func _on_finished_animation_screen_disappear():
-	._on_finished_animation_screen_disappear()
+	super._on_finished_animation_screen_disappear()
 	
 	if current_screen.has_method("_custom_splash_did_disappear"):
 		current_screen._custom_splash_did_disappear()

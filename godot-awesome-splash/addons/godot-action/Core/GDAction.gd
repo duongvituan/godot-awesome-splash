@@ -1,4 +1,4 @@
-class_name GDAction extends Reference
+class_name GDAction extends RefCounted
 
 signal action_finished()
 signal action_cancelled()
@@ -29,12 +29,12 @@ func _create_action_node(key: String, node: Node):
 # It determines whether the gd-action needs to be created or reused from the cache.
 func _create_key(node: Node) -> String:
 	if is_instance_valid(node):
-		return String(node.get_instance_id()) + "_" + String(self.get_instance_id())
-	return String(self.get_instance_id())
+		return String.num_int64(node.get_instance_id()) + "_" + String.num_int64(self.get_instance_id())
+	return String.num_int64(self.get_instance_id())
 
 
 func _create_key_by_parent_key(parent_key: String) -> String:
-	return parent_key + "_" + String(self.get_instance_id())
+	return parent_key + "_" + String.num_int64(self.get_instance_id())
 
 # Key will be updated if this gd-action is a child of chaining-action
 func _update_key_if_need(key: String) -> String:
@@ -109,16 +109,14 @@ func reversed():
 
 # Function callback when action node complete
 func _on_action_node_completed(action_node: GDActionNode):
-#	print("_on_action_node_completed: " + action_node.get_class())
-	emit_signal("action_finished")
+	action_finished.emit()
 	if action_node.is_remove_when_done:
 		_gd_utils._cache.remove_action_node(action_node)
 		_remove_action_node(action_node)
 
 
 func _on_action_node_cancelled(action_node: GDActionNode):
-#	print("_on_action_node_cancelled: " + action_node.get_class())
-	emit_signal("action_cancelled")
+	action_cancelled.emit()
 	if action_node.is_remove_when_done:
 		_gd_utils._cache.remove_action_node(action_node)
 		_remove_action_node(action_node)

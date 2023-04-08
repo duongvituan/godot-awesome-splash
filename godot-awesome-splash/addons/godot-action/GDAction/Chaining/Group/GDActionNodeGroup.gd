@@ -8,12 +8,12 @@ func get_class() -> String:
 	return "GDActionNodeGroup"
 
 
-func _init(action, key, node).(action, key, node):
-	pass
+func _init(action, key, node):
+	super(action, key, node)
 
 
 func _reset_value():
-	._reset_value()
+	super._reset_value()
 	count_action_finished = 0
 
 
@@ -30,7 +30,7 @@ func _start_action():
 
 
 func _on_action_object_completed(action_node):
-	action_node.disconnect("finished", self, "_on_action_object_completed")
+	action_node.finished_action_signal.disconnect(self._on_action_object_completed)
 	
 	count_action_finished += 1
 	
@@ -45,6 +45,6 @@ func _run_group(list_action: Array):
 	
 	for action in list_action:
 		var action_node = action._start_from_action(node, key, speed)
-		if not action_node.is_connected("finished", self, "_on_action_object_completed"):
-			action_node.connect("finished", self, "_on_action_object_completed")
+		if not action_node.finished_action_signal.is_connected(self._on_action_object_completed):
+			action_node.finished_action_signal.connect(self._on_action_object_completed)
 

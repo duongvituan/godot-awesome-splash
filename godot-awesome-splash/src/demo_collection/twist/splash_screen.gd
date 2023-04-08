@@ -1,27 +1,27 @@
 extends AweSplashScreen
 
-onready var trail_node := $Trail2D
+@onready var trail_node := $Trail2D
 
-onready var title_node := $AspectNode/TitleNode
-onready var info_node := $AspectNode/InfoNode
-onready var background := $CanvasLayer/ColorRect
+@onready var title_node := $AspectNode/TitleNode
+@onready var info_node := $AspectNode/InfoNode
+@onready var background := $CanvasLayer/ColorRect
 
-onready var center_node := $AspectNode/CenterNode
-onready var logo_container := $AspectNode/CenterNode/LogoContainer
-onready var logo := $AspectNode/CenterNode/LogoContainer/Logo
-onready var circle := $AspectNode/CenterNode/LogoContainer/Circle
-onready var small_circle := $AspectNode/CenterNode/LogoContainer/SmallCircle
+@onready var center_node := $AspectNode/CenterNode
+@onready var logo_container := $AspectNode/CenterNode/LogoContainer
+@onready var logo := $AspectNode/CenterNode/LogoContainer/Logo
+@onready var circle := $AspectNode/CenterNode/LogoContainer/Circle
+@onready var small_circle := $AspectNode/CenterNode/LogoContainer/SmallCircle
 
 
-export(String, FILE) var logo_path = "res://src/demo_collection/twist/src/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export_file("*png") var logo_path = "res://src/demo_collection/twist/src/logo.png"
+@export var title := "GODOT"
+@export var description := "Game engine"
 
-export (Color) var background_color = Color8(0, 0, 0, 255)
-export (Color) var logo_color =  Color8(255, 255, 255, 255)
-export (Color) var font_color := Color.white
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export var background_color: Color = Color8(0, 0, 0, 255)
+@export var logo_color: Color =  Color8(255, 255, 255, 255)
+@export var font_color: Color= Color.WHITE
+@export var title_font_size := 230.0
+@export var description_font_size := 120.0
 
 
 const SHAKE_TEXT_TIME = 0.2
@@ -34,11 +34,12 @@ const USE_SPINNY_CIRCE = true
 const USE_TRAIL_EFFTECT = true
 
 
-func get_name() -> String:
+func get_splash_screen_name() -> String:
 	return "Twist"
 
 
 func _ready():
+	super._ready()
 	config()
 
 
@@ -59,14 +60,14 @@ func config():
 	logo.modulate.a = 0
 	
 	# config title node
-	title_node.font.size = title_font_size
+	title_node.font.fixed_size = title_font_size
 	title_node.modulate = font_color
 	title_node.text = title
 	title_node.position = center_point + Vector2(0, 200)
 	title_node.visible = false
 	
 	#config info node
-	info_node.font.size = description_font_size
+	info_node.font.fixed_size = description_font_size
 	info_node.text = description
 	info_node.modulate = font_color
 	info_node.position = center_point + Vector2(0, 400)
@@ -74,7 +75,7 @@ func config():
 	
 	small_circle.modulate.a = 1
 	
-	circle.rect_scale = Vector2(1, 1)
+	circle.scale = Vector2(1, 1)
 	circle.visible = false
 	circle.modulate.a = 1
 	

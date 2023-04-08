@@ -11,12 +11,13 @@ func _update_key_if_need(key: String) -> String:
 	return _create_key_by_parent_key(key)
 
 
-func _init(list_action: Array, gd_utils: Node).(gd_utils):
+func _init(list_action: Array, gd_utils: Node):
+	super(gd_utils)
 	self.list_action = list_action
 
 
 func _run_action(action_node: GDActionNode, delay: float, speed: float):
-	._run_action(action_node, delay, speed)
+	super._run_action(action_node, delay, speed)
 	action_node.start_sequence(self.list_action, delay, speed)
 
 

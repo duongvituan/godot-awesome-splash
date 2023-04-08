@@ -1,27 +1,27 @@
 extends AweSplashScreen
 
-onready var logo_container := $AspectNode/LogoContainer
-onready var logo := $AspectNode/LogoContainer/Logo
-onready var godot_left_eye = $AspectNode/LogoContainer/LeftEye
-onready var godot_right_eye = $AspectNode/LogoContainer/RightEye
+@onready var logo_container := $AspectNode/LogoContainer
+@onready var logo := $AspectNode/LogoContainer/Logo
+@onready var godot_left_eye = $AspectNode/LogoContainer/LeftEye
+@onready var godot_right_eye = $AspectNode/LogoContainer/RightEye
 
-onready var info_node := $AspectNode/InfoNode
-onready var title_node := $AspectNode/TitleNode
-onready var bg_color := $CanvasLayer/ColorRect
+@onready var info_node := $AspectNode/InfoNode
+@onready var title_node := $AspectNode/TitleNode
+@onready var bg_color := $CanvasLayer/ColorRect
 
-
-export(String, FILE) var logo_path = "res://src/demo_collection/blink_eye/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
-
-export (Color) var background_color = Color8(0, 204, 189, 255)
-export (Color) var logo_color =  Color8(255, 255, 255, 255)
-export (Color) var font_color := Color.white
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export_file("*png") var logo_path = "res://src/demo_collection/blink_eye/logo.png"
+@export var title: String = "GODOT"
+@export var description: String = "Game engine"
 
 
-export (float) var duration := 3.0
+@export var background_color: Color = Color8(0, 204, 189, 255)
+@export var logo_color: Color =  Color8(255, 255, 255, 255)
+@export var font_color: Color = Color.WHITE
+@export var title_font_size := 230.0
+@export var description_font_size := 120.0
+
+@export var duration: float = 3.0
+
 var fade_time_per_character = 0.2
 var text_animation_time = 1.0
 
@@ -32,10 +32,11 @@ const FADE_EYE_TIME = 1.0
 const MOVE_TO_LEFT_TIME = 0.2
 
 
-func get_name() -> String:
+func get_splash_screen_name() -> String:
 	return "Blink Eye"
 
 func _ready():
+	super._ready()
 	config()
 
 func play():
@@ -57,7 +58,7 @@ func config():
 	logo_container.scale = Vector2(0.5, 0.5)
 	
 	# Config TitleNode
-	title_node.font.size = title_font_size
+	title_node.font.fixed_size = title_font_size
 	title_node.modulate = font_color
 	title_node.text = title
 	var shift_x = (SPACE_LOGO_AND_TITLE + logo_size()) / 2.0
@@ -66,7 +67,7 @@ func config():
 		child.modulate.a = 0
 	
 	# Config InfoNode
-	info_node.font.size = description_font_size
+	info_node.font.fixed_size = description_font_size
 	info_node.modulate = font_color
 	info_node.text = description
 	info_node.position = center_point + Vector2(0, 130)

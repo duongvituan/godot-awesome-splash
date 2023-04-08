@@ -1,30 +1,30 @@
 extends AweSplashScreen
 
-onready var title_node := $AspectNode/LogoContainer/TitleNode
-onready var info_node := $AspectNode/LogoContainer/InfoNode
-onready var logo := $AspectNode/LogoContainer/Logo
+@onready var title_node := $AspectNode/LogoContainer/TitleNode
+@onready var info_node := $AspectNode/LogoContainer/InfoNode
+@onready var logo := $AspectNode/LogoContainer/Logo
 
-onready var background := $CanvasLayer/ColorRect
-onready var logo_container := $AspectNode/LogoContainer
-onready var sponges := $AspectNode/Sponges
+@onready var background := $CanvasLayer/ColorRect
+@onready var logo_container := $AspectNode/LogoContainer
+@onready var sponges := $AspectNode/Sponges
 
-onready var wave1 := $AspectNode/Wave1
-onready var wave2 := $AspectNode/Wave2
+@onready var wave1 := $AspectNode/Wave1
+@onready var wave2 := $AspectNode/Wave2
 
-export(String, FILE) var logo_path = "res://src/demo_collection/aqua/assets/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export_file("*png") var logo_path = "res://src/demo_collection/aqua/assets/logo.png"
+@export var title: String = "GODOT"
+@export var description: String = "Game engine"
 
-export (float) var duration := 4.0
-export (Color) var background_color := Color.white
+@export var duration: float = 4.0
+@export var background_color: Color = Color.WHITE
 
-export (Color) var font_color := Color.white
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export var font_color: Color = Color.WHITE
+@export var title_font_size: float = 230.0
+@export var description_font_size: float = 120.0
 
-export (Color) var logo_color :=  Color8(255, 255, 255, 255)
-export (Color) var color_wave1 := Color8(0, 132, 222, 255)
-export (Color) var color_wave2 :=  Color8(255, 255, 255, 255)
+@export var logo_color: Color =  Color8(255, 255, 255, 255)
+@export var color_wave1: Color = Color8(0, 132, 222, 255)
+@export var color_wave2: Color =  Color8(255, 255, 255, 255)
 
 
 var wave1_move_up_time = 2.0
@@ -36,11 +36,15 @@ const SPONGE_MOVE_X_RANGE = Vector2(-450, 450)
 const SPONGE_MOVE_HORIZONTAL_TIME_RANGE = Vector2(5.0, 10.0)
 const SPONGE_MOVE_UP_TIME_RANGE = Vector2(5.0, 10.0)
 
-func get_name() -> String:
+
+func get_splash_screen_name() -> String:
 	return "Aqua"
 
+
 func _ready():
+	super._ready()
 	config()
+
 
 func play():
 	start_main_animation()
@@ -65,11 +69,11 @@ func config():
 	
 	sponges.position = Vector2(center_point.x, self.origin_size.y + 1500.0)
 	
-	title_node.font.size = title_font_size
+	title_node.font.fixed_size = title_font_size
 	title_node.modulate = font_color
 	title_node.text = title
 	
-	info_node.font.size = description_font_size
+	info_node.font.fixed_size = description_font_size
 	info_node.text = description
 	info_node.modulate = font_color
 	

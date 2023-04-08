@@ -7,17 +7,12 @@ func get_class() -> String:
 	return "GDActionNodeMoveBy"
 
 
-func _init(action, key, node).(action, key, node):
-	pass
+func _init(action, key, node):
+	super(action, key, node)
 
 
 func _update(value: float, eased_value: float, delta: float):
-	match node_type:
-		NodeType.NODE_2D:
-			node.position += self.velocity * delta
-		
-		NodeType.CONTROL:
-			node.rect_position += self.velocity * delta
+	node.position += self.velocity * delta
 
 
 func move_by(vector, duration: float, delay = 0.0, speed = 1.0):

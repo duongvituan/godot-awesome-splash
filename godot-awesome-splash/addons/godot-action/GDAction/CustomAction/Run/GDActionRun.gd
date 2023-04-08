@@ -5,7 +5,8 @@ var on_target: Node
 var is_waiting_finished: bool
 
 
-func _init(action: GDAction, on_target: Node, is_waiting_finished: bool, gd_utils: Node).(gd_utils):
+func _init(action: GDAction, on_target: Node, is_waiting_finished: bool, gd_utils: Node):
+	super(gd_utils)
 	self.run_action = action
 	self.on_target = on_target
 	self.is_waiting_finished = is_waiting_finished
@@ -20,7 +21,7 @@ func _update_key_if_need(key: String) -> String:
 
 
 func _run_action(action_node: GDActionNode, delay: float, speed: float):
-	._run_action(action_node, delay, speed)
+	super._run_action(action_node, delay, speed)
 	action_node.start_run_action(run_action, on_target, is_waiting_finished, delay, speed)
 
 

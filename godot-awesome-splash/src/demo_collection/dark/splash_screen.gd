@@ -1,25 +1,25 @@
 extends AweSplashScreenViewport
 
-onready var logo_container := $ViewportContainer/Viewport/AspectNode/LogoContainer
-onready var logo := $ViewportContainer/Viewport/AspectNode/LogoContainer/Logo
+@onready var logo_container := $ViewportContainer/Viewport/AspectNode/LogoContainer
+@onready var logo := $ViewportContainer/Viewport/AspectNode/LogoContainer/Logo
 
-onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
-onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
-onready var bg_color := $CanvasLayer/ColorRect
+@onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
+@onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
+@onready var bg_color := $CanvasLayer/ColorRect
 
-export(String, FILE) var logo_path = "res://src/demo_collection/dark/src/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export_file("*png") var logo_path = "res://src/demo_collection/dark/src/logo.png"
+@export var title := "GODOT"
+@export var description := "Game engine"
 
-export (float) var duration := 4.0
-export (Color) var background_color = Color8(0, 0, 0, 255)
-export (Color) var vfx_color = Color8(59, 235, 38, 255)
+@export var duration := 4.0
+@export var background_color: Color = Color8(0, 0, 0, 255)
+@export var vfx_color: Color = Color8(59, 235, 38, 255)
 
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export var title_font_size := 230.0
+@export var description_font_size := 120.0
 
 var logo_color =  Color8(255, 255, 255, 255)
-var font_color := Color.white
+var font_color := Color.WHITE
 
 
 # config shader hologram
@@ -28,11 +28,12 @@ const HOLOGRAM_NOISE = 10.0
 const HOLOGRAM_SPEED = 1.0
 
 
-func get_name() -> String:
+func get_splash_screen_name() -> String:
 	return "Dark"
 
+
 func _ready():
-	._ready()
+	super._ready()
 	config()
 
 
@@ -47,13 +48,13 @@ func config():
 	logo_container.scale = Vector2(0.8, 0.8)
 	
 	# Config TitleNode
-	title_node.font.size = title_font_size
+	title_node.font.fixed_size = title_font_size
 	title_node.modulate = font_color
 	title_node.text = title
 	title_node.position = center_point + Vector2(0, 50)
 	
 	# Config InfoNode
-	info_node.font.size = description_font_size
+	info_node.font.fixed_size = description_font_size
 	info_node.modulate = font_color
 	info_node.text = description
 	info_node.position = center_point + Vector2(0, 225)

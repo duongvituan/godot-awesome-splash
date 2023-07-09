@@ -39,16 +39,11 @@ func update_aspect_node_frame(parent_size: Vector2):
 	aspect_node.parrent_size = parent_size
 
 
-func load_texture(path: String) -> ImageTexture:
-#	var image = Image.new()
-#	var stream_texture = load(path)
-	var image = Image.load_from_file(path)
-	var texture = ImageTexture.create_from_image(image)
+func load_texture(path: String):
+	var texture = load(path)
 	if texture == null:
-		print("%s is load fail" % path)
-		return ImageTexture.new()
-#	image = stream_texture.get_data()
-#	image.lock()
+		push_error("Wasn't able to load the texture located: " + path)
+		return 1
 
 	return texture
 
